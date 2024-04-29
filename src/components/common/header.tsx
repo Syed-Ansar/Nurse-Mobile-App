@@ -1,18 +1,28 @@
-import { Dimensions, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import {
+	Dimensions,
+	SafeAreaView,
+	StyleSheet,
+	Text,
+	TouchableWithoutFeedback,
+	View,
+} from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import { EvilIcons, Ionicons } from '@expo/vector-icons'
 import Logo from '@/assets/svg/logo.svg'
 import Bell from '@/assets/svg/bell-icon.svg'
 import Avatar from '@/assets/svg/avatar.svg'
+import { useNavigation } from 'expo-router'
+import { DrawerActions } from '@react-navigation/native'
 
 type Props = {}
 
 const deviceDisplay = Dimensions.get('screen')
 
 const Header = (props: Props) => {
+	const navigation = useNavigation()
 	return (
-		<SafeAreaView style={{}}>
+		<SafeAreaView>
 			<LinearGradient
 				colors={['#7450FE', '#3513DD']}
 				style={{
@@ -40,8 +50,14 @@ const Header = (props: Props) => {
 							gap: 15,
 						}}
 					>
-						<EvilIcons name="navicon" size={28} color="white" />
-						<Logo />
+						<TouchableWithoutFeedback
+							onPress={() => {
+								navigation.dispatch(DrawerActions.openDrawer())
+							}}
+						>
+							<EvilIcons name="navicon" size={28} color="white" />
+						</TouchableWithoutFeedback>
+						<Logo key={'Logo 1'} />
 					</View>
 
 					<View
@@ -53,7 +69,7 @@ const Header = (props: Props) => {
 						}}
 					>
 						<Bell width={24} height={24} />
-						<Avatar width={28} height={28} />
+						<Avatar width={30} height={30} />
 					</View>
 				</View>
 			</LinearGradient>

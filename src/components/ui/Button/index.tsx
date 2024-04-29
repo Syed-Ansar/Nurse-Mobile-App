@@ -15,9 +15,18 @@ type Props = {
 	buttonStyle?: ViewStyle
 	titleStyle?: TextStyle
 	onClick?: () => void
+	radius?: number
+	height?: number
 }
 
-const GradientButton = ({ title, buttonStyle, titleStyle, onClick }: Props) => {
+const GradientButton = ({
+	title,
+	buttonStyle,
+	titleStyle,
+	onClick,
+	radius = 16,
+	height = 48,
+}: Props) => {
 	return (
 		<TouchableWithoutFeedback onPress={onClick}>
 			<LinearGradient
@@ -27,8 +36,8 @@ const GradientButton = ({ title, buttonStyle, titleStyle, onClick }: Props) => {
 					display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
-					borderRadius: 16,
-					height: 48,
+					borderRadius: radius,
+					height: height,
 				}}
 			>
 				<Text
