@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "expo": "~50.0.14",
     "expo-constants": "~15.4.6",
     "expo-linear-gradient": "~12.7.2",

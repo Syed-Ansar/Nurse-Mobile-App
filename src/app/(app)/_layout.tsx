@@ -1,7 +1,7 @@
 import { Redirect, Stack } from 'expo-router'
-
-import { useSession } from '../../context/auth-context'
 import { Text } from 'react-native'
+import { useSession } from '../../context/auth-context'
+import CommonHeader from '@/components/common/header'
 
 export default function AppLayout() {
 	const { session, isLoading } = useSession()
@@ -20,5 +20,13 @@ export default function AppLayout() {
 	}
 
 	// This layout can be deferred because it's not the root layout.
-	return <Stack />
+	return (
+		<Stack
+			screenOptions={{
+				header(props) {
+					return <CommonHeader />
+				},
+			}}
+		/>
+	)
 }
