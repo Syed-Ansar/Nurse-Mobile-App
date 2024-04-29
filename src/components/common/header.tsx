@@ -1,5 +1,6 @@
 import {
 	Dimensions,
+	Pressable,
 	SafeAreaView,
 	StyleSheet,
 	Text,
@@ -50,13 +51,13 @@ const Header = (props: Props) => {
 							gap: 15,
 						}}
 					>
-						<TouchableWithoutFeedback
+						<Pressable
 							onPress={() => {
 								navigation.dispatch(DrawerActions.openDrawer())
 							}}
 						>
 							<EvilIcons name="navicon" size={28} color="white" />
-						</TouchableWithoutFeedback>
+						</Pressable>
 						<Logo key={'Logo 1'} />
 					</View>
 
