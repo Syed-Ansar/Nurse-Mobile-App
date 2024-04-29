@@ -1,17 +1,17 @@
-import { Button, SafeAreaView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AuthHeaderSvg from '../../assets/svg/auth-header.svg'
 import { defaultStyles } from '@/styles'
 import { LinearGradient } from 'expo-linear-gradient'
-import GradientButton from '@/ui/Button'
-import InputField from './ui/Input'
 
-type Props = {}
+type Props = {
+	title: string
+}
 
-const AuthHeader = (props: Props) => {
+const AuthHeader = ({ title }: Props) => {
 	return (
 		<View>
-			<LinearGradient colors={['#7450FE', '#3513DD']} style={{}}>
+			<StatusBar barStyle={'light-content'} />
+			<LinearGradient colors={['#7450FE', '#3513DD']}>
 				<SafeAreaView
 					style={{
 						height: 200,
@@ -33,7 +33,7 @@ const AuthHeader = (props: Props) => {
 								marginBottom: 5,
 							}}
 						>
-							Sign In
+							{title}
 						</Text>
 						<Text
 							style={{
@@ -46,38 +46,6 @@ const AuthHeader = (props: Props) => {
 					</View>
 				</SafeAreaView>
 			</LinearGradient>
-
-			<View style={{ marginHorizontal: 30, marginVertical: 40 }}>
-				<InputField
-					placeholder="ID/ Passport"
-					label="ID/ Passport"
-					styles={{
-						marginBottom: 25,
-					}}
-				/>
-				<InputField placeholder="Enter Password" label="Enter Password" />
-				<Text
-					style={{
-						color: '#3513DD',
-						fontSize: 14,
-						marginTop: 8,
-						marginLeft: 'auto',
-						fontWeight: '600',
-					}}
-				>
-					Forgot Password?
-				</Text>
-
-				<GradientButton
-					title="Login"
-					onClick={() => {
-						console.log('Clicked')
-					}}
-					buttonStyle={{
-						marginTop: 40,
-					}}
-				/>
-			</View>
 		</View>
 	)
 }
