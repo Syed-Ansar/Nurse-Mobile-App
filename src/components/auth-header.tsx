@@ -3,7 +3,8 @@ import React from 'react'
 import AuthHeaderSvg from '../../assets/svg/auth-header.svg'
 import { defaultStyles } from '@/styles'
 import { LinearGradient } from 'expo-linear-gradient'
-import GradientButton from './ui/Button'
+import GradientButton from '@/ui/Button'
+import InputField from './ui/Input'
 
 type Props = {}
 
@@ -45,49 +46,16 @@ const AuthHeader = (props: Props) => {
 					</View>
 				</SafeAreaView>
 			</LinearGradient>
-			<View style={{ marginVertical: 20, marginHorizontal: 30 }}>
-				<Text
-					style={{
-						color: '#1B254B',
-						fontSize: 12,
-					}}
-				>
-					ID/ Passport
-				</Text>
-				<TextInput
-					placeholder="Enter ID/ Passport"
-					style={{
-						width: '100%',
-						height: 48,
-						borderColor: '#E5E7EB',
-						borderWidth: 1,
-						borderRadius: 16,
-						marginTop: 10,
-						paddingHorizontal: 15,
+
+			<View style={{ marginHorizontal: 30, marginVertical: 40 }}>
+				<InputField
+					placeholder="ID/ Passport"
+					label="ID/ Passport"
+					styles={{
+						marginBottom: 25,
 					}}
 				/>
-			</View>
-			<View style={{ marginHorizontal: 30 }}>
-				<Text
-					style={{
-						color: '#1B254B',
-						fontSize: 12,
-					}}
-				>
-					Password
-				</Text>
-				<TextInput
-					placeholder="Enter Password"
-					style={{
-						width: '100%',
-						height: 48,
-						borderColor: '#E5E7EB',
-						borderWidth: 1,
-						borderRadius: 16,
-						marginTop: 10,
-						paddingHorizontal: 15,
-					}}
-				/>
+				<InputField placeholder="Enter Password" label="Enter Password" />
 				<Text
 					style={{
 						color: '#3513DD',
@@ -99,18 +67,16 @@ const AuthHeader = (props: Props) => {
 				>
 					Forgot Password?
 				</Text>
-				<View
-					style={{
+
+				<GradientButton
+					title="Login"
+					onClick={() => {
+						console.log('Clicked')
+					}}
+					buttonStyle={{
 						marginTop: 40,
 					}}
-				>
-					<GradientButton
-						title="Login"
-						onClick={() => {
-							console.log('Clicked')
-						}}
-					/>
-				</View>
+				/>
 			</View>
 		</View>
 	)

@@ -1,12 +1,19 @@
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
+import {
+	StyleSheet,
+	Text,
+	TextStyle,
+	TouchableWithoutFeedback,
+	View,
+	ViewStyle,
+} from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import { defaultStyles } from '@/styles'
 
 type Props = {
 	title: string
-	buttonStyle?: StyleSheet
-	titleStyle?: StyleSheet
+	buttonStyle?: ViewStyle
+	titleStyle?: TextStyle
 	onClick?: () => void
 }
 
