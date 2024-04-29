@@ -1,5 +1,4 @@
 import React from 'react'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 import { Tabs } from 'expo-router'
 import Dashboard from '@/assets/svg/dashboard.svg'
 import Transactions from '@/assets/svg/tansactions.svg'
@@ -14,13 +13,21 @@ export default function TabLayout() {
 				tabBarActiveTintColor: 'blue',
 				headerShown: false,
 				tabBarInactiveTintColor: '#667085',
+				tabBarStyle: {
+					borderTopLeftRadius: 24,
+					borderTopRightRadius: 24,
+					paddingVertical: 20,
+				},
+				tabBarLabelStyle: {
+					marginTop: 10,
+				},
 			}}
 		>
 			<Tabs.Screen
 				name="index"
 				options={{
 					title: 'Dashboard',
-					tabBarIcon: ({ color, focused }) => (
+					tabBarIcon: ({ color }) => (
 						<Dashboard size={28} name="Dashboard" color={color} fill={color} />
 					),
 				}}
