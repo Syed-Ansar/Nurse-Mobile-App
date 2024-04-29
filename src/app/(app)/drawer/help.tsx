@@ -5,7 +5,7 @@ type Props = {}
 
 const Help = (props: Props) => {
 	return (
-		<View>
+		<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
 			<Text>Help</Text>
 		</View>
 	)

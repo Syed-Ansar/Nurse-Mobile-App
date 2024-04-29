@@ -8,7 +8,7 @@ type Props = {}
 
 const DrawerContent = (props: any) => {
 	return (
-		<SafeAreaView
+		<View
 			style={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'space-between' }}
 		>
 			<DrawerContentScrollView {...props}>
@@ -79,12 +79,13 @@ const DrawerContent = (props: any) => {
 					gap: 2,
 					paddingHorizontal: 20,
 					marginTop: 20,
+					marginBottom: 40,
 				}}
 			>
 				<Logout />
 				<Button title="Logout" color={'#667085'} />
 			</View>
-		</SafeAreaView>
+		</View>
 	)
 }
 

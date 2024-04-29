@@ -3,14 +3,14 @@ import React from 'react'
 
 type Props = {}
 
-const Settings = (props: Props) => {
+const Home = (props: Props) => {
 	return (
 		<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-			<Text>Settings</Text>
+			<Text>Home</Text>
 		</View>
 	)
 }
 
-export default Settings
+export default Home
 
 const styles = StyleSheet.create({})

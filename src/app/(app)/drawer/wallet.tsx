@@ -5,7 +5,7 @@ type Props = {}
 
 const Wallet = (props: Props) => {
 	return (
-		<View>
+		<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
 			<Text>Wallet</Text>
 		</View>
 	)

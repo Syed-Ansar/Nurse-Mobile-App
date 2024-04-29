@@ -38,6 +38,13 @@ export default function AppLayout() {
 			}}
 		>
 			<Drawer.Screen
+				name="(drawer)"
+				options={{
+					drawerLabel: 'Home',
+					drawerItemStyle: { height: 0 },
+				}}
+			/>
+			<Drawer.Screen
 				name="index"
 				options={{
 					drawerLabel: 'Home',
