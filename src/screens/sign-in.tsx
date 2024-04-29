@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useSession } from '@/context/auth-context'
 import { router } from 'expo-router'
+import AuthHeader from '@/components/auth-header'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 type Props = {}
 
@@ -9,8 +11,8 @@ const SignIn = (props: Props) => {
 	const { signIn } = useSession()
 	return (
 		<View>
-			<Text>SignIn Screen</Text>
-			<Text
+			<AuthHeader />
+			{/* <Text
 				onPress={() => {
 					signIn()
 					router.replace('/')
@@ -31,7 +33,7 @@ const SignIn = (props: Props) => {
 				}}
 			>
 				Rest Password
-			</Text>
+			</Text> */}
 		</View>
 	)
 }
