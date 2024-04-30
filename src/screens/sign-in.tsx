@@ -1,16 +1,15 @@
-import { router } from 'expo-router'
 import React from 'react'
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 
 import AuthHeader from '@/components/auth-header'
 import GradientButton from '@/components/ui/Button'
 import InputField from '@/components/ui/Input'
 import { useSession } from '@/context/auth-context'
-
-type Props = object
+import { useNavigation } from '@react-navigation/native'
 
 const SignInScreen = ({ navigation }: any) => {
 	const { signIn } = useSession()
+	const navigate = useNavigation()
 	return (
 		<View>
 			<AuthHeader title="Sign In" />
@@ -43,7 +42,7 @@ const SignInScreen = ({ navigation }: any) => {
 					title="Login"
 					onClick={() => {
 						signIn()
-						router.replace('/')
+						console.log('clicked')
 					}}
 					buttonStyle={{
 						marginTop: 40,

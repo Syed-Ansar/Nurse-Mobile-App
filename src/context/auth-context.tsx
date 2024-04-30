@@ -36,7 +36,7 @@ export function SessionProvider(props: React.PropsWithChildren) {
 					setSession('xxx')
 				},
 				signOut: () => {
-					setSession(null)
+					setSession('xxxx')
 				},
 				session,
 				isLoading,

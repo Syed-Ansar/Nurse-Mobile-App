@@ -20,11 +20,14 @@ const DrawerNavigator = (props: Props) => {
 		<Drawer.Navigator
 			screenOptions={{
 				headerShown: false,
+				drawerLabelStyle: {
+					marginLeft: -20,
+				},
 			}}
 			drawerContent={DrawerContent}
 		>
 			<Drawer.Screen
-				name="Dashboard"
+				name="HomeNavigator"
 				component={HomeNavigator}
 				options={{
 					drawerLabel: 'Dashboard',
