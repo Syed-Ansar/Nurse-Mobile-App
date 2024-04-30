@@ -1,22 +1,17 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-
-import ForgetPassword from '@/screens/Auth/forget-password'
-import ResetPassword from '@/screens/Auth/reset-password'
-import SignIn from '@/screens/Auth/sign-in'
-import Dashboard from '@/screens/Tab/dashboard'
-import Transactions from '@/screens/Tab/transactions'
-import Invoices from '@/screens/Tab/invoices'
-import Compliance from '@/screens/Tab/compliance'
-import Assessments from '@/screens/Tab/assessments'
+import { StyleSheet } from 'react-native'
 
 import AssessmentsIcon from '@/assets/svg/assessments.svg'
 import ComplianceIcon from '@/assets/svg/compliance.svg'
 import DashboardIcon from '@/assets/svg/dashboard.svg'
 import InvoicesIcon from '@/assets/svg/invoices.svg'
 import TransactionsIcon from '@/assets/svg/tansactions.svg'
-import { HomeNavigator } from '../Home'
+import Assessments from '@/screens/Tab/assessments'
+import Compliance from '@/screens/Tab/compliance'
+import Dashboard from '@/screens/Tab/dashboard'
+import Invoices from '@/screens/Tab/invoices'
+import Transactions from '@/screens/Tab/transactions'
 
 const MainTab = createBottomTabNavigator()
 
