@@ -1,11 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import TotalHours from '@/assets/svg/timer.svg'
 import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 
-type Props = object
+type Props = {
+	navigation: any
+}
 
 const homeTabs = [
 	{
@@ -14,6 +16,7 @@ const homeTabs = [
 		time: '/ per week',
 		color: '#EAB308',
 		icon: <TotalEarnings />,
+		route: 'TotalEarnings',
 	},
 	{
 		name: 'Total Hours',
@@ -21,12 +24,18 @@ const homeTabs = [
 		time: '/ per week',
 		color: '#3513DD',
 		icon: <TotalHours />,
+		route: 'TotalHours',
 	},
 ]
 
-const HomeScreen = (props: Props) => {
+const HomeScreen = ({ navigation }: Props) => {
 	return (
-		<View>
+		<View
+			style={{
+				paddingHorizontal: 15,
+				paddingVertical: 20,
+			}}
+		>
 			<View
 				style={{
 					gap: 2,
@@ -71,7 +80,10 @@ const HomeScreen = (props: Props) => {
 			>
 				{homeTabs.map((item) => {
 					return (
-						<View
+						<Pressable
+							onPress={() => {
+								navigation.navigate(item.route)
+							}}
 							key={item.name}
 							style={{
 								borderWidth: 0,
@@ -131,7 +143,7 @@ const HomeScreen = (props: Props) => {
 									</View>
 								</View>
 							</View>
-						</View>
+						</Pressable>
 					)
 				})}
 			</View>
