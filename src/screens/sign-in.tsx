@@ -5,11 +5,9 @@ import AuthHeader from '@/components/auth-header'
 import GradientButton from '@/components/ui/Button'
 import InputField from '@/components/ui/Input'
 import { useSession } from '@/context/auth-context'
-import { useNavigation } from '@react-navigation/native'
 
 const SignInScreen = ({ navigation }: any) => {
 	const { signIn } = useSession()
-	const navigate = useNavigation()
 	return (
 		<View>
 			<AuthHeader title="Sign In" />
