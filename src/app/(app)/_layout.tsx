@@ -31,7 +31,7 @@ export default function AppLayout() {
 					return <CommonHeader />
 				},
 				drawerLabelStyle: {
-					marginLeft: -20,
+					// marginLeft: -20,
 				},
 				drawerActiveTintColor: '#667085',
 				drawerInactiveTintColor: '#667085',
@@ -44,7 +44,7 @@ export default function AppLayout() {
 					drawerItemStyle: { height: 0 },
 				}}
 			/>
-			<Drawer.Screen
+			{/* <Drawer.Screen
 				name="index"
 				options={{
 					drawerLabel: 'Home',
@@ -77,7 +77,7 @@ export default function AppLayout() {
 						return <MaterialCommunityIcons name="message-question" size={24} color="#667085" />
 					},
 				}}
-			/>
+			/> */}
 		</Drawer>
 	)
 }

@@ -1,26 +1,17 @@
-import {
-	Dimensions,
-	Pressable,
-	SafeAreaView,
-	StyleSheet,
-	Text,
-	TouchableWithoutFeedback,
-	View,
-} from 'react-native'
-import React from 'react'
-import { LinearGradient } from 'expo-linear-gradient'
-import { EvilIcons, Ionicons } from '@expo/vector-icons'
-import Logo from '@/assets/svg/logo.svg'
-import Bell from '@/assets/svg/bell-icon.svg'
-import Avatar from '@/assets/svg/avatar.svg'
-import { useNavigation } from 'expo-router'
+import { EvilIcons } from '@expo/vector-icons'
 import { DrawerActions } from '@react-navigation/native'
+import { LinearGradient } from 'expo-linear-gradient'
+import { router, useNavigation } from 'expo-router'
+import React from 'react'
+import { Dimensions, Pressable, SafeAreaView, StyleSheet, View } from 'react-native'
 
-type Props = {}
+import Avatar from '@/assets/svg/avatar.svg'
+import Bell from '@/assets/svg/bell-icon.svg'
+import Logo from '@/assets/svg/logo.svg'
 
 const deviceDisplay = Dimensions.get('screen')
 
-const Header = (props: Props) => {
+const Header = () => {
 	const navigation = useNavigation()
 	return (
 		<SafeAreaView>
@@ -58,7 +49,7 @@ const Header = (props: Props) => {
 						>
 							<EvilIcons name="navicon" size={28} color="white" />
 						</Pressable>
-						<Logo key={'Logo 1'} />
+						<Logo key="Logo 1" />
 					</View>
 
 					<View
@@ -69,8 +60,20 @@ const Header = (props: Props) => {
 							gap: 15,
 						}}
 					>
-						<Bell width={24} height={24} />
-						<Avatar width={30} height={30} />
+						<Pressable
+							onPress={() => {
+								router.navigate('/(app)/(drawer)/(stacks)/notifications')
+							}}
+						>
+							<Bell width={24} height={24} />
+						</Pressable>
+						<Pressable
+							onPress={() => {
+								router.navigate('/(app)/(drawer)/(stacks)/profile')
+							}}
+						>
+							<Avatar width={30} height={30} />
+						</Pressable>
 					</View>
 				</View>
 			</LinearGradient>

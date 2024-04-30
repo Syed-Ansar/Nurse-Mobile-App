@@ -1,10 +1,11 @@
-import React from 'react'
 import { Tabs } from 'expo-router'
-import Dashboard from '@/assets/svg/dashboard.svg'
-import Transactions from '@/assets/svg/tansactions.svg'
+import React from 'react'
+
 import Assessments from '@/assets/svg/assessments.svg'
 import Compliance from '@/assets/svg/compliance.svg'
+import Dashboard from '@/assets/svg/dashboard.svg'
 import Invoices from '@/assets/svg/invoices.svg'
+import Transactions from '@/assets/svg/tansactions.svg'
 
 export default function TabLayout() {
 	return (
@@ -27,45 +28,35 @@ export default function TabLayout() {
 				name="index"
 				options={{
 					title: 'Dashboard',
-					tabBarIcon: ({ color }) => (
-						<Dashboard size={28} name="Dashboard" color={color} fill={color} />
-					),
+					tabBarIcon: ({ color }) => <Dashboard color={color} fill={color} />,
 				}}
 			/>
 			<Tabs.Screen
 				name="transactions"
 				options={{
 					title: 'Transactions',
-					tabBarIcon: ({ color }) => (
-						<Transactions size={28} name="Transactions" color={color} fill={color} />
-					),
+					tabBarIcon: ({ color }) => <Transactions color={color} fill={color} />,
 				}}
 			/>
 			<Tabs.Screen
 				name="invoices"
 				options={{
 					title: 'Invoices',
-					tabBarIcon: ({ color }) => (
-						<Invoices size={28} name="Invoices" color={color} fill={color} />
-					),
+					tabBarIcon: ({ color }) => <Invoices color={color} fill={color} />,
 				}}
 			/>
 			<Tabs.Screen
 				name="assessments"
 				options={{
 					title: 'Assessments',
-					tabBarIcon: ({ color }) => (
-						<Assessments size={28} name="Assessments" color={color} fill={color} />
-					),
+					tabBarIcon: ({ color }) => <Assessments color={color} fill={color} />,
 				}}
 			/>
 			<Tabs.Screen
 				name="compliance"
 				options={{
 					title: 'Compliance',
-					tabBarIcon: ({ color }) => (
-						<Compliance size={28} name="Compliance" color={color} fill={color} />
-					),
+					tabBarIcon: ({ color }) => <Compliance color={color} fill={color} />,
 				}}
 			/>
 		</Tabs>
