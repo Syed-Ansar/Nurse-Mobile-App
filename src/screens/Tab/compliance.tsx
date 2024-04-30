@@ -4,9 +4,9 @@ import ScreenLayout from '../screen-layout'
 
 type Props = object
 
-const Compliance = (props: Props) => {
+const Compliance = ({ navigation }: any) => {
 	return (
-		<ScreenLayout>
+		<ScreenLayout navigation={navigation}>
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>Compliance</Text>
 			</View>

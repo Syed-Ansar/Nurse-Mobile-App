@@ -9,7 +9,7 @@ type Props = {
 
 const ScreenLayout = ({ children, navigation }: Props) => {
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={{ width: '100%', height: '100%' }}>
 			<Header navigation={navigation} />
 			{children}
 		</SafeAreaView>

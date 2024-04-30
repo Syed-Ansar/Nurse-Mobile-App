@@ -21,7 +21,7 @@ const MainNavigator = () => {
 			initialRouteName="Dashboard"
 			screenOptions={{
 				tabBarActiveTintColor: 'blue',
-				headerShown: false,
+				// headerShown: false,
 				tabBarInactiveTintColor: '#667085',
 				tabBarStyle: {
 					borderTopLeftRadius: 24,

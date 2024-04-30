@@ -5,9 +5,9 @@ import ScreenLayout from '../screen-layout'
 
 type Props = object
 
-const Transactions = (props: Props) => {
+const Transactions = ({ navigation }: any) => {
 	return (
-		<ScreenLayout>
+		<ScreenLayout navigation={navigation}>
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
 				<Text>Transactions</Text>
 			</View>
