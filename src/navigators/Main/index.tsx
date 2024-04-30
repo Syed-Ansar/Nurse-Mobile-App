@@ -38,6 +38,7 @@ const MainNavigator = () => {
 				component={Dashboard}
 				options={{
 					title: 'Dashboard',
+					headerShown: false,
 					tabBarIcon: ({ color }) => <DashboardIcon color={color} fill={color} />,
 				}}
 			/>
