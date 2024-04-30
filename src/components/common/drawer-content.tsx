@@ -1,11 +1,12 @@
-import { Button, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
-import GradientButton from '@/ui/Button'
+import React from 'react'
+import { Button, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+
 import Logout from '@/assets/svg/logout.svg'
 import { useSession } from '@/context/auth-context'
+import GradientButton from '@/ui/Button'
 
-type Props = {}
+type Props = object
 
 const DrawerContent = (props: any) => {
 	const { signOut } = useSession()

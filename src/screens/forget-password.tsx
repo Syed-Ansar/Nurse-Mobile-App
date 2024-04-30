@@ -1,12 +1,13 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useSession } from '@/context/auth-context'
 import { router } from 'expo-router'
-import AuthHeader from '@/components/auth-header'
-import InputField from '@/components/ui/Input'
-import GradientButton from '@/components/ui/Button'
+import React from 'react'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
-const ForgetPasswordScreen = () => {
+import AuthHeader from '@/components/auth-header'
+import GradientButton from '@/components/ui/Button'
+import InputField from '@/components/ui/Input'
+import { useSession } from '@/context/auth-context'
+
+const ForgetPasswordScreen = ({ navigation }: any) => {
 	const { signIn } = useSession()
 	return (
 		<View>
@@ -18,7 +19,7 @@ const ForgetPasswordScreen = () => {
 					title="Confirm"
 					onClick={() => {
 						signIn()
-						router.replace('/reset-password')
+						navigation.navigate('ResetPassword')
 					}}
 					buttonStyle={{
 						marginTop: 40,

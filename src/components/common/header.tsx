@@ -1,7 +1,6 @@
 import { EvilIcons } from '@expo/vector-icons'
-import { DrawerActions } from '@react-navigation/native'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { router, useNavigation } from 'expo-router'
 import React from 'react'
 import { Dimensions, Pressable, SafeAreaView, StyleSheet, View } from 'react-native'
 
@@ -11,8 +10,8 @@ import Logo from '@/assets/svg/logo.svg'
 
 const deviceDisplay = Dimensions.get('screen')
 
-const Header = () => {
-	const navigation = useNavigation()
+const Header = ({ navigation }: any) => {
+	const drawerNavigation = useNavigation()
 	return (
 		<SafeAreaView>
 			<LinearGradient
@@ -44,7 +43,7 @@ const Header = () => {
 					>
 						<Pressable
 							onPress={() => {
-								navigation.dispatch(DrawerActions.openDrawer())
+								drawerNavigation.dispatch(DrawerActions.openDrawer())
 							}}
 						>
 							<EvilIcons name="navicon" size={28} color="white" />
@@ -62,14 +61,14 @@ const Header = () => {
 					>
 						<Pressable
 							onPress={() => {
-								router.navigate('/(app)/(drawer)/(stacks)/notifications')
+								navigation.navigate('Notifications')
 							}}
 						>
 							<Bell width={24} height={24} />
 						</Pressable>
 						<Pressable
 							onPress={() => {
-								router.navigate('/(app)/(drawer)/(stacks)/profile')
+								navigation.navigate('Profile')
 							}}
 						>
 							<Avatar width={30} height={30} />

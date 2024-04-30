@@ -1,4 +1,5 @@
 import { StatusBar, Text, View } from 'react-native'
+
 import { useSession } from '../context/auth-context'
 import SignInScreen from '../screens/sign-in'
 
@@ -11,7 +12,7 @@ export default function SignIn() {
 				height: '100%',
 			}}
 		>
-			<StatusBar barStyle={'light-content'} />
+			<StatusBar barStyle="light-content" />
 			<SignInScreen />
 		</View>
 	)

@@ -1,3 +1,5 @@
+import { LinearGradient } from 'expo-linear-gradient'
+import React from 'react'
 import {
 	StyleSheet,
 	Text,
@@ -6,8 +8,7 @@ import {
 	View,
 	ViewStyle,
 } from 'react-native'
-import React from 'react'
-import { LinearGradient } from 'expo-linear-gradient'
+
 import { defaultStyles } from '@/styles'
 
 type Props = {
@@ -37,7 +38,7 @@ const GradientButton = ({
 					justifyContent: 'center',
 					alignItems: 'center',
 					borderRadius: radius,
-					height: height,
+					height,
 				}}
 			>
 				<Text

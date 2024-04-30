@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-type Props = {}
+type Props = object
 
 const Page = (props: Props) => {
 	return (

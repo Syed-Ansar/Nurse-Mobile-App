@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
 
 type Props = {
 	props?: TextInput
@@ -41,7 +41,7 @@ const InputField = ({
 			) : null}
 			<TextInput
 				placeholder={placeholder || ''}
-				{...(value !== undefined ? { value: value } : {})}
+				{...(value !== undefined ? { value } : {})}
 				style={{
 					...inputStyles,
 					width: '100%',

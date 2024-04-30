@@ -1,7 +1,8 @@
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { defaultStyles } from '@/styles'
 import { LinearGradient } from 'expo-linear-gradient'
+import React from 'react'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
+
+import { defaultStyles } from '@/styles'
 
 type Props = {
 	title: string
@@ -10,7 +11,7 @@ type Props = {
 const AuthHeader = ({ title }: Props) => {
 	return (
 		<View>
-			<StatusBar barStyle={'light-content'} />
+			<StatusBar barStyle="light-content" />
 			<LinearGradient colors={['#7450FE', '#3513DD']}>
 				<SafeAreaView
 					style={{

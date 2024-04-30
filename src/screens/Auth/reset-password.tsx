@@ -1,13 +1,13 @@
 import { router } from 'expo-router'
 import { Text, View } from 'react-native'
 
-import { useSession } from '../context/auth-context'
+import { useSession } from '@/context/auth-context'
 
 import AuthHeader from '@/components/auth-header'
 import GradientButton from '@/components/ui/Button'
 import InputField from '@/components/ui/Input'
 
-export default function ResetPassword() {
+export default function ResetPassword({ navigation }: any) {
 	const { signIn } = useSession()
 	return (
 		<View>
@@ -27,7 +27,7 @@ export default function ResetPassword() {
 					<GradientButton
 						title="Reset Password"
 						onClick={() => {
-							router.replace('/sign-in')
+							navigation.navigate('SignIn')
 						}}
 						buttonStyle={{
 							marginTop: 40,

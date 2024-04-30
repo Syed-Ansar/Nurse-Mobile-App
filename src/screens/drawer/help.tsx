@@ -1,16 +1,17 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { router } from 'expo-router'
+import { Button, StyleSheet, Text, View } from 'react-native'
 
-type Props = {}
+type Props = object
 
 const Help = (props: Props) => {
+	const navigation = useNavigation()
 	return (
 		<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
 			<Button
 				title="Go back"
 				onPress={() => {
-					router.back()
+					navigation.goBack()
 				}}
 			/>
 			<Text>Help</Text>

@@ -1,16 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
 
-type Props = {}
+type Props = object
 
-const Wallet = (props: Props) => {
+const Settings = (props: Props) => {
 	return (
 		<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-			<Text>Wallet</Text>
+			<Text>Settings</Text>
 		</View>
 	)
 }
 
-export default Wallet
+export default Settings
 
 const styles = StyleSheet.create({})

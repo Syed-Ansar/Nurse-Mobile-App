@@ -1,14 +1,15 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useSession } from '@/context/auth-context'
 import { router } from 'expo-router'
+import React from 'react'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+
 import AuthHeader from '@/components/auth-header'
-import InputField from '@/components/ui/Input'
 import GradientButton from '@/components/ui/Button'
+import InputField from '@/components/ui/Input'
+import { useSession } from '@/context/auth-context'
 
-type Props = {}
+type Props = object
 
-const SignInScreen = (props: Props) => {
+const SignInScreen = ({ navigation }: any) => {
 	const { signIn } = useSession()
 	return (
 		<View>
@@ -32,7 +33,7 @@ const SignInScreen = (props: Props) => {
 						fontWeight: '600',
 					}}
 					onPress={() => {
-						router.replace('/forget-password')
+						navigation.navigate('ForgetPassword')
 					}}
 				>
 					Forgot Password?
