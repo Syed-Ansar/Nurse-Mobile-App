@@ -1,8 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import TotalHours from '@/assets/svg/timer.svg'
+import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 
 type Props = object
