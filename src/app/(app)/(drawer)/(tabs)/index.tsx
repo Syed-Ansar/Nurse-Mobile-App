@@ -1,12 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { StyleSheet, View } from 'react-native'
 
-type Props = {}
+import HomeScreen from '@/screens/home'
+import { Stack } from 'expo-router'
+
+type Props = object
 
 const Home = (props: Props) => {
 	return (
-		<View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-			<Text>Home</Text>
+		<View
+			style={{
+				paddingHorizontal: 15,
+				paddingVertical: 20,
+			}}
+		>
+			<HomeScreen />
 		</View>
 	)
 }
