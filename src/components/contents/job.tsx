@@ -25,17 +25,6 @@ const Clock = [
 		icon: <ClockOutTIme />,
 	},
 ]
-const facilityDetails = [
-	{
-		name: 'Ward',
-	},
-	{
-		name: 'Work Period',
-	},
-	{
-		name: 'Work Hours',
-	},
-]
 
 type Facility = {
 	ward: string
@@ -339,7 +328,7 @@ const Job = ({ job, type }: Props) => {
 												fontWeight: '600',
 											}}
 										>
-											{Clock[0].time}
+											{clockInTime}
 										</Text>
 									</View>
 								</View>
@@ -388,7 +377,7 @@ const Job = ({ job, type }: Props) => {
 												fontWeight: '600',
 											}}
 										>
-											{Clock[1].time}
+											{clockOutTime}
 										</Text>
 									</View>
 								</View>
@@ -427,7 +416,7 @@ const Job = ({ job, type }: Props) => {
 									fontWeight: '600',
 								}}
 							>
-								Emily Ava
+								{name}
 							</Text>
 						</View>
 						<View
@@ -438,7 +427,7 @@ const Job = ({ job, type }: Props) => {
 								gap: 5,
 							}}
 						>
-							{[1, 2, 3, 4, 5].map((_, index) => {
+							{Array.from({ length: review }).map((_, index) => {
 								return <Star key={index} width={16} height={16} />
 							})}
 						</View>
