@@ -5,12 +5,14 @@ import TotalHours from '@/assets/svg/timer.svg'
 import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 import Job from '@/components/contents/job'
+import { JobData } from '@/libs/dummyData'
+import { SCREEN_HEIGHT } from '@/utils/responsive'
 
 type Props = {
 	navigation: any
 }
 
-const homeTabs = [
+const HomeTab = [
 	{
 		name: 'Total Earning',
 		amount: '$200',
@@ -31,132 +33,141 @@ const homeTabs = [
 
 const HomeScreen = ({ navigation }: Props) => {
 	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
+		<View
+			style={{
+				paddingHorizontal: 15,
+				paddingVertical: 20,
+			}}
+		>
 			<View
 				style={{
-					paddingHorizontal: 15,
-					paddingVertical: 20,
+					gap: 2,
 				}}
 			>
 				<View
 					style={{
-						gap: 2,
-					}}
-				>
-					<View
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							alignItems: 'center',
-							gap: 4,
-						}}
-					>
-						<Text
-							style={{
-								fontSize: 24,
-								fontWeight: '700',
-							}}
-						>
-							Welcome !
-						</Text>
-						<WelcomeHand />
-					</View>
-					<Text
-						style={{
-							fontSize: 12,
-							fontWeight: '500',
-						}}
-					>
-						Emily Ava
-					</Text>
-				</View>
-				<View
-					style={{
 						display: 'flex',
 						flexDirection: 'row',
-						width: '100%',
 						alignItems: 'center',
-						justifyContent: 'space-between',
-						marginVertical: 20,
+						gap: 4,
 					}}
 				>
-					{homeTabs.map((item) => {
-						return (
-							<Pressable
-								onPress={() => {
-									navigation.navigate(item.route)
-								}}
-								key={item.name}
+					<Text
+						style={{
+							fontSize: 24,
+							fontWeight: '700',
+						}}
+					>
+						Welcome !
+					</Text>
+					<WelcomeHand />
+				</View>
+				<Text
+					style={{
+						fontSize: 12,
+						fontWeight: '500',
+					}}
+				>
+					Emily Ava
+				</Text>
+			</View>
+			<View
+				style={{
+					display: 'flex',
+					flexDirection: 'row',
+					alignItems: 'center',
+					justifyContent: 'space-between',
+					marginVertical: 20,
+				}}
+			>
+				{HomeTab.map((item) => {
+					return (
+						<Pressable
+							onPress={() => {
+								navigation.navigate(item.route)
+							}}
+							key={item.name}
+							style={{
+								borderWidth: 0,
+								padding: 10,
+								alignSelf: 'flex-start',
+								borderRadius: 8,
+								borderLeftWidth: 2,
+								borderColor: item.color || '#000',
+							}}
+						>
+							<View
 								style={{
-									borderWidth: 0,
-									padding: 10,
-									alignSelf: 'flex-start',
-									borderRadius: 8,
-									borderLeftWidth: 2,
-									borderColor: item.color || '#000',
+									gap: 15,
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
 								}}
 							>
+								<View>{item.icon}</View>
 								<View
 									style={{
-										gap: 15,
-										display: 'flex',
-										flexDirection: 'row',
-										alignItems: 'center',
+										gap: 5,
 									}}
 								>
-									<View>{item.icon}</View>
+									<Text
+										style={{
+											fontSize: 16,
+											fontWeight: '500',
+										}}
+									>
+										{item.name}
+									</Text>
 									<View
 										style={{
-											gap: 5,
+											display: 'flex',
+											flexDirection: 'row',
+											alignItems: 'center',
+											gap: 2,
 										}}
 									>
 										<Text
 											style={{
-												fontSize: 16,
-												fontWeight: '500',
+												fontSize: 12,
+												fontWeight: '700',
 											}}
 										>
-											{item.name}
+											{item.amount}
 										</Text>
-										<View
+										<Text
 											style={{
-												display: 'flex',
-												flexDirection: 'row',
-												alignItems: 'center',
-												gap: 2,
+												fontSize: 12,
+												fontWeight: '400',
 											}}
 										>
-											<Text
-												style={{
-													fontSize: 12,
-													fontWeight: '700',
-												}}
-											>
-												{item.amount}
-											</Text>
-											<Text
-												style={{
-													fontSize: 12,
-													fontWeight: '400',
-												}}
-											>
-												{item.time}
-											</Text>
-										</View>
+											{item.time}
+										</Text>
 									</View>
 								</View>
-							</Pressable>
-						)
-					})}
-				</View>
-				<Job />
-				<Job />
-				<Job />
-				<Job />
-				<Job />
-				<Job />
+							</View>
+						</Pressable>
+					)
+				})}
 			</View>
-		</ScrollView>
+			<View
+				style={{
+					borderRadius: 10,
+				}}
+			>
+				<ScrollView
+					showsVerticalScrollIndicator={false}
+					contentInsetAdjustmentBehavior="never"
+					centerContent
+					contentContainerStyle={{
+						paddingBottom: 270,
+					}}
+				>
+					{JobData.map((item) => {
+						return <Job key={item.id} job={item} />
+					})}
+				</ScrollView>
+			</View>
+		</View>
 	)
 }
 

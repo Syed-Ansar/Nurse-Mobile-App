@@ -28,23 +28,49 @@ const Clock = [
 const facilityDetails = [
 	{
 		name: 'Ward',
-		type: 'Nurse',
 	},
 	{
 		name: 'Work Period',
-		type: 'Jul 08th `23',
 	},
 	{
 		name: 'Work Hours',
-		type: '12',
 	},
 ]
 
+type Facility = {
+	ward: string
+	workPeriod: string
+	workHours: number
+}
+type Job = {
+	posted: string
+	facility: string
+	estimatedPaymentDate: string
+	facilityDetails: Facility
+	clockInTime: string
+	clockOutTime: string
+	avatar: string
+	name: string
+	review: number
+}
 type Props = {
 	type?: 'UPCOMMING'
+	job: Job
 }
 
-const Job = (props: Props) => {
+const Job = ({ job, type }: Props) => {
+	const {
+		posted,
+		avatar,
+		clockInTime,
+		clockOutTime,
+		estimatedPaymentDate,
+		facility,
+		name,
+		review,
+		facilityDetails,
+	} = job
+	const { ward, workHours, workPeriod } = facilityDetails
 	return (
 		<View
 			style={{
@@ -62,7 +88,7 @@ const Job = (props: Props) => {
 					lineHeight: 15,
 				}}
 			>
-				Posted Today
+				Posted {posted}
 			</Text>
 			<Text
 				style={{
@@ -73,7 +99,7 @@ const Job = (props: Props) => {
 					fontWeight: '600',
 				}}
 			>
-				A Nurse required for ABC hospital
+				{facility}
 			</Text>
 			<View
 				style={{
@@ -99,7 +125,7 @@ const Job = (props: Props) => {
 						lineHeight: 15,
 					}}
 				>
-					07/08/2023
+					{estimatedPaymentDate}
 				</Text>
 			</View>
 			<View
@@ -123,55 +149,141 @@ const Job = (props: Props) => {
 						paddingVertical: 10,
 					}}
 				>
-					{facilityDetails.map((item) => {
-						return (
-							<View key={item.name}>
-								<View
+					<View>
+						<View
+							style={{
+								gap: 15,
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+							}}
+						>
+							<View
+								style={{
+									gap: 4,
+								}}
+							>
+								<Text
 									style={{
-										gap: 15,
-										display: 'flex',
-										flexDirection: 'row',
-										alignItems: 'center',
+										fontSize: fontSize.xxs,
+										fontWeight: '400',
+										textAlign: 'center',
 									}}
 								>
-									<View
+									{'Ward'}
+								</Text>
+								<View
+									style={{
+										backgroundColor: '#F5F5F5',
+										width: '100%',
+										paddingVertical: 2,
+										paddingHorizontal: 10,
+										borderRadius: 12,
+									}}
+								>
+									<Text
 										style={{
-											gap: 4,
+											fontSize: fontSize.xs,
+											fontWeight: '600',
+											textAlign: 'center',
 										}}
 									>
-										<Text
-											style={{
-												fontSize: fontSize.xxs,
-												fontWeight: '400',
-												textAlign: 'center',
-											}}
-										>
-											{item.name}
-										</Text>
-										<View
-											style={{
-												backgroundColor: '#F5F5F5',
-												width: '100%',
-												paddingVertical: 2,
-												paddingHorizontal: 10,
-												borderRadius: 12,
-											}}
-										>
-											<Text
-												style={{
-													fontSize: fontSize.xs,
-													fontWeight: '600',
-													textAlign: 'center',
-												}}
-											>
-												{item.type}
-											</Text>
-										</View>
-									</View>
+										{ward}
+									</Text>
 								</View>
 							</View>
-						)
-					})}
+						</View>
+					</View>
+					<View>
+						<View
+							style={{
+								gap: 15,
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+							}}
+						>
+							<View
+								style={{
+									gap: 4,
+								}}
+							>
+								<Text
+									style={{
+										fontSize: fontSize.xxs,
+										fontWeight: '400',
+										textAlign: 'center',
+									}}
+								>
+									{'Work Period'}
+								</Text>
+								<View
+									style={{
+										backgroundColor: '#F5F5F5',
+										width: '100%',
+										paddingVertical: 2,
+										paddingHorizontal: 10,
+										borderRadius: 12,
+									}}
+								>
+									<Text
+										style={{
+											fontSize: fontSize.xs,
+											fontWeight: '600',
+											textAlign: 'center',
+										}}
+									>
+										{workPeriod}
+									</Text>
+								</View>
+							</View>
+						</View>
+					</View>
+					<View>
+						<View
+							style={{
+								gap: 15,
+								display: 'flex',
+								flexDirection: 'row',
+								alignItems: 'center',
+							}}
+						>
+							<View
+								style={{
+									gap: 4,
+								}}
+							>
+								<Text
+									style={{
+										fontSize: fontSize.xxs,
+										fontWeight: '400',
+										textAlign: 'center',
+									}}
+								>
+									{'Work Hours'}
+								</Text>
+								<View
+									style={{
+										backgroundColor: '#F5F5F5',
+										width: '100%',
+										paddingVertical: 2,
+										paddingHorizontal: 10,
+										borderRadius: 12,
+									}}
+								>
+									<Text
+										style={{
+											fontSize: fontSize.xs,
+											fontWeight: '600',
+											textAlign: 'center',
+										}}
+									>
+										{workHours}
+									</Text>
+								</View>
+							</View>
+						</View>
+					</View>
 				</View>
 				<View>
 					<View
@@ -237,7 +349,6 @@ const Job = (props: Props) => {
 							style={{
 								...utilsStyles.itemSeparator,
 								borderWidth: 0.4,
-								height: '100%',
 							}}
 						/>
 						<View key={Clock[1].name}>

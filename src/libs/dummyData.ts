@@ -1,0 +1,51 @@
+export const JobData = [
+	{
+		id: 1,
+		posted: 'today',
+		facility: 'A Nurse required for ABC hospital',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+	{
+		id: 2,
+		posted: 'yesterday',
+		facility: 'A Nurse required for ABC hospital',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+	{
+		id: 3,
+		posted: 'today',
+		facility: 'A Nurse required for ABC hospital',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+]
