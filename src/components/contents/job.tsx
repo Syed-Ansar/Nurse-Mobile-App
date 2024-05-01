@@ -68,6 +68,8 @@ const Job = ({ job, type }: Props) => {
 				paddingHorizontal: 20,
 				paddingVertical: 10,
 				marginVertical: 10,
+				borderWidth: 1,
+				borderColor: '#F1F3F5',
 			}}
 		>
 			<Text
@@ -338,6 +340,7 @@ const Job = ({ job, type }: Props) => {
 							style={{
 								...utilsStyles.itemSeparator,
 								borderWidth: 0.4,
+								height: '100%',
 							}}
 						/>
 						<View key={Clock[1].name}>
@@ -458,7 +461,6 @@ const Job = ({ job, type }: Props) => {
 							style={{
 								flex: 1,
 								height: 36,
-								marginRight: 8,
 								display: 'flex',
 								borderRadius: 6,
 								borderWidth: 1.5,

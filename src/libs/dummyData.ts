@@ -2,6 +2,7 @@ export const JobData = [
 	{
 		id: 1,
 		posted: 'today',
+		status: 'Upcoming',
 		facility: 'A Nurse required for ABC hospital',
 		estimatedPaymentDate: '07/08/2023',
 		facilityDetails: {
@@ -18,6 +19,7 @@ export const JobData = [
 	{
 		id: 2,
 		posted: 'yesterday',
+		status: 'Upcoming',
 		facility: 'A Nurse required for ABC hospital',
 		estimatedPaymentDate: '07/08/2023',
 		facilityDetails: {
@@ -34,7 +36,80 @@ export const JobData = [
 	{
 		id: 3,
 		posted: 'today',
+		status: 'Pending',
 		facility: 'A Nurse required for ABC hospital',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+	{
+		id: 4,
+		posted: '23/04/2023',
+		status: 'Completed',
+		facility: 'CAB hospital',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+	{
+		id: 5,
+		posted: '28/04/2023',
+		facility: ' ABC hospital',
+		status: 'Pending',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+	{
+		id: 6,
+		posted: '01/05/2023',
+		facility: 'DSD hospital',
+		status: 'Upcoming',
+		estimatedPaymentDate: '07/08/2023',
+		facilityDetails: {
+			ward: 'Nurse',
+			workPeriod: 'Jul 08th 23',
+			workHours: 12,
+		},
+
+		clockInTime: '2:00 PM',
+		clockOutTime: '3:00 PM',
+		avatar: '',
+		name: 'Emily Ava',
+		review: 5,
+	},
+	{
+		id: 7,
+		posted: '10/04/2023',
+		status: 'Completed',
+		facility: 'SAS hospital',
 		estimatedPaymentDate: '07/08/2023',
 		facilityDetails: {
 			ward: 'Nurse',
