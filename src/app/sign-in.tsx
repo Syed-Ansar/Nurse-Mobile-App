@@ -12,7 +12,6 @@ export default function SignIn() {
 				height: '100%',
 			}}
 		>
-			<StatusBar barStyle="light-content" />
 			<SignInScreen />
 		</View>
 	)

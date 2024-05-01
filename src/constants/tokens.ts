@@ -1,7 +1,8 @@
 export const colors = {
 	primary: '#fc3c44',
 	background: '#000',
-	text: '#fff',
+	text: '#000',
+	secondaryText: '#667085',
 	textMuted: '#9ca3af',
 	icon: '#fff',
 	maximumTrackTintColor: 'rgba(255,255,255,0.4)',
@@ -9,7 +10,9 @@ export const colors = {
 }
 
 export const fontSize = {
+	xxs: 10,
 	xs: 12,
+	xsm: 14,
 	sm: 16,
 	base: 20,
 	lg: 24,

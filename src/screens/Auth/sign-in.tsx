@@ -10,7 +10,6 @@ export default function SignIn({ navigation }: any) {
 				height: '100%',
 			}}
 		>
-			<StatusBar barStyle="light-content" />
 			<SignInScreen navigation={navigation} />
 		</View>
 	)

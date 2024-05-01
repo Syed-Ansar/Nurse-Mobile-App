@@ -1,23 +1,17 @@
 import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
-import {
-	StyleSheet,
-	Text,
-	TextStyle,
-	TouchableWithoutFeedback,
-	View,
-	ViewStyle,
-} from 'react-native'
-
-import { defaultStyles } from '@/styles'
+import { StyleSheet, Text, TextStyle, TouchableWithoutFeedback, ViewStyle } from 'react-native'
 
 type Props = {
 	title: string
+	titleColor?: string
+	buttonBackgroundColor?: string
 	buttonStyle?: ViewStyle
 	titleStyle?: TextStyle
 	onClick?: () => void
 	radius?: number
 	height?: number
+	fontSize?: number
 }
 
 const GradientButton = ({
@@ -27,11 +21,14 @@ const GradientButton = ({
 	onClick,
 	radius = 16,
 	height = 48,
+	fontSize = 18,
+	titleColor = '#ffffff',
+	buttonBackgroundColor,
 }: Props) => {
 	return (
 		<TouchableWithoutFeedback onPress={onClick}>
 			<LinearGradient
-				colors={['#7450FE', '#3513DD']}
+				colors={buttonBackgroundColor ? [buttonBackgroundColor] : ['#7450FE', '#3513DD']}
 				style={{
 					...buttonStyle,
 					display: 'flex',
@@ -44,8 +41,8 @@ const GradientButton = ({
 				<Text
 					style={{
 						...titleStyle,
-						...defaultStyles.text,
-						fontSize: 18,
+						fontSize,
+						color: titleColor,
 					}}
 				>
 					{title}

@@ -11,7 +11,6 @@ type Props = {
 const AuthHeader = ({ title }: Props) => {
 	return (
 		<View>
-			<StatusBar barStyle="light-content" />
 			<LinearGradient colors={['#7450FE', '#3513DD']}>
 				<SafeAreaView
 					style={{
