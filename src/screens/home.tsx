@@ -49,6 +49,7 @@ const HomeScreen = ({ navigation }: Props) => {
 			style={{
 				paddingHorizontal: 15,
 				paddingVertical: 20,
+				backgroundColor: 'white',
 			}}
 		>
 			<View
