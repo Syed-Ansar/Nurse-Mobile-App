@@ -20,9 +20,9 @@ export function HomeNavigator() {
 			<HomeStack.Screen
 				name="Profile"
 				component={Profile}
-				// options={{
-				// 	headerShown: false,
-				// }}
+				options={{
+					headerShown: false,
+				}}
 			/>
 			<HomeStack.Screen
 				name="Notifications"

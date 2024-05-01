@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
+import { KeyboardType, StyleSheet, Text, TextInput, TextStyle, View } from 'react-native'
 
 type Props = {
 	props?: TextInput
@@ -9,6 +9,7 @@ type Props = {
 	placeholder: string
 	label?: string
 	value?: string
+	keyboardType?: KeyboardType
 }
 
 const InputField = ({
@@ -17,6 +18,7 @@ const InputField = ({
 	labelStyles,
 	styles,
 	placeholder,
+	keyboardType,
 	value,
 	label,
 }: Props) => {
@@ -40,6 +42,7 @@ const InputField = ({
 				</Text>
 			) : null}
 			<TextInput
+				keyboardType={keyboardType ? keyboardType : 'default'}
 				placeholder={placeholder || ''}
 				{...(value !== undefined ? { value } : {})}
 				style={{

@@ -19,6 +19,7 @@ const DrawerNavigator = (props: Props) => {
 		<Drawer.Navigator
 			initialRouteName="HomeNavigator"
 			screenOptions={{
+				unmountOnBlur: true,
 				headerShown: false,
 				drawerLabelStyle: {
 					marginLeft: -20,

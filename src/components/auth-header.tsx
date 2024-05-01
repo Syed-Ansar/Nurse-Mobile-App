@@ -27,7 +27,7 @@ const AuthHeader = ({ title }: Props) => {
 					>
 						<Text
 							style={{
-								...defaultStyles.text,
+								color: 'white',
 								fontWeight: '700',
 								fontSize: 24,
 								marginBottom: 5,
@@ -37,7 +37,7 @@ const AuthHeader = ({ title }: Props) => {
 						</Text>
 						<Text
 							style={{
-								...defaultStyles.text,
+								color: 'white',
 								fontSize: 18,
 							}}
 						>

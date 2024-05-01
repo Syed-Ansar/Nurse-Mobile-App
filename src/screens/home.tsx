@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 
 import TotalHours from '@/assets/svg/timer.svg'
 import TotalEarnings from '@/assets/svg/total-earnings.svg'
