@@ -110,14 +110,15 @@ const TotalHours = ({ navigation }: Props) => {
 						showClosingKnob
 						staticHeader
 						showSixWeeks={false}
-						showOnlySelectedDayItems
+						// showOnlySelectedDayItems
 						animateScroll
 						showsVerticalScrollIndicator={false}
 						showsHorizontalScrollIndicator={false}
 						renderItem={renderItem}
 						renderEmptyData={() => {
-							return <Text style={styles.itemText}>No Event</Text>
+							return <Text style={styles.itemTextNoEvent}>No event for the day.</Text>
 						}}
+						stickyHeaderIndices={[1, 7]}
 					/>
 				</SafeAreaView>
 			</View>
@@ -191,5 +192,12 @@ const styles = StyleSheet.create({
 		color: '#888',
 		marginBottom: 5,
 		fontSize: 12,
+	},
+	itemTextNoEvent: {
+		color: 'black',
+		marginTop: 30,
+		textAlign: 'center',
+		fontSize: 18,
+		fontWeight: '600',
 	},
 })
