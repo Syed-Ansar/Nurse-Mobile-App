@@ -1,17 +1,10 @@
 import React, { memo } from 'react'
 import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import {
-	Agenda,
-	AgendaEntry,
-	AgendaSchedule,
-	Timeline,
-	TimelineEventProps,
-} from 'react-native-calendars'
+import { Agenda, AgendaEntry } from 'react-native-calendars'
 
 import Layout from '@/components/common/layout'
 import { fontSize } from '@/constants/tokens'
 import { horizontalScale, moderateScale, verticalScale } from '@/utils/responsive'
-import { timelineEvents } from '@/libs/dummyData'
 
 type Props = {
 	navigation: any
@@ -31,8 +24,28 @@ const AgendaItem: React.FC<AgendaItemProps> = memo(({ item }) => {
 	if (!item) return null
 
 	return (
-		<TouchableOpacity style={styles.item}>
-			<Text style={styles.itemText}>{item.name ? item.name : 'No Item'}</Text>
+		<TouchableOpacity
+			style={[
+				styles.item,
+				{ backgroundColor: JSON.parse(item.day).color ? JSON.parse(item.day).color : 'white' },
+			]}
+		>
+			<Text
+				style={[
+					styles.itemText1,
+					{ color: JSON.parse(item.day).color ? 'white' : JSON.parse(item.day).color },
+				]}
+			>
+				{`${JSON.parse(item.day)?.startTime} - ${JSON.parse(item.day)?.endTime} - 4 hours stamped`}
+			</Text>
+			<Text
+				style={[
+					styles.itemText,
+					{ color: JSON.parse(item.day).color ? 'white' : JSON.parse(item.day).color },
+				]}
+			>
+				{item.name ? item.name : 'No Item'}
+			</Text>
 		</TouchableOpacity>
 	)
 })
@@ -41,6 +54,20 @@ const renderItem: (reservation: AgendaEntry, isFirst: boolean) => JSX.Element = 
 	<AgendaItem item={reservation} />
 )
 
+const dataItem = [
+	{
+		facility: 'ABC Hospital',
+		startTime: '2:00 PM',
+		endTime: '10:30 PM',
+		color: 'red',
+	},
+	{
+		facility: 'CSA Hospital',
+		startTime: '9:00 PM',
+		endTime: '12:30 AM',
+		color: 'blue',
+	},
+]
 const TotalHours = ({ navigation }: Props) => {
 	return (
 		<Layout navigation={navigation} headerTitle="Hours">
@@ -62,23 +89,23 @@ const TotalHours = ({ navigation }: Props) => {
 					<Agenda
 						items={{
 							'2024-05-01': [
-								{ name: 'Walking', day: '', height: 10 },
-								{ name: 'Running', day: '', height: 10 },
+								{ name: 'ABC Hospital', day: JSON.stringify(dataItem[0]), height: 10 },
+								{ name: 'Running', day: JSON.stringify(dataItem[0]), height: 10 },
 							],
 							'2024-05-02': [
-								{ name: 'Cycling', day: '', height: 10 },
-								{ name: 'Walking', day: '', height: 10 },
-								{ name: 'Running', day: '', height: 10 },
+								{ name: 'Cycling', day: JSON.stringify(dataItem[1]), height: 10 },
+								{ name: 'Walking', day: JSON.stringify(dataItem[1]), height: 10 },
+								{ name: 'Running', day: JSON.stringify(dataItem[1]), height: 10 },
 							],
-							'2024-05-03': [
-								{ name: 'Jogging', day: '', height: 10 },
-								{ name: 'Walking', day: '', height: 10 },
-								{ name: 'Running', day: '', height: 10 },
-							],
-							'2024-05-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
-							'2024-06-10': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
-							'2024-06-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
-							'2024-07-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
+							// '2024-05-03': [
+							// 	{ name: 'Jogging', day: '', height: 10 },
+							// 	{ name: 'Walking', day: '', height: 10 },
+							// 	{ name: 'Running', day: '', height: 10 },
+							// ],
+							// '2024-05-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
+							// '2024-06-10': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
+							// '2024-06-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
+							// '2024-07-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
 						}}
 						showClosingKnob
 						staticHeader
@@ -89,7 +116,7 @@ const TotalHours = ({ navigation }: Props) => {
 						showsHorizontalScrollIndicator={false}
 						renderItem={renderItem}
 						renderEmptyData={() => {
-							return <Text style={styles.itemText}>{'No Event'}</Text>
+							return <Text style={styles.itemText}>No Event</Text>
 						}}
 					/>
 				</SafeAreaView>
@@ -159,5 +186,10 @@ const styles = StyleSheet.create({
 	itemText: {
 		color: '#888',
 		fontSize: 16,
+	},
+	itemText1: {
+		color: '#888',
+		marginBottom: 5,
+		fontSize: 12,
 	},
 })
