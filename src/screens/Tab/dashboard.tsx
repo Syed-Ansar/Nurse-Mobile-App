@@ -20,7 +20,13 @@ const Dashboard = ({ navigation }: any) => {
 						headerShown: false,
 					}}
 				/>
-				<HomeStack.Screen name="TotalEarnings" component={TotalEarnings} />
+				<HomeStack.Screen
+					name="TotalEarnings"
+					component={TotalEarnings}
+					options={{
+						headerShown: false,
+					}}
+				/>
 				<HomeStack.Screen name="TotalHours" component={TotalHours} />
 			</HomeStack.Navigator>
 		</ScreenLayout>
