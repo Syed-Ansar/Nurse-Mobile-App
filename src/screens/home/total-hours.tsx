@@ -110,7 +110,7 @@ const TotalHours = ({ navigation }: Props) => {
 						showClosingKnob
 						staticHeader
 						showSixWeeks={false}
-						// showOnlySelectedDayItems
+						showOnlySelectedDayItems
 						animateScroll
 						showsVerticalScrollIndicator={false}
 						showsHorizontalScrollIndicator={false}
@@ -119,6 +119,10 @@ const TotalHours = ({ navigation }: Props) => {
 							return <Text style={styles.itemTextNoEvent}>No event for the day.</Text>
 						}}
 						stickyHeaderIndices={[1, 7]}
+						theme={{
+							selectedDayTextColor: 'white',
+							selectedDayBackgroundColor: '#3513DD',
+						}}
 					/>
 				</SafeAreaView>
 			</View>
