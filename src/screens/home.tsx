@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { Pressable, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import {
+	Pressable,
+	SafeAreaView,
+	ScrollView,
+	StatusBar,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native'
 
 import TotalHours from '@/assets/svg/timer.svg'
 import TotalEarnings from '@/assets/svg/total-earnings.svg'
@@ -45,7 +53,7 @@ const HomeScreen = ({ navigation }: Props) => {
 	const [activeTab, setActiveTab] = useState(JOB_STATUS.Upcoming)
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
 	return (
-		<View
+		<SafeAreaView
 			style={{
 				paddingHorizontal: 15,
 				paddingVertical: 20,
@@ -232,7 +240,7 @@ const HomeScreen = ({ navigation }: Props) => {
 					})}
 				</ScrollView>
 			</View>
-		</View>
+		</SafeAreaView>
 	)
 }
 

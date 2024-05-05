@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import React from 'react'
 import { StyleSheet } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 import AssessmentsIcon from '@/assets/svg/assessments.svg'
 import ComplianceIcon from '@/assets/svg/compliance.svg'
@@ -17,64 +18,66 @@ const MainTab = createBottomTabNavigator()
 
 const MainNavigator = () => {
 	return (
-		<MainTab.Navigator
-			initialRouteName="Dashboard"
-			screenOptions={{
-				tabBarActiveTintColor: 'blue',
-				headerShown: false,
-				tabBarInactiveTintColor: '#667085',
-				tabBarStyle: {
-					borderTopLeftRadius: 24,
-					borderTopRightRadius: 24,
-					paddingVertical: 20,
-				},
-				tabBarLabelStyle: {
-					marginTop: 10,
-				},
-			}}
-		>
-			<MainTab.Screen
-				name="Dashboard"
-				component={Dashboard}
-				options={{
-					title: 'Dashboard',
+		<SafeAreaProvider>
+			<MainTab.Navigator
+				initialRouteName="Dashboard"
+				screenOptions={{
+					tabBarActiveTintColor: 'blue',
+					headerShown: false,
+					tabBarInactiveTintColor: '#667085',
+					tabBarStyle: {
+						borderTopLeftRadius: 24,
+						borderTopRightRadius: 24,
+						paddingVertical: 20,
+					},
+					tabBarLabelStyle: {
+						marginTop: 10,
+					},
+				}}
+			>
+				<MainTab.Screen
+					name="Dashboard"
+					component={Dashboard}
+					options={{
+						title: 'Dashboard',
 
-					tabBarIcon: ({ color }) => <DashboardIcon color={color} fill={color} />,
-				}}
-			/>
-			<MainTab.Screen
-				name="Transactions"
-				component={Transactions}
-				options={{
-					title: 'Transactions',
-					tabBarIcon: ({ color }) => <TransactionsIcon color={color} fill={color} />,
-				}}
-			/>
-			<MainTab.Screen
-				name="Invoices"
-				component={Invoices}
-				options={{
-					title: 'Invoices',
-					tabBarIcon: ({ color }) => <InvoicesIcon color={color} fill={color} />,
-				}}
-			/>
-			<MainTab.Screen
-				name="Assessments"
-				component={Assessments}
-				options={{
-					title: 'Assessments',
-					tabBarIcon: ({ color }) => <AssessmentsIcon color={color} fill={color} />,
-				}}
-			/>
-			<MainTab.Screen
-				name="Compliance"
-				component={Compliance}
-				options={{
-					title: 'Compliance',
-					tabBarIcon: ({ color }) => <ComplianceIcon color={color} fill={color} />,
-				}}
-			/>
-		</MainTab.Navigator>
+						tabBarIcon: ({ color }) => <DashboardIcon color={color} fill={color} />,
+					}}
+				/>
+				<MainTab.Screen
+					name="Transactions"
+					component={Transactions}
+					options={{
+						title: 'Transactions',
+						tabBarIcon: ({ color }) => <TransactionsIcon color={color} fill={color} />,
+					}}
+				/>
+				<MainTab.Screen
+					name="Invoices"
+					component={Invoices}
+					options={{
+						title: 'Invoices',
+						tabBarIcon: ({ color }) => <InvoicesIcon color={color} fill={color} />,
+					}}
+				/>
+				<MainTab.Screen
+					name="Assessments"
+					component={Assessments}
+					options={{
+						title: 'Assessments',
+						tabBarIcon: ({ color }) => <AssessmentsIcon color={color} fill={color} />,
+					}}
+				/>
+				<MainTab.Screen
+					name="Compliance"
+					component={Compliance}
+					options={{
+						title: 'Compliance',
+						tabBarIcon: ({ color }) => <ComplianceIcon color={color} fill={color} />,
+					}}
+				/>
+			</MainTab.Navigator>
+		</SafeAreaProvider>
 	)
 }
 
