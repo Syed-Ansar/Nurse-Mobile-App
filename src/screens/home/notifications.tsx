@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { FlatList, RefreshControl, StyleSheet, View } from 'react-native'
+import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
 
 import ScreenLayout from '../screen-layout'
 
@@ -13,9 +13,10 @@ import { SCREEN_WIDTH, verticalScale } from '@/utils/responsive'
 type Props = {
 	navigation: any
 	notifications?: NotificationType
+	route: any
 }
 
-const Notifications = ({ navigation }: Props) => {
+const Notifications = ({ route, navigation }: Props) => {
 	const [refreshing, setRefreshing] = useState(false)
 
 	const onRefresh = useCallback(() => {
@@ -37,7 +38,9 @@ const Notifications = ({ navigation }: Props) => {
 							<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3513DD']} />
 						}
 						renderItem={({ item, index }) => {
-							return <Notification data={item} index={index} />
+							return (
+								<Notification data={item} index={index} navigation={navigation} route={route} />
+							)
 						}}
 						ItemSeparatorComponent={() => {
 							return (

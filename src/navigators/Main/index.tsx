@@ -14,7 +14,7 @@ import History from '@/screens/Tab/history'
 import Invoices from '@/screens/Tab/invoices'
 import Transactions from '@/screens/Tab/transactions'
 
-const MainTab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator()
 
 const MainNavigator = () => {
 	return (
@@ -23,7 +23,7 @@ const MainNavigator = () => {
 				backgroundColor: 'white',
 			}}
 		>
-			<MainTab.Navigator
+			<Tab.Navigator
 				initialRouteName="Dashboard"
 				screenOptions={{
 					tabBarActiveTintColor: 'blue',
@@ -40,7 +40,7 @@ const MainNavigator = () => {
 					},
 				}}
 			>
-				<MainTab.Screen
+				<Tab.Screen
 					name="Dashboard"
 					component={Dashboard}
 					options={{
@@ -49,7 +49,7 @@ const MainNavigator = () => {
 						tabBarIcon: ({ color }) => <DashboardIcon color={color} fill={color} />,
 					}}
 				/>
-				<MainTab.Screen
+				<Tab.Screen
 					name="Transactions"
 					component={Transactions}
 					options={{
@@ -57,7 +57,7 @@ const MainNavigator = () => {
 						tabBarIcon: ({ color }) => <TransactionsIcon color={color} fill={color} />,
 					}}
 				/>
-				<MainTab.Screen
+				<Tab.Screen
 					name="Invoices"
 					component={Invoices}
 					options={{
@@ -65,7 +65,7 @@ const MainNavigator = () => {
 						tabBarIcon: ({ color }) => <InvoicesIcon color={color} fill={color} />,
 					}}
 				/>
-				<MainTab.Screen
+				<Tab.Screen
 					name="History"
 					component={History}
 					options={{
@@ -73,7 +73,7 @@ const MainNavigator = () => {
 						tabBarIcon: ({ color }) => <HistoryIcon color={color} fill={color} />,
 					}}
 				/>
-				<MainTab.Screen
+				<Tab.Screen
 					name="Compliance"
 					component={Compliance}
 					options={{
@@ -81,7 +81,7 @@ const MainNavigator = () => {
 						tabBarIcon: ({ color }) => <ComplianceIcon color={color} fill={color} />,
 					}}
 				/>
-			</MainTab.Navigator>
+			</Tab.Navigator>
 		</SafeAreaProvider>
 	)
 }

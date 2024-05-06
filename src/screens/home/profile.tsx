@@ -31,7 +31,6 @@ const Profile = ({ navigation }: Props) => {
 				flex: 1,
 			}}
 		>
-			<StatusBar animated barStyle="light-content" showHideTransition="fade" />
 			<ScrollView>
 				<LinearGradient colors={['#7450FE', '#3513DD']}>
 					<SafeAreaView
@@ -46,7 +45,7 @@ const Profile = ({ navigation }: Props) => {
 								display: 'flex',
 								flexDirection: 'row',
 								alignItems: 'center',
-								padding: 14,
+								paddingVertical: 10,
 								gap: 10,
 							}}
 						>

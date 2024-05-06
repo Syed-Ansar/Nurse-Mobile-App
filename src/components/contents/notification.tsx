@@ -1,21 +1,31 @@
 import { Feather } from '@expo/vector-icons'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 
 import { fontSize } from '@/constants/tokens'
 import { utilsStyles } from '@/styles'
 import { NotificationType } from '@/types'
-import { SCREEN_WIDTH } from '@/utils/responsive'
 
 type Props = {
 	data: NotificationType
 	index: number
+	navigation: any
+	route: any
 }
 
-const Notification = ({ data, index }: Props) => {
-	const { date, description, title } = data
+const Notification = ({ data, index, navigation, route }: Props) => {
+	const { id, date, description, title } = data
+
 	return (
-		<View style={styles.notificationContainer}>
+		<TouchableWithoutFeedback
+			style={styles.notificationContainer}
+			onPress={() => {
+				navigation.navigate('NotificationDetails', {
+					id,
+					data,
+				})
+			}}
+		>
 			<View style={styles.notificationMainContainer}>
 				<View style={styles.notificationIndexes}>
 					<View style={styles.notificationIndexContent}>
@@ -37,7 +47,7 @@ const Notification = ({ data, index }: Props) => {
 					<Text style={styles.notificationTime}>{date}</Text>
 				</View>
 			</View>
-		</View>
+		</TouchableWithoutFeedback>
 	)
 }
 
