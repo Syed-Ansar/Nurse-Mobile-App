@@ -14,6 +14,17 @@ export const defaultStyles = StyleSheet.create({
 })
 
 export const utilsStyles = StyleSheet.create({
+	flexCenter: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	flexRowCenter: {
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	centeredRow: {
 		flexDirection: 'row',
 		justifyContent: 'center',

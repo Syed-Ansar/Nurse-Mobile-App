@@ -354,3 +354,24 @@ export const Clock = [
 		icon: ClockOutTIme,
 	},
 ]
+
+export const notificationsData = [
+	{
+		id: 1,
+		title: 'Congratulations Your Payment Is Successful 🎉',
+		description: 'Lorem ipsum dolor.',
+		date: 'Today',
+	},
+	{
+		id: 2,
+		title: 'Your payment is Being processed.',
+		description: 'Lorem ipsum dolor.',
+		date: '32 mins ago',
+	},
+	{
+		id: 3,
+		title: 'Your payment is Being processed.',
+		description: 'Lorem ipsum dolor.',
+		date: '1 hour ago',
+	},
+]

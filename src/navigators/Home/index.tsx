@@ -9,28 +9,14 @@ const HomeStack = createNativeStackNavigator()
 
 export function HomeNavigator() {
 	return (
-		<HomeStack.Navigator>
-			<HomeStack.Screen
-				name="MainNavigator"
-				component={MainNavigator}
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<HomeStack.Screen
-				name="Profile"
-				component={Profile}
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<HomeStack.Screen
-				name="Notifications"
-				component={Notifications}
-				// options={{
-				// 	headerShown: false,
-				// }}
-			/>
+		<HomeStack.Navigator
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
+			<HomeStack.Screen name="MainNavigator" component={MainNavigator} />
+			<HomeStack.Screen name="Profile" component={Profile} />
+			<HomeStack.Screen name="Notifications" component={Notifications} />
 		</HomeStack.Navigator>
 	)
 }
