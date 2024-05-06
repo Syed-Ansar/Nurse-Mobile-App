@@ -1,10 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View, ViewStyle } from 'react-native'
 
+import Separator from './separator'
+
 import ClockInTime from '@/assets/svg/clock-in-time.svg'
 import ClockOutTime from '@/assets/svg/clock-out-time.svg'
 import { fontSize } from '@/constants/tokens'
-import { utilsStyles } from '@/styles'
 
 type Props = {
 	startTime: string
@@ -26,13 +27,9 @@ const JobTimings = ({ endTime, startTime, containerStyles }: Props) => {
 					</View>
 				</View>
 			</View>
-			<View
-				style={{
-					...utilsStyles.itemSeparator,
-					borderWidth: 0.4,
-					height: '100%',
-				}}
-			/>
+
+			<Separator separatorStyle={styles.separatorStyle} />
+
 			<View key="Clock Out Time">
 				<View style={styles.clockItem}>
 					<ClockOutTime />
@@ -82,5 +79,8 @@ const styles = StyleSheet.create({
 	clockTime: {
 		fontSize: 12,
 		fontWeight: '600',
+	},
+	separatorStyle: {
+		height: '100%',
 	},
 })
