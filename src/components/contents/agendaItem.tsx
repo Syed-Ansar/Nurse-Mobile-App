@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 
 interface Item {
 	name: string
@@ -15,31 +15,29 @@ const AgendaItem: React.FC<AgendaItemProps> = memo(({ item }) => {
 	if (!item) return null
 
 	return (
-		<View style={{ flex: 1 }}>
-			<TouchableOpacity
+		<TouchableOpacity
+			style={[
+				styles.item,
+				{ backgroundColor: JSON.parse(item.day).color ? JSON.parse(item.day).color : 'white' },
+			]}
+		>
+			<Text
 				style={[
-					styles.item,
-					{ backgroundColor: JSON.parse(item.day).color ? JSON.parse(item.day).color : 'white' },
+					styles.itemText1,
+					{ color: JSON.parse(item.day).color ? 'white' : JSON.parse(item.day).color },
 				]}
 			>
-				<Text
-					style={[
-						styles.itemText1,
-						{ color: JSON.parse(item.day).color ? 'white' : JSON.parse(item.day).color },
-					]}
-				>
-					{`${JSON.parse(item.day)?.startTime} - ${JSON.parse(item.day)?.endTime} - 4 hours stamped`}
-				</Text>
-				<Text
-					style={[
-						styles.itemText,
-						{ color: JSON.parse(item.day).color ? 'white' : JSON.parse(item.day).color },
-					]}
-				>
-					{item.name ? item.name : 'No Item'}
-				</Text>
-			</TouchableOpacity>
-		</View>
+				{`${JSON.parse(item.day)?.startTime} - ${JSON.parse(item.day)?.endTime} - 4 hours stamped`}
+			</Text>
+			<Text
+				style={[
+					styles.itemText,
+					{ color: JSON.parse(item.day).color ? 'white' : JSON.parse(item.day).color },
+				]}
+			>
+				{item.name ? item.name : 'No Item'}
+			</Text>
+		</TouchableOpacity>
 	)
 })
 

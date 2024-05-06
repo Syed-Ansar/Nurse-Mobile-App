@@ -3,14 +3,14 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 
-import AssessmentsIcon from '@/assets/svg/assessments.svg'
 import ComplianceIcon from '@/assets/svg/compliance.svg'
 import DashboardIcon from '@/assets/svg/dashboard.svg'
+import HistoryIcon from '@/assets/svg/history.svg'
 import InvoicesIcon from '@/assets/svg/invoices.svg'
 import TransactionsIcon from '@/assets/svg/tansactions.svg'
-import Assessments from '@/screens/Tab/assessments'
 import Compliance from '@/screens/Tab/compliance'
 import Dashboard from '@/screens/Tab/dashboard'
+import History from '@/screens/Tab/history'
 import Invoices from '@/screens/Tab/invoices'
 import Transactions from '@/screens/Tab/transactions'
 
@@ -66,11 +66,11 @@ const MainNavigator = () => {
 					}}
 				/>
 				<MainTab.Screen
-					name="Assessments"
-					component={Assessments}
+					name="History"
+					component={History}
 					options={{
-						title: 'Assessments',
-						tabBarIcon: ({ color }) => <AssessmentsIcon color={color} fill={color} />,
+						title: 'History',
+						tabBarIcon: ({ color }) => <HistoryIcon color={color} fill={color} />,
 					}}
 				/>
 				<MainTab.Screen

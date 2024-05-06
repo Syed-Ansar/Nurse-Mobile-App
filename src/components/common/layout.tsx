@@ -1,4 +1,4 @@
-import { Feather } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 import React, { ReactNode } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
@@ -21,7 +21,7 @@ const Layout = ({ children, navigation, headerTitle }: Props) => {
 			{headerTitle ? (
 				<View style={styles.header}>
 					<Pressable onPress={backPressHandler}>
-						<Feather name="arrow-left" size={24} color="black" />
+						<MaterialIcons name="keyboard-backspace" size={24} color="black" />
 					</Pressable>
 					<Text style={styles.headerTitle}>{headerTitle}</Text>
 				</View>

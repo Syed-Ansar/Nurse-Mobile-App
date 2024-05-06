@@ -17,18 +17,10 @@ import {
 import InputField from '@/components/ui/Input'
 import { colors, fontSize } from '@/constants/tokens'
 import { SCREEN_WIDTH } from '@/utils/responsive'
+import { profileData } from '@/libs/dummyData'
 
 type Props = {
 	navigation: any
-}
-
-const profileData = {
-	'ID/ Passport': 123456789,
-	'Professional Category': 'XYZ',
-	'SANC/ Practice Number': 'XYZ',
-	'Specialization Selector': 'XYZ',
-	'Called Rank': 12,
-	'RWOP Number': 'XYZ',
 }
 
 const Profile = ({ navigation }: Props) => {
@@ -91,11 +83,11 @@ const Profile = ({ navigation }: Props) => {
 					<Image
 						source={{
 							uri: 'https://mdbcdn.b-cdn.net/img/new/avatars/2.webp',
+							height: 87,
+							width: 87,
 						}}
 						style={{
 							borderRadius: 50,
-							height: 87,
-							width: 87,
 						}}
 					/>
 				</View>

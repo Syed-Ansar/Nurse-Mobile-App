@@ -1,4 +1,6 @@
 import { TimelineEventProps, CalendarUtils } from 'react-native-calendars'
+import ClockInTIme from '@/assets/svg/clock-in-time.svg'
+import ClockOutTIme from '@/assets/svg/clock-out-time.svg'
 
 export const JobData = [
 	{
@@ -273,3 +275,33 @@ export const calenderData = {
 		{ name: 'Running', day: JSON.stringify(dataItem[1]), height: 10 },
 	],
 }
+
+export const profileData = {
+	'ID/ Passport': 123456789,
+	'Professional Category': 'XYZ',
+	'SANC/ Practice Number': 'XYZ',
+	'Specialization Selector': 'XYZ',
+	'Called Rank': 12,
+	'RWOP Number': 'XYZ',
+}
+
+export const jobHistoryData = {
+	Ward: '2 Ward',
+	Date: '07/08/2023',
+	'Work Period ': '19 May',
+}
+
+export const Clock = [
+	{
+		name: 'Clock in Time',
+		time: '2:00PM',
+		color: '#EAB308',
+		icon: ClockInTIme,
+	},
+	{
+		name: 'Clock Out Time',
+		time: '6:00AM',
+		color: '#3513DD',
+		icon: ClockOutTIme,
+	},
+]

@@ -6,7 +6,7 @@ import { SessionProvider } from '@/context/auth-context'
 const App = () => {
 	return (
 		<SafeAreaView style={styles.AndroidSafeArea}>
-			<StatusBar barStyle={'light-content'} />
+			<StatusBar barStyle="light-content" />
 			<SessionProvider>
 				<Main />
 			</SessionProvider>

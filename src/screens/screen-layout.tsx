@@ -1,5 +1,6 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React, { ReactNode } from 'react'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+
 import Header from '@/components/common/header'
 
 type Props = {

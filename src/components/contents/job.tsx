@@ -10,6 +10,7 @@ import Star from '@/assets/svg/star.svg'
 import { colors, fontSize } from '@/constants/tokens'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
+import JobTimings from './job-timings'
 
 const Clock = [
 	{
@@ -283,110 +284,8 @@ const Job = ({ job, type }: Props) => {
 							borderWidth: 0.4,
 						}}
 					/>
-					<View
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							width: '100%',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							paddingVertical: 12,
-						}}
-					>
-						<View key={Clock[0].name}>
-							<View
-								style={{
-									gap: 15,
-									display: 'flex',
-									flexDirection: 'row',
-									alignItems: 'center',
-								}}
-							>
-								<View>{Clock[0].icon}</View>
-								<View
-									style={{
-										gap: 2,
-									}}
-								>
-									<Text
-										style={{
-											fontSize: fontSize.xxs,
-											fontWeight: '400',
-										}}
-									>
-										{Clock[0].name}
-									</Text>
-									<View
-										style={{
-											display: 'flex',
-											flexDirection: 'row',
-											alignItems: 'center',
-											gap: 1,
-										}}
-									>
-										<Text
-											style={{
-												fontSize: 12,
-												fontWeight: '600',
-											}}
-										>
-											{clockInTime}
-										</Text>
-									</View>
-								</View>
-							</View>
-						</View>
-						<View
-							style={{
-								...utilsStyles.itemSeparator,
-								borderWidth: 0.4,
-								height: '100%',
-							}}
-						/>
-						<View key={Clock[1].name}>
-							<View
-								style={{
-									gap: 15,
-									display: 'flex',
-									flexDirection: 'row',
-									alignItems: 'center',
-								}}
-							>
-								<View>{Clock[1].icon}</View>
-								<View
-									style={{
-										gap: 2,
-									}}
-								>
-									<Text
-										style={{
-											fontSize: fontSize.xxs,
-											fontWeight: '400',
-										}}
-									>
-										{Clock[1].name}
-									</Text>
-									<View
-										style={{
-											display: 'flex',
-											flexDirection: 'row',
-											alignItems: 'center',
-											gap: 1,
-										}}
-									>
-										<Text
-											style={{
-												fontSize: 12,
-												fontWeight: '600',
-											}}
-										>
-											{clockOutTime}
-										</Text>
-									</View>
-								</View>
-							</View>
-						</View>
-					</View>
+					<JobTimings startTime={clockInTime} endTime={clockOutTime} />
+
 					<View
 						style={{
 							...utilsStyles.itemSeparator,

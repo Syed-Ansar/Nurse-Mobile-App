@@ -1,11 +1,12 @@
+import dayjs from 'dayjs'
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { Agenda, AgendaEntry } from 'react-native-calendars'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Agenda, AgendaEntry, AgendaSchedule } from 'react-native-calendars'
 
 import AgendaItem from './agendaItem'
 
 type Props = {
-	data: any
+	data: AgendaSchedule
 }
 
 export const renderItem: (reservation: AgendaEntry, isFirst: boolean) => JSX.Element = (
@@ -14,13 +15,16 @@ export const renderItem: (reservation: AgendaEntry, isFirst: boolean) => JSX.Ele
 
 const AgendaCalender = ({ data }: Props) => {
 	return (
+		// <View style={styles.container}>
 		<Agenda
-			automaticallyAdjustKeyboardInsets
-			showClosingKnob
+			items={data}
 			staticHeader
 			animateScroll
+			showClosingKnob
+			scrollEnabled={false}
 			showsVerticalScrollIndicator={false}
 			showsHorizontalScrollIndicator={false}
+			automaticallyAdjustKeyboardInsets
 			renderItem={renderItem}
 			renderKnob={() => {
 				return <View style={styles.knowStyles} />
@@ -28,9 +32,6 @@ const AgendaCalender = ({ data }: Props) => {
 			renderEmptyData={() => {
 				return <Text style={styles.itemTextNoEvent}>No event for the day.</Text>
 			}}
-			stickyHeaderIndices={[1, 7]}
-			directionalLockEnabled
-			items={data}
 			theme={{
 				selectedDayTextColor: 'white',
 				selectedDayBackgroundColor: '#3513DD',
@@ -43,12 +44,16 @@ const AgendaCalender = ({ data }: Props) => {
 				borderRadius: 10,
 			}}
 		/>
+		// </View>
 	)
 }
 
 export default AgendaCalender
 
 const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+	},
 	itemTextNoEvent: {
 		color: 'black',
 		marginTop: 30,

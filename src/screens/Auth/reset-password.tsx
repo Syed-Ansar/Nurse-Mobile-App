@@ -1,11 +1,10 @@
 import { router } from 'expo-router'
 import { Text, View } from 'react-native'
 
-import { useSession } from '@/context/auth-context'
-
 import AuthHeader from '@/components/auth-header'
 import GradientButton from '@/components/ui/Button'
 import InputField from '@/components/ui/Input'
+import { useSession } from '@/context/auth-context'
 
 export default function ResetPassword({ navigation }: any) {
 	const { signIn } = useSession()
