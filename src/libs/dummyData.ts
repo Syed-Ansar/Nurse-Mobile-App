@@ -314,6 +314,30 @@ export const jobsHistory = [
 		ClockOutTIme: '6:00 AM',
 		status: JobStatus.OnGoing,
 	},
+	{
+		name: 'Ansar',
+		reviews: 5,
+		jobDetails: {
+			Ward: '7 Ward',
+			Date: '10/08/2024',
+			Work_Period: '01 May',
+		},
+		ClockInTIme: '10:00 PM',
+		ClockOutTIme: '6:00 AM',
+		status: JobStatus.OnGoing,
+	},
+	{
+		name: 'Tilak',
+		reviews: 5,
+		jobDetails: {
+			Ward: '7 Ward',
+			Date: '10/08/2024',
+			Work_Period: '01 May',
+		},
+		ClockInTIme: '10:00 PM',
+		ClockOutTIme: '6:00 AM',
+		status: JobStatus.OnGoing,
+	},
 ]
 
 export const Clock = [
