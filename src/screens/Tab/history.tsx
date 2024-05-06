@@ -4,30 +4,11 @@ import ScreenLayout from '../screen-layout'
 
 import Avatar from '@/assets/svg/avatar.svg'
 import Layout from '@/components/common/layout'
+import JobTimings from '@/components/contents/job-timings'
+import Separator from '@/components/contents/separator'
 import Star from '@/components/contents/star'
 import { colors, fontSize } from '@/constants/tokens'
 import { jobHistoryData } from '@/libs/dummyData'
-import Separator from '@/components/contents/separator'
-
-import ClockInTIme from '@/assets/svg/clock-in-time.svg'
-import ClockOutTIme from '@/assets/svg/clock-out-time.svg'
-import { utilsStyles } from '@/styles'
-import JobTimings from '@/components/contents/job-timings'
-
-const Clock = [
-	{
-		name: 'Clock in Time',
-		time: '2:00PM',
-		color: '#EAB308',
-		icon: <ClockInTIme />,
-	},
-	{
-		name: 'Clock Out Time',
-		time: '6:00AM',
-		color: '#3513DD',
-		icon: <ClockOutTIme />,
-	},
-]
 
 export default function History({ navigation }: any) {
 	return (

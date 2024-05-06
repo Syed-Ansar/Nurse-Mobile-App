@@ -16,8 +16,8 @@ import {
 
 import InputField from '@/components/ui/Input'
 import { colors, fontSize } from '@/constants/tokens'
-import { SCREEN_WIDTH } from '@/utils/responsive'
 import { profileData } from '@/libs/dummyData'
+import { SCREEN_WIDTH } from '@/utils/responsive'
 
 type Props = {
 	navigation: any

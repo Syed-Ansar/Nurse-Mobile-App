@@ -1,6 +1,7 @@
 import React from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
+import JobTimings from './job-timings'
 import GradientButton from '../ui/Button'
 
 import Avatar from '@/assets/svg/avatar.svg'
@@ -10,7 +11,6 @@ import Star from '@/assets/svg/star.svg'
 import { colors, fontSize } from '@/constants/tokens'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
-import JobTimings from './job-timings'
 
 const Clock = [
 	{
@@ -162,7 +162,7 @@ const Job = ({ job, type }: Props) => {
 										textAlign: 'center',
 									}}
 								>
-									{'Ward'}
+									Ward
 								</Text>
 								<View
 									style={{
@@ -207,7 +207,7 @@ const Job = ({ job, type }: Props) => {
 										textAlign: 'center',
 									}}
 								>
-									{'Work Period'}
+									Work Period
 								</Text>
 								<View
 									style={{
@@ -252,7 +252,7 @@ const Job = ({ job, type }: Props) => {
 										textAlign: 'center',
 									}}
 								>
-									{'Work Hours'}
+									Work Hours
 								</Text>
 								<View
 									style={{
