@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import AuthHeader from '@/components/auth-header'
 import GradientButton from '@/components/ui/Button'
@@ -21,20 +21,23 @@ const SignInScreen = ({ navigation }: any) => {
 					}}
 				/>
 				<InputField placeholder="Enter Password" label="Enter Password" />
-				<Text
-					style={{
-						color: '#3513DD',
-						fontSize: 14,
-						marginTop: 8,
-						marginLeft: 'auto',
-						fontWeight: '600',
-					}}
+				<Pressable
 					onPress={() => {
 						navigation.navigate('ForgetPassword')
 					}}
 				>
-					Forgot Password?
-				</Text>
+					<Text
+						style={{
+							color: '#3513DD',
+							fontSize: 14,
+							marginTop: 8,
+							marginLeft: 'auto',
+							fontWeight: '600',
+						}}
+					>
+						Forgot Password?
+					</Text>
+				</Pressable>
 
 				<GradientButton
 					title="Login"

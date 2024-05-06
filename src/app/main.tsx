@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { StatusBar, StyleSheet } from 'react-native'
 
 import { useSession } from '@/context/auth-context'
 import AuthNavigator from '@/navigators/Auth'
@@ -10,6 +10,7 @@ const Main = () => {
 	const { session } = useSession()
 	return (
 		<NavigationContainer>
+			<StatusBar barStyle="dark-content" />
 			{session === null ? <AuthNavigator /> : <DrawerNavigator />}
 		</NavigationContainer>
 	)

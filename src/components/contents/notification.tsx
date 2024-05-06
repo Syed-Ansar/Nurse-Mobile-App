@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
 	},
 	notificationDescription: {
 		width: '100%',
-		flex: 1,
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',

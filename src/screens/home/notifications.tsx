@@ -29,28 +29,24 @@ const Notifications = ({ route, navigation }: Props) => {
 	return (
 		<ScreenLayout navigation={navigation}>
 			<Layout navigation={navigation} headerTitle="Notification">
-				<View>
-					<FlatList
-						data={notificationsData}
-						showsVerticalScrollIndicator={false}
-						contentContainerStyle={styles.notificationsContainer}
-						refreshControl={
-							<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3513DD']} />
-						}
-						renderItem={({ item, index }) => {
-							return (
-								<Notification data={item} index={index} navigation={navigation} route={route} />
-							)
-						}}
-						ItemSeparatorComponent={() => {
-							return (
-								<View style={styles.separatorContainer}>
-									<Separator />
-								</View>
-							)
-						}}
-					/>
-				</View>
+				<FlatList
+					data={notificationsData}
+					showsVerticalScrollIndicator={false}
+					contentContainerStyle={styles.notificationsContainer}
+					refreshControl={
+						<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3513DD']} />
+					}
+					renderItem={({ item, index }) => {
+						return <Notification data={item} index={index} navigation={navigation} route={route} />
+					}}
+					ItemSeparatorComponent={() => {
+						return (
+							<View style={styles.separatorContainer}>
+								<Separator />
+							</View>
+						)
+					}}
+				/>
 			</Layout>
 		</ScreenLayout>
 	)
