@@ -18,6 +18,7 @@ const DrawerNavigator = (props: Props) => {
 	return (
 		<Drawer.Navigator
 			initialRouteName="HomeNavigator"
+			defaultStatus="closed"
 			screenOptions={{
 				unmountOnBlur: true,
 				headerShown: false,

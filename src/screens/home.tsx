@@ -232,7 +232,7 @@ const HomeScreen = ({ navigation }: Props) => {
 					contentInsetAdjustmentBehavior="never"
 					centerContent
 					contentContainerStyle={{
-						paddingBottom: 350,
+						paddingBottom: 400,
 					}}
 				>
 					{jobs.map((item) => {

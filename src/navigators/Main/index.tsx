@@ -18,7 +18,11 @@ const MainTab = createBottomTabNavigator()
 
 const MainNavigator = () => {
 	return (
-		<SafeAreaProvider>
+		<SafeAreaProvider
+			style={{
+				backgroundColor: 'white',
+			}}
+		>
 			<MainTab.Navigator
 				initialRouteName="Dashboard"
 				screenOptions={{
@@ -32,6 +36,7 @@ const MainNavigator = () => {
 					},
 					tabBarLabelStyle: {
 						marginTop: 10,
+						minHeight: 20,
 					},
 				}}
 			>
