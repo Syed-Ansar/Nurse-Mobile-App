@@ -2,11 +2,10 @@ import { EvilIcons } from '@expo/vector-icons'
 import { DrawerActions, useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
-import { Dimensions, Pressable, SafeAreaView, StyleSheet, View } from 'react-native'
+import { Dimensions, Image, Pressable, SafeAreaView, StyleSheet, View } from 'react-native'
 
 import Avatar from '@/assets/svg/avatar.svg'
 import Bell from '@/assets/svg/bell-icon.svg'
-import Logo from '@/assets/svg/logo.svg'
 
 const deviceDisplay = Dimensions.get('screen')
 
@@ -48,7 +47,10 @@ const Header = ({ navigation }: any) => {
 						>
 							<EvilIcons name="navicon" size={28} color="white" />
 						</Pressable>
-						<Logo key="Logo 1" />
+						<Image
+							source={require('@/assets/img/logo.png')}
+							style={{ width: 150, height: '100%' }}
+						/>
 					</View>
 
 					<View

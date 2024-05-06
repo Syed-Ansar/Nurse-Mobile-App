@@ -87,6 +87,21 @@ const TotalHours = ({ navigation }: Props) => {
 				</View>
 				<SafeAreaView style={styles.container}>
 					<Agenda
+						automaticallyAdjustKeyboardInsets
+						showClosingKnob
+						staticHeader
+						animateScroll
+						showsVerticalScrollIndicator={false}
+						showsHorizontalScrollIndicator={false}
+						renderItem={renderItem}
+						renderKnob={() => {
+							return <View style={styles.knowStyles} />
+						}}
+						renderEmptyData={() => {
+							return <Text style={styles.itemTextNoEvent}>No event for the day.</Text>
+						}}
+						stickyHeaderIndices={[1, 7]}
+						directionalLockEnabled
 						items={{
 							'2024-05-01': [
 								{ name: 'ABC Hospital', day: JSON.stringify(dataItem[0]), height: 10 },
@@ -97,31 +112,17 @@ const TotalHours = ({ navigation }: Props) => {
 								{ name: 'Walking', day: JSON.stringify(dataItem[1]), height: 10 },
 								{ name: 'Running', day: JSON.stringify(dataItem[1]), height: 10 },
 							],
-							// '2024-05-03': [
-							// 	{ name: 'Jogging', day: '', height: 10 },
-							// 	{ name: 'Walking', day: '', height: 10 },
-							// 	{ name: 'Running', day: '', height: 10 },
-							// ],
-							// '2024-05-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
-							// '2024-06-10': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
-							// '2024-06-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
-							// '2024-07-30': [{ name: 'Writing', height: 10, day: '2022-05-02' }],
 						}}
-						showClosingKnob
-						staticHeader
-						showSixWeeks={false}
-						showOnlySelectedDayItems
-						animateScroll
-						showsVerticalScrollIndicator={false}
-						showsHorizontalScrollIndicator={false}
-						renderItem={renderItem}
-						renderEmptyData={() => {
-							return <Text style={styles.itemTextNoEvent}>No event for the day.</Text>
-						}}
-						stickyHeaderIndices={[1, 7]}
 						theme={{
 							selectedDayTextColor: 'white',
 							selectedDayBackgroundColor: '#3513DD',
+							dotColor: '#3513DD',
+							backgroundColor: 'white',
+							todayTextColor: '#3513DD',
+							dayTextColor: 'black',
+						}}
+						style={{
+							borderRadius: 10,
 						}}
 					/>
 				</SafeAreaView>
@@ -203,5 +204,12 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		fontSize: 18,
 		fontWeight: '600',
+	},
+	knowStyles: {
+		backgroundColor: '#00000066',
+		height: 3,
+		width: 50,
+		marginTop: 15,
+		borderRadius: 40,
 	},
 })
