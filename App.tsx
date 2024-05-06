@@ -1,23 +1,23 @@
-import { SafeAreaView, StatusBar, StyleSheet } from 'react-native'
+import { StatusBar, StyleSheet, View } from 'react-native'
 
 import Main from '@/app/main'
 import { SessionProvider } from '@/context/auth-context'
 
 const App = () => {
 	return (
-		<SafeAreaView style={styles.AndroidSafeArea}>
-			<StatusBar barStyle="light-content" />
+		<View style={styles.container}>
 			<SessionProvider>
+				<StatusBar barStyle="dark-content" backgroundColor={'white'} />
 				<Main />
 			</SessionProvider>
-		</SafeAreaView>
+		</View>
 	)
 }
 
 export default App
 
 const styles = StyleSheet.create({
-	AndroidSafeArea: {
+	container: {
 		flex: 1,
 	},
 })
