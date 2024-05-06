@@ -246,3 +246,30 @@ export const timelineEvents: TimelineEventProps[] = [
 		summary: 'Merge Timeline Calendar to React Native Calendars',
 	},
 ]
+
+const dataItem = [
+	{
+		facility: 'ABC Hospital',
+		startTime: '2:00 PM',
+		endTime: '10:30 PM',
+		color: 'red',
+	},
+	{
+		facility: 'CSA Hospital',
+		startTime: '9:00 PM',
+		endTime: '12:30 AM',
+		color: 'blue',
+	},
+]
+
+export const calenderData = {
+	'2024-05-01': [
+		{ name: 'ABC Hospital', day: JSON.stringify(dataItem[0]), height: 10 },
+		{ name: 'Running', day: JSON.stringify(dataItem[0]), height: 10 },
+	],
+	'2024-05-02': [
+		{ name: 'Cycling', day: JSON.stringify(dataItem[1]), height: 10 },
+		{ name: 'Walking', day: JSON.stringify(dataItem[1]), height: 10 },
+		{ name: 'Running', day: JSON.stringify(dataItem[1]), height: 10 },
+	],
+}
