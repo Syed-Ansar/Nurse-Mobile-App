@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import {
 	Pressable,
+	RefreshControl,
 	SafeAreaView,
 	ScrollView,
 	StatusBar,
@@ -52,6 +53,16 @@ const HomeTab = [
 const HomeScreen = ({ navigation }: Props) => {
 	const [activeTab, setActiveTab] = useState(JOB_STATUS.Upcoming)
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
+
+	const [refreshing, setRefreshing] = useState(false)
+
+	const onRefresh = useCallback(() => {
+		setRefreshing(true)
+		setTimeout(() => {
+			setRefreshing(false)
+		}, 2000)
+	}, [])
+
 	return (
 		<SafeAreaView
 			style={{
@@ -228,6 +239,9 @@ const HomeScreen = ({ navigation }: Props) => {
 				}}
 			>
 				<ScrollView
+					refreshControl={
+						<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3513DD']} />
+					}
 					showsVerticalScrollIndicator={false}
 					contentInsetAdjustmentBehavior="never"
 					centerContent
