@@ -6,6 +6,9 @@ import { BaseUrl } from '@/constants'
 export const nurseApiInstance = axios.create({
 	baseURL: `${BaseUrl}/nurses`,
 	timeout: 10000,
+	headers: {
+		'content-type': 'application/json',
+	},
 })
 
 nurseApiInstance.interceptors.request.use(

@@ -15,7 +15,13 @@ export function HomeNavigator() {
 				headerShown: false,
 			}}
 		>
-			<HomeStack.Screen name="MainNavigator" component={MainNavigator} />
+			<HomeStack.Screen
+				name="MainNavigator"
+				component={MainNavigator}
+				options={{
+					animation: 'slide_from_left',
+				}}
+			/>
 			<HomeStack.Screen name="Profile" component={Profile} />
 			<HomeStack.Screen name="Notifications" component={Notifications} />
 			<HomeStack.Screen name="NotificationDetails" component={NotificationDetails} />
