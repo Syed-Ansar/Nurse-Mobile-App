@@ -65,7 +65,7 @@ const Profile = ({ navigation }: Props) => {
 					<SafeAreaView
 						style={{
 							height: 200,
-							padding: 16,
+							marginLeft: 16,
 						}}
 					>
 						<View

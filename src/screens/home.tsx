@@ -15,12 +15,11 @@ import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 import Job from '@/components/contents/job'
 import { fontSize } from '@/constants/tokens'
-import { useSession } from '@/context/auth-context'
 import { JobData } from '@/libs/dummyData'
 import { getNurse } from '@/network/auth'
+import { useNurseStore } from '@/store'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
-import { useNurseStore } from '@/store'
 
 type Props = {
 	navigation: any
@@ -85,14 +84,14 @@ const HomeScreen = ({ navigation }: Props) => {
 	}, [getUserInfo])
 
 	return (
-		<View>
-			<SafeAreaView
-				style={{
-					paddingHorizontal: 15,
-					paddingVertical: 20,
-					backgroundColor: 'white',
-				}}
-			>
+		<View
+			style={{
+				paddingHorizontal: 15,
+				paddingVertical: 20,
+				backgroundColor: 'white',
+			}}
+		>
+			<SafeAreaView>
 				<View
 					style={{
 						gap: 2,
