@@ -20,6 +20,7 @@ import { JobData } from '@/libs/dummyData'
 import { getNurse } from '@/network/auth'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
+import { useNurseStore } from '@/store'
 
 type Props = {
 	navigation: any
@@ -55,7 +56,7 @@ const HomeTab = [
 const HomeScreen = ({ navigation }: Props) => {
 	const [activeTab, setActiveTab] = useState(JOB_STATUS.Upcoming)
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
-	const { session } = useSession()
+	const { nurse, setNurse } = useNurseStore()
 
 	const [refreshing, setRefreshing] = useState(false)
 
@@ -66,22 +67,22 @@ const HomeScreen = ({ navigation }: Props) => {
 		}, 2000)
 	}, [])
 
-	const getUserInfo = async () => {
+	const getUserInfo = useCallback(async () => {
 		try {
-			const nurse = await getNurse()
-			console.log('Nurse Info ', nurse)
+			if (!nurse) {
+				const nurseInfo = await getNurse()
+				if (nurseInfo.data) {
+					setNurse(nurseInfo.data)
+				}
+			}
 		} catch (error) {
 			console.log('Error Get User', error)
 		}
-
-		// const user: NurseUserInfo = await res.json()
-		// console.log('user:', user)
-		// return user
-	}
+	}, [nurse, setNurse])
 
 	useLayoutEffect(() => {
 		getUserInfo()
-	}, [])
+	}, [getUserInfo])
 
 	return (
 		<View>
@@ -121,7 +122,7 @@ const HomeScreen = ({ navigation }: Props) => {
 							fontWeight: '500',
 						}}
 					>
-						Emily Ava
+						{nurse ? `${nurse.name} ${nurse.surname}` : 'Nurse Name'}
 					</Text>
 				</View>
 				<View

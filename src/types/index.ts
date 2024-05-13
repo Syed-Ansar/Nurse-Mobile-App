@@ -142,3 +142,12 @@ export interface MetaData {
 	createdOnMilli: number
 	updatedOnMilli: null | number
 }
+
+export type ProfileDataType = {
+	'ID/ Passport': string
+	'Professional Category': string
+	'SANC/ Practice Number': string
+	'Specialization Selector': string | undefined
+	'Called Rank': string
+	'RWOP Number': string
+}

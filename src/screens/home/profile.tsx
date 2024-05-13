@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
 	Image,
 	KeyboardAvoidingView,
@@ -8,7 +8,6 @@ import {
 	Pressable,
 	SafeAreaView,
 	ScrollView,
-	StatusBar,
 	StyleSheet,
 	Text,
 	View,
@@ -16,7 +15,8 @@ import {
 
 import InputField from '@/components/ui/Input'
 import { colors, fontSize } from '@/constants/tokens'
-import { profileData } from '@/libs/dummyData'
+import { useNurseStore } from '@/store'
+import { ProfileDataType } from '@/types'
 import { SCREEN_WIDTH } from '@/utils/responsive'
 
 type Props = {
@@ -24,6 +24,35 @@ type Props = {
 }
 
 const Profile = ({ navigation }: Props) => {
+	const { nurse } = useNurseStore()
+
+	const [profileData, setProfileData] = useState<ProfileDataType | null>(null)
+	const [specializations, setSpecializations] = useState<string | null>(null)
+
+	useEffect(() => {
+		const findSpecialized: any = nurse?.assessmentReports.find((item: any) => {
+			return item?.assessmentType === 'specialized'
+		})
+		if (findSpecialized) {
+			const values = findSpecialized?.specializations
+				?.map((item: any) => {
+					return item.name
+				})
+				.join(', ')
+			setSpecializations(values[0])
+		}
+		const ProfileData: ProfileDataType = {
+			'ID/ Passport': nurse?.governmentId.documentNumber ?? 'Na',
+			'Professional Category': nurse?.professionalCategory.name ?? 'Na',
+			'SANC/ Practice Number': nurse?.practiceNumber ?? 'Na',
+			'Specialization Selector': specializations ?? 'Na',
+			'Called Rank': nurse?.professionalCategory.name ?? 'Na',
+			'RWOP Number': nurse?.practiceNumber ?? 'Na',
+		}
+		setProfileData(ProfileData)
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [nurse])
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -98,7 +127,7 @@ const Profile = ({ navigation }: Props) => {
 						fontWeight: '600',
 					}}
 				>
-					Emily Ava
+					{nurse ? `${nurse.name} ${nurse.surname}` : 'Nurse Name'}
 				</Text>
 				<View
 					style={{
@@ -118,40 +147,43 @@ const Profile = ({ navigation }: Props) => {
 							borderColor: '#3513DD',
 						}}
 					>
-						{Object.entries(profileData).map(([key, value]) => (
-							<View
-								key={key}
-								style={{
-									display: 'flex',
-									flexDirection: 'row',
-									justifyContent: 'space-between',
-									width: '100%',
-								}}
-							>
-								<Text
-									style={{
-										fontSize: fontSize.xs,
-										fontWeight: '400',
-										color: colors.secondaryText,
-									}}
-								>
-									{key} :-
-								</Text>
-								<Text
-									style={{
-										fontSize: fontSize.xsm,
-										fontWeight: '600',
-									}}
-								>
-									{value}
-								</Text>
-							</View>
-						))}
+						{profileData
+							? Object.entries(profileData).map(([key, value]) => (
+									<View
+										key={key}
+										style={{
+											display: 'flex',
+											flexDirection: 'row',
+											justifyContent: 'space-between',
+											width: '100%',
+										}}
+									>
+										<Text
+											style={{
+												fontSize: fontSize.xs,
+												fontWeight: '400',
+												color: colors.secondaryText,
+											}}
+										>
+											{key} :-
+										</Text>
+										<Text
+											style={{
+												fontSize: fontSize.xsm,
+												fontWeight: '600',
+											}}
+										>
+											{value}
+										</Text>
+									</View>
+								))
+							: null}
 					</View>
 					<View style={{ marginVertical: 28 }}>
 						<InputField
 							placeholder="Email/SANC"
 							label="Enter Email/SANC"
+							value={nurse?.email ?? ''}
 							styles={{
 								marginBottom: 25,
 							}}
@@ -160,6 +192,7 @@ const Profile = ({ navigation }: Props) => {
 							placeholder="Enter Phone Number"
 							label="Phone Number"
 							keyboardType="phone-pad"
+							value={nurse?.phoneNumber ?? ''}
 							styles={{
 								marginBottom: 25,
 							}}
@@ -167,6 +200,7 @@ const Profile = ({ navigation }: Props) => {
 						<InputField
 							placeholder="Enter Address"
 							label="Address"
+							value={nurse?.address ?? ''}
 							styles={{
 								marginBottom: 25,
 							}}
