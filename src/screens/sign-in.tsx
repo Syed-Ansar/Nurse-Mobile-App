@@ -24,7 +24,7 @@ const SignInScreen = ({ navigation }: any) => {
 		})
 		try {
 			const response = await nurseLogin(data)
-			signIn(response.data.accessToken.token)
+			signIn(response.data)
 		} catch (error) {
 			console.log('Error', error)
 		}

@@ -84,26 +84,22 @@ const DrawerContent = (props: any) => {
 					marginBottom: 40,
 				}}
 				onPress={() => {
+					drawerNavigation.dispatch(DrawerActions.closeDrawer())
 					signOut()
 				}}
 			>
 				<Logout />
-				<Pressable
-					onPress={() => {
-						drawerNavigation.dispatch(DrawerActions.closeDrawer())
+
+				<Text
+					style={{
+						fontSize: 16,
+						fontWeight: '400',
+						marginLeft: 10,
+						color: '#667085',
 					}}
 				>
-					<Text
-						style={{
-							fontSize: 16,
-							fontWeight: '400',
-							marginLeft: 10,
-							color: '#667085',
-						}}
-					>
-						Logout
-					</Text>
-				</Pressable>
+					Logout
+				</Text>
 			</Pressable>
 		</View>
 	)
