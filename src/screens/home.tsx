@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from 'react'
+import 'core-js/stable/atob'
+import { jwtDecode } from 'jwt-decode'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import {
 	Pressable,
 	RefreshControl,
 	SafeAreaView,
 	ScrollView,
-	StatusBar,
 	StyleSheet,
 	Text,
 	View,
@@ -15,9 +16,11 @@ import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 import Job from '@/components/contents/job'
 import { fontSize } from '@/constants/tokens'
+import { useSession } from '@/context/auth-context'
 import { JobData } from '@/libs/dummyData'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
+import { getNurse } from '@/network/auth'
 
 type Props = {
 	navigation: any
@@ -53,6 +56,7 @@ const HomeTab = [
 const HomeScreen = ({ navigation }: Props) => {
 	const [activeTab, setActiveTab] = useState(JOB_STATUS.Upcoming)
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
+	const { session } = useSession()
 
 	const [refreshing, setRefreshing] = useState(false)
 
@@ -61,6 +65,23 @@ const HomeScreen = ({ navigation }: Props) => {
 		setTimeout(() => {
 			setRefreshing(false)
 		}, 2000)
+	}, [])
+
+	const getUserInfo = async () => {
+		try {
+			const nurse = await getNurse()
+			console.log('Nurse Info ', nurse)
+		} catch (error) {
+			console.log('Error Get User', error)
+		}
+
+		// const user: NurseUserInfo = await res.json()
+		// console.log('user:', user)
+		// return user
+	}
+
+	useLayoutEffect(() => {
+		getUserInfo()
 	}, [])
 
 	return (

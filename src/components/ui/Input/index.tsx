@@ -10,6 +10,7 @@ type Props = {
 	label?: string
 	value?: string
 	keyboardType?: KeyboardType
+	onChange?: (value: string) => void
 }
 
 const InputField = ({
@@ -21,6 +22,7 @@ const InputField = ({
 	keyboardType,
 	value,
 	label,
+	onChange,
 }: Props) => {
 	return (
 		<View
@@ -45,6 +47,9 @@ const InputField = ({
 				keyboardType={keyboardType ? keyboardType : 'default'}
 				placeholder={placeholder || ''}
 				{...(value !== undefined ? { value } : {})}
+				onChangeText={(text) => {
+					onChange?.(text)
+				}}
 				style={{
 					...inputStyles,
 					width: '100%',

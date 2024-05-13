@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import AuthHeader from '@/components/auth-header'
+import { showToast } from '@/components/common/toast'
 import GradientButton from '@/components/ui/Button'
 import InputField from '@/components/ui/Input'
 import { useSession } from '@/context/auth-context'
+import { nurseLogin } from '@/network/auth'
 
 const SignInScreen = ({ navigation }: any) => {
 	const { signIn } = useSession()
+	const [idNumber, setIdNumber] = useState('')
+	const [password, setPassword] = useState('')
+
+	const handleLogin = async (idNumber: string, password: string) => {
+		if (!idNumber || !password) {
+			showToast('Id / Passport and password are required!')
+			return
+		}
+		const data = JSON.stringify({
+			idNumber,
+			password,
+		})
+		try {
+			const response = await nurseLogin(data)
+			signIn(response.data.accessToken.token)
+		} catch (error) {
+			console.log('Error', error)
+		}
+	}
 	return (
 		<View>
 			<AuthHeader title="Sign In" />
@@ -19,8 +40,17 @@ const SignInScreen = ({ navigation }: any) => {
 					styles={{
 						marginBottom: 25,
 					}}
+					onChange={(value) => {
+						setIdNumber(value)
+					}}
 				/>
-				<InputField placeholder="Enter Password" label="Enter Password" />
+				<InputField
+					placeholder="Enter Password"
+					label="Enter Password"
+					onChange={(value) => {
+						setPassword(value)
+					}}
+				/>
 				<Pressable
 					onPress={() => {
 						navigation.navigate('ForgetPassword')
@@ -42,8 +72,8 @@ const SignInScreen = ({ navigation }: any) => {
 				<GradientButton
 					title="Login"
 					onClick={() => {
-						signIn()
-						console.log('clicked')
+						const accessToken = handleLogin(idNumber, password)
+						console.log(accessToken)
 					}}
 					buttonStyle={{
 						marginTop: 40,
