@@ -1,14 +1,14 @@
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Button, Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 import Logout from '@/assets/svg/logout.svg'
 import { useSession } from '@/context/auth-context'
 import GradientButton from '@/ui/Button'
 
-type Props = object
-
 const DrawerContent = (props: any) => {
+	const drawerNavigation = useNavigation()
 	const { signOut } = useSession()
 	return (
 		<View
@@ -88,16 +88,22 @@ const DrawerContent = (props: any) => {
 				}}
 			>
 				<Logout />
-				<Text
-					style={{
-						fontSize: 16,
-						fontWeight: '400',
-						marginLeft: 10,
-						color: '#667085',
+				<Pressable
+					onPress={() => {
+						drawerNavigation.dispatch(DrawerActions.closeDrawer())
 					}}
 				>
-					Logout
-				</Text>
+					<Text
+						style={{
+							fontSize: 16,
+							fontWeight: '400',
+							marginLeft: 10,
+							color: '#667085',
+						}}
+					>
+						Logout
+					</Text>
+				</Pressable>
 			</Pressable>
 		</View>
 	)

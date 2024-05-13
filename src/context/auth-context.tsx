@@ -1,8 +1,7 @@
-import React from 'react'
+import * as SecureStore from 'expo-secure-store'
+import React, { useEffect } from 'react'
 
 import { useStorageState } from '../hooks/useStorageState'
-
-import { nurseApiInstance } from '@/network'
 
 const AuthContext = React.createContext<{
 	signIn: (token: string) => void
@@ -30,6 +29,13 @@ export function useSession() {
 
 export function SessionProvider(props: React.PropsWithChildren) {
 	const [[isLoading, session], setSession] = useStorageState('session')
+
+	useEffect(() => {
+		;(async () => {
+			const accessToken = await SecureStore.getItemAsync('session')
+			setSession(accessToken)
+		})()
+	}, [setSession])
 
 	return (
 		<AuthContext.Provider

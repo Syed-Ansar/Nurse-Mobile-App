@@ -12,7 +12,7 @@ const Main = () => {
 	return (
 		<NavigationContainer>
 			<StatusBar barStyle="dark-content" />
-			{session === null ? <AuthNavigator /> : <DrawerNavigator />}
+			{session ? <DrawerNavigator /> : <AuthNavigator />}
 		</NavigationContainer>
 	)
 }
