@@ -46,7 +46,7 @@ export function SessionProvider(props: React.PropsWithChildren) {
 		<AuthContext.Provider
 			value={{
 				signIn: ({ accessToken, refreshToken }) => {
-					setSession(accessToken.token)
+					setSession(accessToken?.token)
 				},
 				signOut: () => {
 					setSession(null)
