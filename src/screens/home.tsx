@@ -1,6 +1,5 @@
 import 'core-js/stable/atob'
-import { jwtDecode } from 'jwt-decode'
-import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import React, { useCallback, useLayoutEffect, useState } from 'react'
 import {
 	Pressable,
 	RefreshControl,
@@ -18,9 +17,9 @@ import Job from '@/components/contents/job'
 import { fontSize } from '@/constants/tokens'
 import { useSession } from '@/context/auth-context'
 import { JobData } from '@/libs/dummyData'
+import { getNurse } from '@/network/auth'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
-import { getNurse } from '@/network/auth'
 
 type Props = {
 	navigation: any
