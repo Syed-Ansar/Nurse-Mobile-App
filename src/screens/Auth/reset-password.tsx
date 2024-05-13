@@ -7,7 +7,6 @@ import InputField from '@/components/ui/Input'
 import { useSession } from '@/context/auth-context'
 
 export default function ResetPassword({ navigation }: any) {
-	const { signIn } = useSession()
 	return (
 		<View>
 			<View>

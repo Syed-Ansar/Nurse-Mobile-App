@@ -13,6 +13,7 @@ const AuthNavigator = () => {
 		<AuthStack.Navigator
 			screenOptions={{
 				headerShown: false,
+				animation: 'fade_from_bottom',
 			}}
 		>
 			<AuthStack.Screen name="SignIn" component={SignIn} />

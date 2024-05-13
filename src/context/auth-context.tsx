@@ -2,10 +2,11 @@ import * as SecureStore from 'expo-secure-store'
 import React, { useEffect } from 'react'
 
 import { useStorageState } from '../hooks/useStorageState'
+
 import { AuthLoginResponse } from '@/types'
 
 const AuthContext = React.createContext<{
-	signIn: ({ accessToken, refreshToken }: AuthLoginResponse) => void
+	signIn: (token: AuthLoginResponse) => void
 	signOut: () => void
 	session?: string | null
 	isLoading: boolean
@@ -45,8 +46,10 @@ export function SessionProvider(props: React.PropsWithChildren) {
 	return (
 		<AuthContext.Provider
 			value={{
-				signIn: ({ accessToken, refreshToken }) => {
-					setSession(accessToken?.token)
+				signIn: (token) => {
+					if (token && token.accessToken && token.accessToken?.token) {
+						setSession(token.accessToken.token)
+					}
 				},
 				signOut: () => {
 					setSession(null)
