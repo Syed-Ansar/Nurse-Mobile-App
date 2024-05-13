@@ -20,6 +20,7 @@ import { getNurse } from '@/network/auth'
 import { useNurseStore } from '@/store'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
 
 type Props = {
 	navigation: any
@@ -56,6 +57,7 @@ const HomeScreen = ({ navigation }: Props) => {
 	const [activeTab, setActiveTab] = useState(JOB_STATUS.Upcoming)
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
 	const { nurse, setNurse } = useNurseStore()
+	const drawerNavigation = useNavigation()
 
 	const [refreshing, setRefreshing] = useState(false)
 
@@ -81,6 +83,7 @@ const HomeScreen = ({ navigation }: Props) => {
 
 	useLayoutEffect(() => {
 		getUserInfo()
+		drawerNavigation.dispatch(DrawerActions.closeDrawer())
 	}, [getUserInfo])
 
 	return (
