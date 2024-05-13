@@ -19,6 +19,7 @@ const DrawerNavigator = (props: Props) => {
 		<Drawer.Navigator
 			initialRouteName="HomeNavigator"
 			defaultStatus="closed"
+			detachInactiveScreens
 			screenOptions={{
 				unmountOnBlur: true,
 				headerShown: false,
