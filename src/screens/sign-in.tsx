@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {
+	ActivityIndicator,
 	KeyboardAvoidingView,
 	Platform,
 	Pressable,
@@ -20,6 +21,7 @@ const SignInScreen = ({ navigation }: any) => {
 	const { signIn } = useSession()
 	const [idNumber, setIdNumber] = useState('')
 	const [password, setPassword] = useState('')
+	const [isLogging, setIsLogging] = useState(false)
 
 	const handleLogin = async (idNumber: string, password: string) => {
 		if (!idNumber || !password) {
@@ -27,14 +29,18 @@ const SignInScreen = ({ navigation }: any) => {
 			return
 		}
 		const data = JSON.stringify({
-			idNumber,
-			password,
+			idNumber: idNumber?.trimStart(),
+			password: password?.trimEnd(),
 		})
 		try {
+			setIsLogging(true)
 			const response = await nurseLogin(data)
 			signIn(response.data)
+			setIsLogging(false)
 		} catch (error) {
 			console.log('Error', error)
+		} finally {
+			setIsLogging(false)
 		}
 	}
 	return (
@@ -83,16 +89,32 @@ const SignInScreen = ({ navigation }: any) => {
 						</Text>
 					</Pressable>
 
-					<GradientButton
-						title="Login"
-						onClick={() => {
-							const accessToken = handleLogin(idNumber, password)
-							console.log(accessToken)
-						}}
-						buttonStyle={{
-							marginTop: 40,
-						}}
-					/>
+					{!isLogging ? (
+						<GradientButton
+							title={'Login'}
+							onClick={() => {
+								const accessToken = handleLogin(idNumber, password)
+								console.log(accessToken)
+							}}
+							buttonStyle={{
+								marginTop: 40,
+							}}
+						/>
+					) : (
+						<View
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								backgroundColor: '#d3d3d3',
+								padding: 12,
+								borderRadius: 8,
+								marginTop: 40,
+							}}
+						>
+							<ActivityIndicator size="small" color="#7450FE" />
+						</View>
+					)}
 				</View>
 			</ScrollView>
 		</KeyboardAvoidingView>
