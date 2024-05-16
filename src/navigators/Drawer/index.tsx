@@ -1,11 +1,12 @@
 import { Entypo, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import { createDrawerNavigator } from '@react-navigation/drawer'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 
 import { HomeNavigator } from '../Home'
 
 import DrawerContent from '@/components/common/drawer-content'
+import useNotifications from '@/hooks/useNotification'
 import Help from '@/screens/drawer/help'
 import Settings from '@/screens/drawer/settings'
 import Wallet from '@/screens/drawer/wallet'
@@ -15,6 +16,12 @@ type Props = object
 const Drawer = createDrawerNavigator()
 
 const DrawerNavigator = (props: Props) => {
+	const { initializeNotification } = useNotifications()
+
+	useEffect(() => {
+		initializeNotification()
+	}, [])
+
 	return (
 		<Drawer.Navigator
 			initialRouteName="HomeNavigator"

@@ -13,6 +13,7 @@ const Dashboard = ({ navigation }: any) => {
 	return (
 		<ScreenLayout navigation={navigation}>
 			<HomeStack.Navigator
+				initialRouteName="HomeScreen"
 				screenOptions={{
 					headerShown: false,
 				}}

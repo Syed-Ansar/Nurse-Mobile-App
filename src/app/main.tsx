@@ -6,6 +6,7 @@ import { StatusBar, StyleSheet } from 'react-native'
 import { useSession } from '@/context/auth-context'
 import AuthNavigator from '@/navigators/Auth'
 import DrawerNavigator from '@/navigators/Drawer'
+import { navigationRef } from '@/navigators/root-navigation'
 
 const prefix = Linking.createURL('/')
 
@@ -14,6 +15,7 @@ const Main = () => {
 
 	return (
 		<NavigationContainer
+			ref={navigationRef}
 			linking={{
 				prefixes: [prefix],
 			}}
