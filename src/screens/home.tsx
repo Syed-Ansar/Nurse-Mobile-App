@@ -1,5 +1,7 @@
 import 'core-js/stable/atob'
-import React, { useCallback, useLayoutEffect, useState } from 'react'
+import { DrawerActions, useNavigation } from '@react-navigation/native'
+import Constants from 'expo-constants'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import {
 	Pressable,
 	RefreshControl,
@@ -9,6 +11,7 @@ import {
 	Text,
 	View,
 } from 'react-native'
+import { LogLevel, OneSignal } from 'react-native-onesignal'
 
 import TotalHours from '@/assets/svg/timer.svg'
 import TotalEarnings from '@/assets/svg/total-earnings.svg'
@@ -20,7 +23,6 @@ import { getNurse } from '@/network/auth'
 import { useNurseStore } from '@/store'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
-import { DrawerActions, useNavigation } from '@react-navigation/native'
 
 type Props = {
 	navigation: any
@@ -85,6 +87,13 @@ const HomeScreen = ({ navigation }: Props) => {
 		getUserInfo()
 		drawerNavigation.dispatch(DrawerActions.closeDrawer())
 	}, [getUserInfo])
+
+	useEffect(() => {
+		OneSignal.Debug.setLogLevel(LogLevel.Verbose)
+		OneSignal.initialize(Constants?.expoConfig?.extra?.oneSignalAppId)
+
+		OneSignal.Notifications.requestPermission(true)
+	}, [])
 
 	return (
 		<View
