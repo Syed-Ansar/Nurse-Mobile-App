@@ -11,6 +11,7 @@ const HomeStack = createNativeStackNavigator()
 export function HomeNavigator() {
 	return (
 		<HomeStack.Navigator
+			initialRouteName="MainNavigator"
 			screenOptions={{
 				headerShown: false,
 			}}

@@ -1,5 +1,7 @@
 import { Feather } from '@expo/vector-icons'
+import { useNavigation } from '@react-navigation/native'
 import { LinearGradient } from 'expo-linear-gradient'
+import * as Linking from 'expo-linking'
 import React, { useEffect, useState } from 'react'
 import {
 	Image,
@@ -25,6 +27,7 @@ type Props = {
 
 const Profile = ({ navigation }: Props) => {
 	const { nurse } = useNurseStore()
+	const route = useNavigation()
 
 	const [profileData, setProfileData] = useState<ProfileDataType | null>(null)
 	const [specializations, setSpecializations] = useState<string | null>(null)
@@ -52,6 +55,12 @@ const Profile = ({ navigation }: Props) => {
 		setProfileData(ProfileData)
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [nurse])
+
+	useEffect(() => {
+		;(() => {
+			console.log('Linking', route.getState())
+		})()
+	}, [])
 
 	return (
 		<KeyboardAvoidingView
