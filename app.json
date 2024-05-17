@@ -52,9 +52,7 @@
       "oneSignalAppId": "b55f76b7-6f04-4364-b487-4b4c1a9ee520"
     },
     "owner": "syed-ansar",
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion":"1.0.0",
     "updates": {
       "url": "https://u.expo.dev/b857ca87-70b9-48a8-ae26-07c8d98754ee"
     }
