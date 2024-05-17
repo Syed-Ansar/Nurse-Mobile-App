@@ -1,7 +1,9 @@
-import { StatusBar, StyleSheet, View } from 'react-native'
+import { AppRegistry, StatusBar, StyleSheet, View } from 'react-native'
 
 import Main from '@/app/main'
 import { SessionProvider } from '@/context/auth-context'
+
+AppRegistry.registerComponent('X', () => App)
 
 const App = () => {
 	return (
