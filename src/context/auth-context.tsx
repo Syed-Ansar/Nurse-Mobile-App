@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { useStorageState } from '../hooks/useStorageState'
 
 import { AuthLoginResponse } from '@/types'
+import { isTokenExpired } from '@/utils'
 
 const AuthContext = React.createContext<{
 	signIn: (token: AuthLoginResponse) => void

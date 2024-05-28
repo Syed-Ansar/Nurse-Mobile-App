@@ -21,6 +21,7 @@ import { getNurse } from '@/network/auth'
 import { useNurseStore } from '@/store'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
+import useNotifications from '@/hooks/useNotification'
 
 type Props = {
 	navigation: any
@@ -58,6 +59,7 @@ const HomeScreen = ({ navigation }: Props) => {
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
 	const { nurse, setNurse } = useNurseStore()
 	const drawerNavigation = useNavigation()
+	const { registerForNotification } = useNotifications()
 
 	const [refreshing, setRefreshing] = useState(false)
 
@@ -74,6 +76,7 @@ const HomeScreen = ({ navigation }: Props) => {
 				const nurseInfo = await getNurse()
 				if (nurseInfo.data) {
 					setNurse(nurseInfo.data)
+					registerForNotification(nurseInfo.data)
 				}
 			}
 		} catch (error) {

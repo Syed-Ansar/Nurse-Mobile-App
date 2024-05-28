@@ -36,6 +36,7 @@ const SignInScreen = ({ navigation }: any) => {
 			setIsLogging(true)
 			const response = await nurseLogin(data)
 			signIn(response.data)
+
 			setIsLogging(false)
 		} catch (error) {
 			console.log('Error', error)

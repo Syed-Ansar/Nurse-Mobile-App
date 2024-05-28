@@ -151,3 +151,5 @@ export type ProfileDataType = {
 	'Called Rank': string
 	'RWOP Number': string
 }
+
+export type NotificationRequest = { playerId: string }

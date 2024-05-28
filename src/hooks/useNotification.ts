@@ -3,9 +3,32 @@ import { LogLevel, OneSignal } from 'react-native-onesignal'
 
 import * as RootNavigation from '../navigators/root-navigation'
 
+import { sendNurseDetailsOneSignal } from '@/network/notification'
+import { NurseUserInfo } from '@/types'
+
 const useNotifications = () => {
 	//const navigation = useNavigation();
-	const initializeNotification = () => {
+
+	const getSubId = async () => {
+		try {
+			const subscriptionId = await OneSignal.User.pushSubscription.getIdAsync()
+			return subscriptionId
+		} catch (error) {
+			console.log('Error : getSubId ============', error)
+			return null
+		}
+	}
+
+	const addOneSignalTag = async (key: string, value: string) => {
+		try {
+			await OneSignal.User.addTag(key, value)
+		} catch (error) {
+			console.log('Error : addOneSignalTag  ============', error)
+			return null
+		}
+	}
+
+	const initializeNotification = async () => {
 		// REMOTE NOTIFICATIONS SETUP END //
 
 		// OneSignal Initialization
@@ -15,7 +38,18 @@ const useNotifications = () => {
 
 		// requestPermission will show the native iOS or Android notification permission prompt.
 		// We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+
 		OneSignal.Notifications.requestPermission(true)
+		try {
+			const subscriptionId = await getSubId()
+			if (subscriptionId) {
+				OneSignal.User.addTag('player_id', subscriptionId)
+			} else {
+				console.log('Failed to get OneSignal Subscription ID')
+			}
+		} catch (error) {
+			console.error('Error initializing OneSignal: ', error)
+		}
 
 		// Method for listening for notification clicks
 		OneSignal.Notifications.addEventListener('click', (event) => {
@@ -34,10 +68,25 @@ const useNotifications = () => {
 	}
 
 	const getPermissionsAsync = () => {
-		return OneSignal.Notifications.hasPermission()
+		return OneSignal.Notifications.getPermissionAsync()
 	}
 
-	const registerForNotitfication = async (userId: string) => {}
+	const registerForNotification = async (data: NurseUserInfo) => {
+		try {
+			const playerId = getSubscriptionIdAsync()
+
+			sendNurseDetailsOneSignal({
+				playerId,
+			})
+			console.log('=========== Notification Start=========')
+			OneSignal.login(data.id)
+			OneSignal.User.addEmail(data.email)
+			OneSignal.User.addSms(data.phoneNumber)
+			console.log('=========== Notification End =========')
+		} catch (error) {
+			console.log('=========== Register For Notification Error =========', error)
+		}
+	}
 
 	const requestPermissionsAsync = () => {
 		return OneSignal.Notifications.requestPermission(true)
@@ -54,11 +103,12 @@ const useNotifications = () => {
 	const removeNotificationSubscription = () => {}
 
 	return {
+		addOneSignalTag,
 		initializeNotification,
 		getPermissionsAsync,
 		requestPermissionsAsync,
 		getSubscriptionIdAsync,
-		registerForNotitfication,
+		registerForNotification,
 		addNotificationReceivedListener,
 		addNotificationResponseReceivedListener,
 		removeNotificationSubscription,

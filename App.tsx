@@ -7,7 +7,7 @@ const App = () => {
 	return (
 		<View style={styles.container}>
 			<SessionProvider>
-				<StatusBar barStyle="dark-content" backgroundColor={'white'} />
+				<StatusBar barStyle="dark-content" backgroundColor="white" />
 				<Main />
 			</SessionProvider>
 		</View>
