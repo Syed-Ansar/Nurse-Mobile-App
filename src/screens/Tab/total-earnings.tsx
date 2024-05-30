@@ -1,7 +1,8 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import Layout from '@/components/common/layout'
+import ScreenLayout from '../screen-layout'
+
 import { fontSize } from '@/constants/tokens'
 import { horizontalScale, moderateScale, verticalScale } from '@/utils/responsive'
 
@@ -68,7 +69,7 @@ const data = [
 
 const TotalEarnings = ({ navigation }: Props) => {
 	return (
-		<Layout navigation={navigation} headerTitle="Earnings">
+		<ScreenLayout navigation={navigation}>
 			<View style={styles.container}>
 				<View style={styles.card}>
 					<Text style={styles.totalEarningsCard}>Earnings Available</Text>
@@ -85,6 +86,7 @@ const TotalEarnings = ({ navigation }: Props) => {
 						showsVerticalScrollIndicator={false}
 						keyExtractor={(item) => item.id.toString()}
 						ItemSeparatorComponent={() => <View style={styles.listItemSeparator} />}
+						contentContainerStyle={styles.flatListContainer}
 						renderItem={({ item }) => (
 							<View style={styles.listItem}>
 								<View>
@@ -99,7 +101,7 @@ const TotalEarnings = ({ navigation }: Props) => {
 					/>
 				</View>
 			</View>
-		</Layout>
+		</ScreenLayout>
 	)
 }
 
@@ -108,7 +110,8 @@ export default TotalEarnings
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingBottom: moderateScale(15),
+		paddingHorizontal: moderateScale(15),
+		paddingTop: verticalScale(15),
 	},
 	card: {
 		backgroundColor: 'white',
@@ -170,5 +173,8 @@ const styles = StyleSheet.create({
 	listItemPrice: {
 		fontSize: fontSize.xsm,
 		fontWeight: '600',
+	},
+	flatListContainer: {
+		paddingBottom: verticalScale(15),
 	},
 })

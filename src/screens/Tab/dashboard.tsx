@@ -3,8 +3,6 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 import HomeScreen from '../home'
-import TotalEarnings from '../home/total-earnings'
-import TotalHours from '../home/total-hours'
 import ScreenLayout from '../screen-layout'
 
 const HomeStack = createNativeStackNavigator()
@@ -19,8 +17,6 @@ const Dashboard = ({ navigation }: any) => {
 				}}
 			>
 				<HomeStack.Screen name="HomeScreen" component={HomeScreen} />
-				<HomeStack.Screen name="TotalEarnings" component={TotalEarnings} />
-				<HomeStack.Screen name="TotalHours" component={TotalHours} />
 			</HomeStack.Navigator>
 		</ScreenLayout>
 	)

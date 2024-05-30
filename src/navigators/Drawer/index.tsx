@@ -9,7 +9,7 @@ import DrawerContent from '@/components/common/drawer-content'
 import useNotifications from '@/hooks/useNotification'
 import Help from '@/screens/drawer/help'
 import Settings from '@/screens/drawer/settings'
-import Wallet from '@/screens/drawer/wallet'
+import TotalHours from '@/screens/drawer/total-hours'
 
 type Props = object
 
@@ -45,12 +45,12 @@ const DrawerNavigator = (props: Props) => {
 				}}
 			/>
 			<Drawer.Screen
-				name="Wallet"
-				component={Wallet}
+				name="Total Hours"
+				component={TotalHours}
 				options={{
-					drawerLabel: 'Wallet',
+					drawerLabel: 'Total Hours',
 					drawerIcon(props) {
-						return <Entypo name="wallet" size={24} color="#667085" />
+						return <Entypo name="time-slot" size={24} color="#667085" />
 					},
 				}}
 			/>
