@@ -57,6 +57,9 @@ const SignInScreen = ({ navigation }: any) => {
 					<InputField
 						placeholder="ID/ Passport"
 						label="ID/ Passport"
+						props={{
+							autoFocus: true,
+						}}
 						styles={{
 							marginBottom: 25,
 						}}
@@ -67,6 +70,9 @@ const SignInScreen = ({ navigation }: any) => {
 					<InputField
 						placeholder="Enter Password"
 						label="Enter Password"
+						props={{
+							secureTextEntry: true,
+						}}
 						onChange={(value) => {
 							setPassword(value)
 						}}
@@ -91,7 +97,7 @@ const SignInScreen = ({ navigation }: any) => {
 
 					{!isLogging ? (
 						<GradientButton
-							title={'Login'}
+							title="Login"
 							onClick={() => {
 								const accessToken = handleLogin(idNumber, password)
 								console.log(accessToken)

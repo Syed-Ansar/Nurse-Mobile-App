@@ -19,7 +19,7 @@ const DrawerNavigator = (props: Props) => {
 	const { initializeNotification } = useNotifications()
 
 	useEffect(() => {
-		initializeNotification()
+		// initializeNotification()
 	}, [])
 
 	return (
