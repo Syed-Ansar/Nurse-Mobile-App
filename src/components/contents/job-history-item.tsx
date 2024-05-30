@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: 'white',
 		borderRadius: 12,
-		marginVertical: 10,
 		borderWidth: 1,
 		borderColor: '#F1F3F5',
 	},

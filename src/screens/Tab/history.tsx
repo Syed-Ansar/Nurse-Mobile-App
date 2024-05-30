@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { FlatList, RefreshControl, StyleSheet } from 'react-native'
+import { FlatList, RefreshControl, StyleSheet, View } from 'react-native'
 
 import ScreenLayout from '../screen-layout'
 
@@ -25,6 +25,10 @@ export default function History({ navigation }: any) {
 					renderItem={({ item }) => {
 						return <JobHistoryItem data={item} />
 					}}
+					ItemSeparatorComponent={() => {
+						return <View style={styles.itemSeparator} />
+					}}
+					contentContainerStyle={styles.flatListContainer}
 					showsVerticalScrollIndicator={false}
 					refreshControl={
 						<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#3513DD']} />
@@ -35,4 +39,11 @@ export default function History({ navigation }: any) {
 	)
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	itemSeparator: {
+		marginVertical: 6,
+	},
+	flatListContainer: {
+		marginBottom: 100,
+	},
+})

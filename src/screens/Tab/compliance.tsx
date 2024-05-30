@@ -1,5 +1,5 @@
 import Constants from 'expo-constants'
-import React, { useState } from 'react'
+import React from 'react'
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import WebView from 'react-native-webview'
 

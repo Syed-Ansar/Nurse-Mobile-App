@@ -100,6 +100,7 @@ const HomeScreen = ({ navigation }: Props) => {
 											styles.tabText,
 											{
 												color: item === activeTab ? '#3513DD' : '#828998',
+												fontWeight: item === activeTab ? '700' : '400',
 											},
 										]}
 									>
