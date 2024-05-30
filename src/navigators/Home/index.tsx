@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import MainNavigator from '../Main'
 
 import JobDetails from '@/screens/home/job-details'
+import JobHistoryDetails from '@/screens/home/job-history-details'
 import NotificationDetails from '@/screens/home/notification-details'
 import Notifications from '@/screens/home/notifications'
 import Profile from '@/screens/home/profile'
@@ -28,6 +29,7 @@ export function HomeNavigator() {
 			<HomeStack.Screen name="Notifications" component={Notifications} />
 			<HomeStack.Screen name="NotificationDetails" component={NotificationDetails} />
 			<HomeStack.Screen name="JobDetails" component={JobDetails} />
+			<HomeStack.Screen name="JobHistoryDetails" component={JobHistoryDetails} />
 		</HomeStack.Navigator>
 	)
 }

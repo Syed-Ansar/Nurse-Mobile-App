@@ -19,11 +19,11 @@ export default function History({ navigation }: any) {
 
 	return (
 		<ScreenLayout navigation={navigation}>
-			<Layout navigation={navigation} headerTitle="Job History">
+			<Layout navigation={navigation} headerTitle="Job History" showBackButton={false}>
 				<FlatList
 					data={jobsHistory}
 					renderItem={({ item }) => {
-						return <JobHistoryItem data={item} />
+						return <JobHistoryItem data={item} navigation={navigation} />
 					}}
 					ItemSeparatorComponent={() => {
 						return <View style={styles.itemSeparator} />

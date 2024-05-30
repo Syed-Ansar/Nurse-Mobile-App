@@ -7,22 +7,21 @@ import Layout from '@/components/common/layout'
 
 type Props = { navigation: any; route: any }
 
-const JobDetails = ({ navigation, route }: Props) => {
+const JobHistoryDetails = ({ navigation, route }: Props) => {
 	const { data } = route.params
 
 	return (
 		<ScreenLayout navigation={navigation}>
-			<Layout navigation={navigation} headerTitle={data.facility || 'Job Title'}>
+			<Layout navigation={navigation} headerTitle={data.name || 'Job Title'}>
 				<View>
-					<Text>{data.id}</Text>
 					<Text>{data.name}</Text>
-					<Text>{data.facility}</Text>
+					<Text>{data.status}</Text>
 				</View>
 			</Layout>
 		</ScreenLayout>
 	)
 }
 
-export default JobDetails
+export default JobHistoryDetails
 
 const styles = StyleSheet.create({})

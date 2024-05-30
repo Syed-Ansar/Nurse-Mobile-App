@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Pressable } from 'react-native'
 
 import Avatar from '@/assets/svg/avatar.svg'
 import JobTimings from '@/components/contents/job-timings'
@@ -9,47 +9,60 @@ import { JobData, JobStatus } from '@/types'
 
 type Props = {
 	data: JobData
+	navigation: any
 }
-const JobHistoryItem = ({ data }: Props) => {
+const JobHistoryItem = ({ data, navigation }: Props) => {
 	const { ClockInTIme, ClockOutTIme, jobDetails, name, reviews, status } = data
+
+	const onJobHistoryClick = () => {
+		navigation.navigate('JobHistoryDetails', {
+			id: 1,
+			data: {
+				name,
+				status,
+			},
+		})
+	}
 	return (
-		<View style={styles.container}>
-			<View style={styles.jobContainer}>
-				<View style={styles.jobHeader}>
-					<View style={styles.jobTitle}>
-						<Avatar width={34} height={34} />
-						<View style={styles.userContainer}>
-							<Text style={styles.userName}>{name}</Text>
-							<Star numberOfTimes={reviews} />
+		<Pressable onPress={onJobHistoryClick}>
+			<View style={styles.container}>
+				<View style={styles.jobContainer}>
+					<View style={styles.jobHeader}>
+						<View style={styles.jobTitle}>
+							<Avatar width={34} height={34} />
+							<View style={styles.userContainer}>
+								<Text style={styles.userName}>{name}</Text>
+								<Star numberOfTimes={reviews} />
+							</View>
+						</View>
+						<View
+							style={[
+								styles.status,
+								{ backgroundColor: JobStatus.Completed === status ? '#12B76A' : '#E5BA0D' },
+							]}
+						>
+							<Text style={styles.statusText}>{status}</Text>
 						</View>
 					</View>
-					<View
-						style={[
-							styles.status,
-							{ backgroundColor: JobStatus.Completed === status ? '#12B76A' : '#E5BA0D' },
-						]}
-					>
-						<Text style={styles.statusText}>{status}</Text>
+					<View style={styles.jobDetailsContainer}>
+						{Object.entries(jobDetails).map(([key, value]) => (
+							<View key={key} style={styles.itemContainer}>
+								<Text style={styles.itemDataKey}>{key} :-</Text>
+								<Text style={styles.itemData}>{value}</Text>
+							</View>
+						))}
 					</View>
-				</View>
-				<View style={styles.jobDetailsContainer}>
-					{Object.entries(jobDetails).map(([key, value]) => (
-						<View key={key} style={styles.itemContainer}>
-							<Text style={styles.itemDataKey}>{key} :-</Text>
-							<Text style={styles.itemData}>{value}</Text>
-						</View>
-					))}
-				</View>
-				<Separator />
-				<View>
-					<JobTimings
-						startTime={ClockInTIme}
-						endTime={ClockOutTIme}
-						containerStyles={styles.jobStyleContainer}
-					/>
+					<Separator />
+					<View>
+						<JobTimings
+							startTime={ClockInTIme}
+							endTime={ClockOutTIme}
+							containerStyles={styles.jobStyleContainer}
+						/>
+					</View>
 				</View>
 			</View>
-		</View>
+		</Pressable>
 	)
 }
 

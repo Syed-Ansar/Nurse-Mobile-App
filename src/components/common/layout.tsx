@@ -9,9 +9,10 @@ type Props = {
 	children: ReactNode
 	navigation: any
 	headerTitle?: string
+	showBackButton?: boolean
 }
 
-const Layout = ({ children, navigation, headerTitle }: Props) => {
+const Layout = ({ children, navigation, headerTitle, showBackButton = true }: Props) => {
 	const backPressHandler = () => {
 		navigation.goBack()
 	}
@@ -20,9 +21,11 @@ const Layout = ({ children, navigation, headerTitle }: Props) => {
 		<View style={styles.container}>
 			{headerTitle ? (
 				<View style={styles.header}>
-					<Pressable onPress={backPressHandler}>
-						<MaterialIcons name="keyboard-backspace" size={24} color="black" />
-					</Pressable>
+					{showBackButton ? (
+						<Pressable onPress={backPressHandler}>
+							<MaterialIcons name="keyboard-backspace" size={24} color="black" />
+						</Pressable>
+					) : null}
 					<Text style={styles.headerTitle}>{headerTitle}</Text>
 				</View>
 			) : null}
