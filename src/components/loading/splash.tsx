@@ -1,13 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
 
 import GradientContainer from '../common/gradientContainer'
 
 const Splash = () => {
 	return (
-		<GradientContainer containerStyles={{}}>
+		<GradientContainer containerStyles={styles.gradientStyle}>
 			<View style={styles.container}>
-				<Text>Splash</Text>
+				<Image source={require('@/assets/img/logo.png')} style={{}} />
 			</View>
 		</GradientContainer>
 	)
@@ -16,6 +16,9 @@ const Splash = () => {
 export default Splash
 
 const styles = StyleSheet.create({
+	gradientStyle: {
+		flex: 1,
+	},
 	container: {
 		flex: 1,
 		display: 'flex',
