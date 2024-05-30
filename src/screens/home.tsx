@@ -123,7 +123,7 @@ const HomeScreen = ({ navigation }: Props) => {
 						contentContainerStyle={styles.flatListContainer}
 					>
 						{jobs.map((item) => {
-							return <Job key={item.id} job={item} />
+							return <Job key={item.id} job={item} navigation={navigation} />
 						})}
 					</ScrollView>
 				</View>

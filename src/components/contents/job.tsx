@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native'
 
 import JobTimings from './job-timings'
 import GradientButton from '../ui/Button'
@@ -46,9 +46,10 @@ type Job = {
 type Props = {
 	type?: 'UPCOMMING'
 	job: Job
+	navigation: any
 }
 
-const Job = ({ job, type }: Props) => {
+const Job = ({ job, type, navigation }: Props) => {
 	const {
 		posted,
 		avatar,
@@ -61,44 +62,27 @@ const Job = ({ job, type }: Props) => {
 		facilityDetails,
 	} = job
 	const { ward, workHours, workPeriod } = facilityDetails
+
+	const onJobClick = () => {
+		navigation.navigate('JobDetails', {
+			id: 1,
+			data: {
+				name,
+				facility,
+			},
+		})
+	}
 	return (
-		<View
-			style={{
-				backgroundColor: 'white',
-				borderRadius: 12,
-				paddingHorizontal: 20,
-				paddingVertical: 10,
-				marginVertical: 10,
-				borderWidth: 1,
-				borderColor: '#F1F3F5',
-			}}
-		>
-			<Text
-				style={{
-					color: colors.secondaryText,
-					fontSize: fontSize.xxs,
-					lineHeight: 15,
-				}}
-			>
-				Posted {posted}
-			</Text>
-			<Text
-				style={{
-					color: colors.text,
-					fontSize: fontSize.sm,
-					lineHeight: 15,
-					marginVertical: 8,
-					fontWeight: '600',
-				}}
-			>
-				{facility}
-			</Text>
+		<Pressable onPress={onJobClick}>
 			<View
 				style={{
-					display: 'flex',
-					flexDirection: 'row',
-					alignItems: 'center',
-					gap: 2,
+					backgroundColor: 'white',
+					borderRadius: 12,
+					paddingHorizontal: 20,
+					paddingVertical: 10,
+					marginVertical: 10,
+					borderWidth: 1,
+					borderColor: '#F1F3F5',
 				}}
 			>
 				<Text
@@ -108,280 +92,309 @@ const Job = ({ job, type }: Props) => {
 						lineHeight: 15,
 					}}
 				>
-					Estimated Payment Date:
+					Posted {posted}
 				</Text>
 				<Text
 					style={{
 						color: colors.text,
-						fontSize: fontSize.xxs,
+						fontSize: fontSize.sm,
 						lineHeight: 15,
+						marginVertical: 8,
+						fontWeight: '600',
 					}}
 				>
-					{estimatedPaymentDate}
+					{facility}
 				</Text>
-			</View>
-			<View
-				style={{
-					marginVertical: 12,
-				}}
-			>
-				<View
-					style={{
-						...utilsStyles.itemSeparator,
-						borderWidth: 0.4,
-					}}
-				/>
 				<View
 					style={{
 						display: 'flex',
 						flexDirection: 'row',
-						width: '100%',
 						alignItems: 'center',
-						justifyContent: 'space-between',
-						paddingVertical: 10,
+						gap: 2,
 					}}
 				>
-					<View>
-						<View
-							style={{
-								gap: 15,
-								display: 'flex',
-								flexDirection: 'row',
-								alignItems: 'center',
-							}}
-						>
-							<View
-								style={{
-									gap: 4,
-								}}
-							>
-								<Text
-									style={{
-										fontSize: fontSize.xxs,
-										fontWeight: '400',
-										textAlign: 'center',
-									}}
-								>
-									Ward
-								</Text>
-								<View
-									style={{
-										backgroundColor: '#F5F5F5',
-										width: '100%',
-										paddingVertical: 2,
-										paddingHorizontal: 10,
-										borderRadius: 12,
-									}}
-								>
-									<Text
-										style={{
-											fontSize: fontSize.xs,
-											fontWeight: '600',
-											textAlign: 'center',
-										}}
-									>
-										{ward}
-									</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-					<View>
-						<View
-							style={{
-								gap: 15,
-								display: 'flex',
-								flexDirection: 'row',
-								alignItems: 'center',
-							}}
-						>
-							<View
-								style={{
-									gap: 4,
-								}}
-							>
-								<Text
-									style={{
-										fontSize: fontSize.xxs,
-										fontWeight: '400',
-										textAlign: 'center',
-									}}
-								>
-									Work Period
-								</Text>
-								<View
-									style={{
-										backgroundColor: '#F5F5F5',
-										width: '100%',
-										paddingVertical: 2,
-										paddingHorizontal: 10,
-										borderRadius: 12,
-									}}
-								>
-									<Text
-										style={{
-											fontSize: fontSize.xs,
-											fontWeight: '600',
-											textAlign: 'center',
-										}}
-									>
-										{workPeriod}
-									</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-					<View>
-						<View
-							style={{
-								gap: 15,
-								display: 'flex',
-								flexDirection: 'row',
-								alignItems: 'center',
-							}}
-						>
-							<View
-								style={{
-									gap: 4,
-								}}
-							>
-								<Text
-									style={{
-										fontSize: fontSize.xxs,
-										fontWeight: '400',
-										textAlign: 'center',
-									}}
-								>
-									Work Hours
-								</Text>
-								<View
-									style={{
-										backgroundColor: '#F5F5F5',
-										width: '100%',
-										paddingVertical: 2,
-										paddingHorizontal: 10,
-										borderRadius: 12,
-									}}
-								>
-									<Text
-										style={{
-											fontSize: fontSize.xs,
-											fontWeight: '600',
-											textAlign: 'center',
-										}}
-									>
-										{workHours}
-									</Text>
-								</View>
-							</View>
-						</View>
-					</View>
-				</View>
-				<View>
-					<View
+					<Text
 						style={{
-							...utilsStyles.itemSeparator,
-							borderWidth: 0.4,
-						}}
-					/>
-					<JobTimings startTime={clockInTime} endTime={clockOutTime} />
-
-					<View
-						style={{
-							...utilsStyles.itemSeparator,
-							borderWidth: 0.4,
-						}}
-					/>
-				</View>
-				<View>
-					<View
-						style={{
-							marginVertical: 12,
-							display: 'flex',
-							flexDirection: 'row',
-							justifyContent: 'space-between',
-							alignItems: 'center',
+							color: colors.secondaryText,
+							fontSize: fontSize.xxs,
+							lineHeight: 15,
 						}}
 					>
-						<View
-							style={{
-								display: 'flex',
-								flexDirection: 'row',
-								alignItems: 'center',
-								gap: 10,
-							}}
-						>
-							<Avatar width={30} height={30} />
-							<Text
-								style={{
-									fontSize: fontSize.xsm,
-									fontWeight: '600',
-								}}
-							>
-								{name}
-							</Text>
-						</View>
-						<View
-							style={{
-								display: 'flex',
-								flexDirection: 'row',
-								alignItems: 'center',
-								gap: 5,
-							}}
-						>
-							{Array.from({ length: review }).map((_, index) => {
-								return <Star key={index} width={16} height={16} />
-							})}
-						</View>
-					</View>
+						Estimated Payment Date:
+					</Text>
+					<Text
+						style={{
+							color: colors.text,
+							fontSize: fontSize.xxs,
+							lineHeight: 15,
+						}}
+					>
+						{estimatedPaymentDate}
+					</Text>
+				</View>
+				<View
+					style={{
+						marginVertical: 12,
+					}}
+				>
+					<View
+						style={{
+							...utilsStyles.itemSeparator,
+							borderWidth: 0.4,
+						}}
+					/>
 					<View
 						style={{
 							display: 'flex',
 							flexDirection: 'row',
 							width: '100%',
+							alignItems: 'center',
 							justifyContent: 'space-between',
+							paddingVertical: 10,
 						}}
 					>
-						<GradientButton
-							title="Accept"
-							radius={6}
-							height={36}
-							fontSize={14}
-							buttonStyle={{
-								flex: 1,
-								marginRight: 8,
-							}}
-							titleStyle={{
-								fontWeight: '600',
+						<View>
+							<View
+								style={{
+									gap: 15,
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+								}}
+							>
+								<View
+									style={{
+										gap: 4,
+									}}
+								>
+									<Text
+										style={{
+											fontSize: fontSize.xxs,
+											fontWeight: '400',
+											textAlign: 'center',
+										}}
+									>
+										Ward
+									</Text>
+									<View
+										style={{
+											backgroundColor: '#F5F5F5',
+											width: '100%',
+											paddingVertical: 2,
+											paddingHorizontal: 10,
+											borderRadius: 12,
+										}}
+									>
+										<Text
+											style={{
+												fontSize: fontSize.xs,
+												fontWeight: '600',
+												textAlign: 'center',
+											}}
+										>
+											{ward}
+										</Text>
+									</View>
+								</View>
+							</View>
+						</View>
+						<View>
+							<View
+								style={{
+									gap: 15,
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+								}}
+							>
+								<View
+									style={{
+										gap: 4,
+									}}
+								>
+									<Text
+										style={{
+											fontSize: fontSize.xxs,
+											fontWeight: '400',
+											textAlign: 'center',
+										}}
+									>
+										Work Period
+									</Text>
+									<View
+										style={{
+											backgroundColor: '#F5F5F5',
+											width: '100%',
+											paddingVertical: 2,
+											paddingHorizontal: 10,
+											borderRadius: 12,
+										}}
+									>
+										<Text
+											style={{
+												fontSize: fontSize.xs,
+												fontWeight: '600',
+												textAlign: 'center',
+											}}
+										>
+											{workPeriod}
+										</Text>
+									</View>
+								</View>
+							</View>
+						</View>
+						<View>
+							<View
+								style={{
+									gap: 15,
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+								}}
+							>
+								<View
+									style={{
+										gap: 4,
+									}}
+								>
+									<Text
+										style={{
+											fontSize: fontSize.xxs,
+											fontWeight: '400',
+											textAlign: 'center',
+										}}
+									>
+										Work Hours
+									</Text>
+									<View
+										style={{
+											backgroundColor: '#F5F5F5',
+											width: '100%',
+											paddingVertical: 2,
+											paddingHorizontal: 10,
+											borderRadius: 12,
+										}}
+									>
+										<Text
+											style={{
+												fontSize: fontSize.xs,
+												fontWeight: '600',
+												textAlign: 'center',
+											}}
+										>
+											{workHours}
+										</Text>
+									</View>
+								</View>
+							</View>
+						</View>
+					</View>
+					<View>
+						<View
+							style={{
+								...utilsStyles.itemSeparator,
+								borderWidth: 0.4,
 							}}
 						/>
+						<JobTimings startTime={clockInTime} endTime={clockOutTime} />
 
 						<View
 							style={{
-								flex: 1,
-								height: 36,
+								...utilsStyles.itemSeparator,
+								borderWidth: 0.4,
+							}}
+						/>
+					</View>
+					<View>
+						<View
+							style={{
+								marginVertical: 12,
 								display: 'flex',
-								borderRadius: 6,
-								borderWidth: 1.5,
+								flexDirection: 'row',
+								justifyContent: 'space-between',
 								alignItems: 'center',
-								justifyContent: 'center',
-								borderColor: '#F97066',
 							}}
 						>
-							<Text
+							<View
 								style={{
-									fontSize: fontSize.xsm,
-									fontWeight: '600',
-									color: '#F97066',
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+									gap: 10,
 								}}
 							>
-								Decline
-							</Text>
+								<Avatar width={30} height={30} />
+								<Text
+									style={{
+										fontSize: fontSize.xsm,
+										fontWeight: '600',
+									}}
+								>
+									{name}
+								</Text>
+							</View>
+							<View
+								style={{
+									display: 'flex',
+									flexDirection: 'row',
+									alignItems: 'center',
+									gap: 5,
+								}}
+							>
+								{Array.from({ length: review }).map((_, index) => {
+									return <Star key={index} width={16} height={16} />
+								})}
+							</View>
+						</View>
+						<View
+							style={{
+								display: 'flex',
+								flexDirection: 'row',
+								width: '100%',
+								justifyContent: 'space-between',
+							}}
+						>
+							<GradientButton
+								title="Accept"
+								radius={6}
+								height={36}
+								fontSize={14}
+								buttonStyle={{
+									flex: 1,
+									marginRight: 8,
+								}}
+								titleStyle={{
+									fontWeight: '600',
+								}}
+							/>
+
+							<View
+								style={{
+									flex: 1,
+									height: 36,
+									display: 'flex',
+									borderRadius: 6,
+									borderWidth: 1.5,
+									alignItems: 'center',
+									justifyContent: 'center',
+									borderColor: '#F97066',
+								}}
+							>
+								<Text
+									style={{
+										fontSize: fontSize.xsm,
+										fontWeight: '600',
+										color: '#F97066',
+									}}
+								>
+									Decline
+								</Text>
+							</View>
 						</View>
 					</View>
 				</View>
 			</View>
-		</View>
+		</Pressable>
 	)
 }
 
