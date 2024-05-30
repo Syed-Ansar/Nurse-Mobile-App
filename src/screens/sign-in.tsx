@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios'
 import React, { useState } from 'react'
 import {
 	ActivityIndicator,
@@ -37,8 +38,8 @@ const SignInScreen = ({ navigation }: any) => {
 			const response = await nurseLogin(data)
 			signIn(response.data)
 			setIsLogging(false)
-		} catch (error) {
-			console.log('Error', error)
+		} catch (error: any) {
+			showToast(error.message)
 		} finally {
 			setIsLogging(false)
 		}
@@ -99,8 +100,7 @@ const SignInScreen = ({ navigation }: any) => {
 						<GradientButton
 							title="Login"
 							onClick={() => {
-								const accessToken = handleLogin(idNumber, password)
-								console.log(accessToken)
+								handleLogin(idNumber, password)
 							}}
 							buttonStyle={{
 								marginTop: 40,
