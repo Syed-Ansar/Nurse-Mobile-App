@@ -7,12 +7,12 @@ import ComplianceIcon from '@/assets/svg/compliance.svg'
 import DashboardIcon from '@/assets/svg/dashboard.svg'
 import HistoryIcon from '@/assets/svg/history.svg'
 import TotalEarningsIcon from '@/assets/svg/invoices.svg'
-import TransactionsIcon from '@/assets/svg/tansactions.svg'
+import AvailabilityIcon from '@/assets/svg/tansactions.svg'
+import Availability from '@/screens/Tab/availability'
 import Compliance from '@/screens/Tab/compliance'
 import Dashboard from '@/screens/Tab/dashboard'
 import History from '@/screens/Tab/history'
 import TotalEarnings from '@/screens/Tab/total-earnings'
-import Transactions from '@/screens/Tab/transactions'
 
 const Tab = createBottomTabNavigator()
 
@@ -46,11 +46,11 @@ const MainNavigator = () => {
 					}}
 				/>
 				<Tab.Screen
-					name="Transactions"
-					component={Transactions}
+					name="Availability"
+					component={Availability}
 					options={{
-						title: 'Transactions',
-						tabBarIcon: ({ color }) => <TransactionsIcon color={color} fill={color} />,
+						title: 'Availability',
+						tabBarIcon: ({ color }) => <AvailabilityIcon color={color} fill={color} />,
 					}}
 				/>
 				<Tab.Screen

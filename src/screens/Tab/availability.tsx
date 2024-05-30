@@ -5,16 +5,16 @@ import ScreenLayout from '../screen-layout'
 
 type Props = object
 
-const Transactions = ({ navigation }: any) => {
+const Availability = ({ navigation }: any) => {
 	return (
 		<ScreenLayout navigation={navigation}>
 			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-				<Text>Transactions</Text>
+				<Text>Availability</Text>
 			</View>
 		</ScreenLayout>
 	)
 }
 
-export default Transactions
+export default Availability
 
 const styles = StyleSheet.create({})
