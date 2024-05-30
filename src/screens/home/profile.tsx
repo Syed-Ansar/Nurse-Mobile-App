@@ -55,12 +55,6 @@ const Profile = ({ navigation }: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [nurse])
 
-	useEffect(() => {
-		;(() => {
-			console.log('Linking', route.getState())
-		})()
-	}, [])
-
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
