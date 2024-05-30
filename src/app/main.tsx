@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native'
 import * as Linking from 'expo-linking'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { StatusBar, StyleSheet } from 'react-native'
 
 import Splash from '@/components/loading/splash'
@@ -12,9 +12,16 @@ import { navigationRef } from '@/navigators/root-navigation'
 const prefix = Linking.createURL('/')
 
 const Main = () => {
+	const [loading, setLoading] = useState(true)
 	const { session, isLoading } = useSession()
 
-	if (isLoading) {
+	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false)
+		}, 2000)
+	}, [])
+
+	if (loading || isLoading) {
 		return <Splash />
 	}
 
