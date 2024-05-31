@@ -155,6 +155,7 @@ const AvailabilityModal = ({ navigation }: Props) => {
 							...data,
 						}
 						setMarkedAvailabilityDates(markedDates)
+						navigation.goBack()
 					}}
 					disabled={
 						showMoreOptions &&
