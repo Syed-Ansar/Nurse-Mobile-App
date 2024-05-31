@@ -5,9 +5,11 @@ import { CalendarList } from 'react-native-calendars'
 
 import ScreenLayout from '../screen-layout'
 
-type Props = object
+import { useStore } from '@/store'
 
 const Availability = ({ navigation }: any) => {
+	const { markedAvailabilityDates } = useStore()
+
 	return (
 		<ScreenLayout navigation={navigation}>
 			<View style={styles.mainContainer}>
@@ -16,8 +18,12 @@ const Availability = ({ navigation }: any) => {
 					horizontal
 					pastScrollRange={50}
 					futureScrollRange={50}
-					scrollEnabled
-					showScrollIndicator
+					animateScroll
+					pagingEnabled
+					minDate={new Date().toISOString()}
+					allowSelectionOutOfRange
+					markingType="period"
+					markedDates={markedAvailabilityDates}
 				/>
 			</View>
 

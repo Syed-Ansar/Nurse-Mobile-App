@@ -1,125 +1,171 @@
-import DatePicker from '@/components/common/date-picker'
-import DateTimePicker from '@react-native-community/datetimepicker'
+import { Feather } from '@expo/vector-icons'
 import dayjs from 'dayjs'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { MarkedDates } from 'react-native-calendars/src/types'
+
+import DatePicker from '@/components/common/date-picker'
+import TimePicker from '@/components/common/time-picker'
+import { useStore } from '@/store'
+import { AvailabilityDates } from '@/types'
+import { generateEventData } from '@/utils/marked-dates'
 
 type Props = {
 	navigation: any
 }
 
 const AvailabilityModal = ({ navigation }: Props) => {
-	const [date, setDate] = useState(new Date())
-	const [time, setTime] = useState(new Date())
-	const [showDate, setShowDate] = useState(false)
-	const [showTime, setShowTime] = useState(false)
+	const [showMoreOptions, setShowMoreOptions] = useState(false)
+	const {
+		selectedAvailabilityDates,
+		setSelectedAvailabilityDates,
+		markedAvailabilityDates,
+		setMarkedAvailabilityDates,
+	} = useStore()
+	const maximumEndDate = useMemo(() => {
+		return dayjs().add(7, 'day').toDate()
+	}, [])
 
-	const onDateChange = (event: any, selectedDate: any) => {
-		const currentDate = selectedDate
-
-		setShowDate(false)
-		setDate(currentDate)
-		console.log('date', currentDate)
-	}
-	const onTimeChange = (event: any, selectedDate: any) => {
-		const currentDate = selectedDate
-
-		setShowTime(false)
-		setTime(currentDate)
-		console.log('Time', currentDate)
-	}
-
-	const showDatePicker = () => {
-		setShowDate(true)
-	}
-	const showTimePicker = () => {
-		setShowTime(true)
-	}
 	return (
-		<View
-			style={{
-				flex: 1,
-			}}
-		>
-			<ScrollView
-				style={{
-					flex: 1,
-				}}
-			>
-				<View
-					style={{
-						flex: 1,
-						padding: 15,
-						paddingBottom: 0,
-					}}
-				>
-					<Text
-						style={{
-							fontSize: 20,
-							fontWeight: '500',
-							borderBottomWidth: 1,
-							paddingBottom: 5,
-						}}
-					>
-						Add Availability
-					</Text>
-				</View>
-				<View
-					style={{
-						display: 'flex',
-						flexDirection: 'row',
-					}}
-				>
-					<View
-						style={{
-							margin: 20,
-							flex: 1,
-						}}
-					>
+		<View style={styles.flex}>
+			<View style={styles.availabilityContainer}>
+				<Text style={styles.availabilityHeaderText}>Add Availability</Text>
+			</View>
+			<ScrollView style={[styles.flex, styles.scrollViewStyles]}>
+				<View style={styles.dateTimeContainer}>
+					<View style={styles.dateContainer}>
 						<View>
 							<DatePicker
-								label="Start Date"
-								date={new Date('2024-10-07')}
+								label={showMoreOptions ? 'Start Date' : 'Date'}
+								date={selectedAvailabilityDates.startDate}
 								onDateChange={(value) => {
-									const dateSelected = dayjs(value).format('dddd D MMMM')
-									console.log('Date value', dateSelected)
+									const data: AvailabilityDates = {
+										...selectedAvailabilityDates,
+										startDate: value,
+									}
+									setSelectedAvailabilityDates(data)
 								}}
 							/>
 						</View>
 					</View>
-					<View
-						style={{
-							margin: 20,
-							flex: 1,
-						}}
-					>
-						<Text
-							style={{
-								marginBottom: 10,
+					<View style={styles.dateContainer}>
+						<TimePicker
+							label={showMoreOptions ? 'Start Time' : 'Time'}
+							date={selectedAvailabilityDates.startTime}
+							is24Hour
+							onDateChange={(value) => {
+								const data: AvailabilityDates = {
+									...selectedAvailabilityDates,
+									startTime: value,
+								}
+								setSelectedAvailabilityDates(data)
 							}}
-						>
-							Start Time
-						</Text>
-						<Pressable onPress={showTimePicker}>
-							<Text style={{}}>{dayjs(time).format('HH : mm')}</Text>
-						</Pressable>
+						/>
 					</View>
 				</View>
+				<Pressable
+					onPress={() => {
+						setShowMoreOptions((prev) => !prev)
+						const data: AvailabilityDates = {
+							...selectedAvailabilityDates,
+							endDate: maximumEndDate,
+							endTime: new Date(),
+						}
+						setSelectedAvailabilityDates(data)
+					}}
+					style={styles.moreOptionsContainer}
+				>
+					<Text style={styles.moreOptionsText}>More Options</Text>
 
-				{/* <View style={styles.spacer} /> */}
+					{showMoreOptions ? (
+						<Feather name="chevron-up" size={20} color="gray" />
+					) : (
+						<Feather name="chevron-down" size={20} color="gray" />
+					)}
+				</Pressable>
+				{showMoreOptions ? (
+					<View style={styles.dateTimeContainer}>
+						<View style={styles.dateContainer}>
+							<View>
+								<DatePicker
+									label="End Date"
+									date={
+										new Date(
+											selectedAvailabilityDates.endDate
+												? selectedAvailabilityDates.endDate
+												: maximumEndDate,
+										)
+									}
+									setMaxDate
+									onDateChange={(value) => {
+										const data: AvailabilityDates = {
+											...selectedAvailabilityDates,
+											endDate: value,
+										}
+										setSelectedAvailabilityDates(data)
+									}}
+								/>
+							</View>
+						</View>
+						<View style={styles.dateContainer}>
+							<TimePicker
+								label="End Time"
+								date={
+									selectedAvailabilityDates.endTime ? selectedAvailabilityDates.endTime : new Date()
+								}
+								is24Hour
+								onDateChange={(value) => {
+									const data: AvailabilityDates = {
+										...selectedAvailabilityDates,
+										endTime: value,
+									}
+									setSelectedAvailabilityDates(data)
+								}}
+							/>
+						</View>
+					</View>
+				) : null}
 			</ScrollView>
 
 			<View style={styles.container}>
-				<View style={[styles.buttonContainer, styles.buttonCancel]}>
-					<Pressable onPress={() => navigation.goBack()}>
+				<Pressable
+					style={[styles.buttonContainer, styles.buttonCancel]}
+					onPress={() => navigation.goBack()}
+				>
+					<View>
 						<Text style={styles.buttonTextCancel}>Dismiss</Text>
-					</Pressable>
-				</View>
-				<View style={[styles.buttonContainer, styles.buttonConfirm]}>
-					<Pressable onPress={() => navigation.goBack()}>
+					</View>
+				</Pressable>
+				<Pressable
+					style={[
+						styles.buttonContainer,
+						styles.buttonConfirm,
+						showMoreOptions &&
+							(selectedAvailabilityDates.endDate === null ||
+								selectedAvailabilityDates.endTime === null) &&
+							styles.buttonConfirmDisabled,
+					]}
+					onPress={() => {
+						const data = generateEventData(
+							selectedAvailabilityDates.startDate,
+							selectedAvailabilityDates.endDate,
+						)
+						const markedDates: MarkedDates = {
+							...markedAvailabilityDates,
+							...data,
+						}
+						setMarkedAvailabilityDates(markedDates)
+					}}
+					disabled={
+						showMoreOptions &&
+						(selectedAvailabilityDates.endDate === null ||
+							selectedAvailabilityDates.endTime === null)
+					}
+				>
+					<View>
 						<Text style={styles.buttonTextConfirm}>Confirm</Text>
-					</Pressable>
-				</View>
+					</View>
+				</Pressable>
 			</View>
 		</View>
 	)
@@ -128,31 +174,80 @@ const AvailabilityModal = ({ navigation }: Props) => {
 export default AvailabilityModal
 
 const styles = StyleSheet.create({
+	flex: {
+		flex: 1,
+	},
+	scrollViewStyles: {
+		padding: 15,
+	},
 	container: {
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
+	availabilityContainer: {
+		marginVertical: 10,
+	},
+	availabilityHeaderText: {
+		fontSize: 20,
+		fontWeight: '500',
+		borderBottomWidth: 1,
+		paddingBottom: 5,
+		paddingLeft: 10,
+	},
+	dateTimeContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+	},
+	dateContainer: {
+		marginVertical: 20,
+		flex: 1,
+	},
 	buttonContainer: {
 		flex: 1,
 		padding: 20,
-		borderWidth: 0.5,
 	},
 	buttonTextCancel: {
 		textAlign: 'center',
-		color: 'gray',
-		fontWeight: '700',
+		color: 'black',
+		fontWeight: '500',
 		fontSize: 15,
+		backgroundColor: 'white',
+		padding: 10,
+		borderRadius: 10,
 	},
 	buttonTextConfirm: {
 		textAlign: 'center',
-		color: 'blue',
-		fontWeight: '700',
+		color: 'white',
+		fontWeight: '500',
 		fontSize: 15,
+		backgroundColor: '#7450FE',
+		padding: 10,
+		borderRadius: 10,
 	},
 	spacer: {
 		flex: 1,
 	},
-	buttonConfirm: {},
-	buttonCancel: {},
+	moreOptionsContainer: {
+		flex: 1,
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		gap: 4,
+	},
+	moreOptionsText: {
+		color: 'gray',
+	},
+	buttonConfirm: {
+		opacity: 1,
+	},
+	buttonConfirmDisabled: {
+		opacity: 0.6,
+	},
+	buttonCancel: {
+		opacity: 1,
+	},
+	buttonCancelDisabled: {
+		opacity: 0.6,
+	},
 })

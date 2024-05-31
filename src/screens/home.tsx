@@ -16,7 +16,7 @@ import Job from '@/components/contents/job'
 import { fontSize } from '@/constants/tokens'
 import { JobData } from '@/libs/dummyData'
 import { getNurse } from '@/network/auth'
-import { useNurseStore } from '@/store'
+import { useStore } from '@/store'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH, verticalScale } from '@/utils/responsive'
 
@@ -35,7 +35,7 @@ const jobTabs = [JOB_STATUS.Upcoming, JOB_STATUS.Pending]
 const HomeScreen = ({ navigation }: Props) => {
 	const [activeTab, setActiveTab] = useState(JOB_STATUS.Upcoming)
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
-	const { nurse, setNurse } = useNurseStore()
+	const { nurse, setNurse } = useStore()
 	const drawerNavigation = useNavigation()
 
 	const [refreshing, setRefreshing] = useState(false)

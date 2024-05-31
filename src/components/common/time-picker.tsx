@@ -1,6 +1,6 @@
 import DateTimePicker from '@react-native-community/datetimepicker'
 import dayjs from 'dayjs'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Pressable, Text, StyleSheet } from 'react-native'
 
 type Props = {
@@ -8,15 +8,11 @@ type Props = {
 	label?: string
 	is24Hour?: boolean
 	onDateChange: (date: any) => void
-	setMaxDate?: boolean
 }
 
-const DatePicker = ({ onDateChange, is24Hour, label, date, setMaxDate }: Props) => {
+const TimePicker = ({ onDateChange, is24Hour, label, date }: Props) => {
 	const [showDate, setShowDate] = useState(false)
 	const [value, setValue] = useState<Date>(date ? new Date(date) : new Date())
-	const maximumDate = useMemo(() => {
-		return dayjs().add(1, 'month').endOf('month').toDate()
-	}, [])
 
 	useEffect(() => {
 		if (date) {
@@ -24,41 +20,38 @@ const DatePicker = ({ onDateChange, is24Hour, label, date, setMaxDate }: Props) 
 		}
 	}, [date])
 
-	const showDatePicker = () => {
+	const showTimePicker = () => {
 		setShowDate(true)
 	}
 
-	const handleDateChange = (event: any, selectedDate: any) => {
+	const handleTimeChange = (event: any, selectedTime: any) => {
 		setShowDate(false)
-		if (selectedDate && selectedDate !== value) {
-			setValue(selectedDate)
-			onDateChange(selectedDate)
+		if (selectedTime && selectedTime !== value) {
+			setValue(selectedTime)
+			onDateChange(selectedTime)
 		}
 	}
 
 	return (
 		<>
 			{label ? <Text style={styles.label}>{label}</Text> : null}
-			<Pressable onPress={showDatePicker}>
-				<Text style={{}}>{dayjs(value).format('dddd D MMMM')}</Text>
+			<Pressable onPress={showTimePicker}>
+				<Text style={{}}>{dayjs(value).format('HH : mm')}</Text>
 			</Pressable>
 			{showDate && (
 				<DateTimePicker
-					testID="date"
 					value={value}
-					mode="date"
-					display="calendar"
+					mode="time"
+					display="spinner"
 					is24Hour={is24Hour}
-					minimumDate={new Date()}
-					maximumDate={setMaxDate ? maximumDate : undefined}
-					onChange={handleDateChange}
+					onChange={handleTimeChange}
 				/>
 			)}
 		</>
 	)
 }
 
-export default DatePicker
+export default TimePicker
 
 const styles = StyleSheet.create({
 	label: {

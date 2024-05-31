@@ -16,7 +16,7 @@ import {
 
 import InputField from '@/components/ui/Input'
 import { colors, fontSize } from '@/constants/tokens'
-import { useNurseStore } from '@/store'
+import { useStore } from '@/store'
 import { ProfileDataType } from '@/types'
 import { SCREEN_WIDTH } from '@/utils/responsive'
 
@@ -25,7 +25,7 @@ type Props = {
 }
 
 const Profile = ({ navigation }: Props) => {
-	const { nurse } = useNurseStore()
+	const { nurse } = useStore()
 	const route = useNavigation()
 
 	const [profileData, setProfileData] = useState<ProfileDataType | null>(null)

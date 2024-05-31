@@ -1,3 +1,32 @@
+export type AvailabilityDates = {
+	startDate: Date
+	startTime: Date
+	endDate: Date | null
+	endTime: Date | null
+}
+
+export type MarkedAvailabilityDatesType = {
+	[key: string]: {
+		selected: boolean
+		startingDay: boolean
+		endingDay: boolean
+		color: string
+		textColor: string
+		disabled: boolean
+	}
+}
+
+export interface EventData {
+	[date: string]: {
+		selected: boolean
+		startingDay: boolean
+		endingDay: boolean
+		color: string
+		textColor: string
+		disabled: boolean
+	}
+}
+
 export type JobDetails = {
 	Ward: string
 	Date: string
