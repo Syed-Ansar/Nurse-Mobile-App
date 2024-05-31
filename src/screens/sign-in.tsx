@@ -37,8 +37,8 @@ const SignInScreen = ({ navigation }: any) => {
 			const response = await nurseLogin(data)
 			signIn(response.data)
 			setIsLogging(false)
-		} catch (error) {
-			console.log('Error', error)
+		} catch (error: any) {
+			showToast(error.message)
 		} finally {
 			setIsLogging(false)
 		}
@@ -46,20 +46,19 @@ const SignInScreen = ({ navigation }: any) => {
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-			style={{
-				flex: 1,
-			}}
+			style={styles.keyboardContainer}
 		>
 			<ScrollView>
 				<AuthHeader title="Sign In" />
 
-				<View style={{ marginHorizontal: 30, marginVertical: 40 }}>
+				<View style={styles.fieldsContainer}>
 					<InputField
 						placeholder="ID/ Passport"
 						label="ID/ Passport"
-						styles={{
-							marginBottom: 25,
+						props={{
+							autoFocus: true,
 						}}
+						styles={styles.idInputContainer}
 						onChange={(value) => {
 							setIdNumber(value)
 						}}
@@ -67,6 +66,12 @@ const SignInScreen = ({ navigation }: any) => {
 					<InputField
 						placeholder="Enter Password"
 						label="Enter Password"
+						props={{
+							secureTextEntry: true,
+							onSubmitEditing() {
+								handleLogin(idNumber, password)
+							},
+						}}
 						onChange={(value) => {
 							setPassword(value)
 						}}
@@ -76,42 +81,19 @@ const SignInScreen = ({ navigation }: any) => {
 							navigation.navigate('ForgetPassword')
 						}}
 					>
-						<Text
-							style={{
-								color: '#3513DD',
-								fontSize: 14,
-								marginTop: 8,
-								marginLeft: 'auto',
-								fontWeight: '600',
-							}}
-						>
-							Forgot Password?
-						</Text>
+						<Text style={styles.forgetPasswordButton}>Forgot Password?</Text>
 					</Pressable>
 
 					{!isLogging ? (
 						<GradientButton
-							title={'Login'}
+							title="Login"
 							onClick={() => {
-								const accessToken = handleLogin(idNumber, password)
-								console.log(accessToken)
+								handleLogin(idNumber, password)
 							}}
-							buttonStyle={{
-								marginTop: 40,
-							}}
+							buttonStyle={styles.submitButton}
 						/>
 					) : (
-						<View
-							style={{
-								display: 'flex',
-								justifyContent: 'center',
-								alignItems: 'center',
-								backgroundColor: '#d3d3d3',
-								padding: 12,
-								borderRadius: 8,
-								marginTop: 40,
-							}}
-						>
+						<View style={styles.loadingButton}>
 							<ActivityIndicator size="small" color="#7450FE" />
 						</View>
 					)}
@@ -123,4 +105,31 @@ const SignInScreen = ({ navigation }: any) => {
 
 export default SignInScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	keyboardContainer: {
+		flex: 1,
+	},
+	fieldsContainer: { marginHorizontal: 30, marginVertical: 40 },
+	idInputContainer: {
+		marginBottom: 25,
+	},
+	forgetPasswordButton: {
+		color: '#3513DD',
+		fontSize: 14,
+		marginTop: 8,
+		marginLeft: 'auto',
+		fontWeight: '600',
+	},
+	submitButton: {
+		marginTop: 40,
+	},
+	loadingButton: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#d3d3d3',
+		padding: 12,
+		borderRadius: 8,
+		marginTop: 40,
+	},
+})

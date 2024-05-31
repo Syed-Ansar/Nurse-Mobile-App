@@ -13,33 +13,9 @@ const Header = ({ navigation }: any) => {
 	const drawerNavigation = useNavigation()
 	return (
 		<SafeAreaView>
-			<LinearGradient
-				colors={['#7450FE', '#3513DD']}
-				style={{
-					height: 55,
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-			>
-				<View
-					style={{
-						maxWidth: deviceDisplay.width,
-						width: deviceDisplay.width,
-						display: 'flex',
-						flexDirection: 'row',
-						justifyContent: 'space-between',
-						paddingHorizontal: 15,
-						marginRight: 15,
-					}}
-				>
-					<View
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							alignItems: 'center',
-							gap: 15,
-						}}
-					>
+			<LinearGradient colors={['#7450FE', '#3513DD']} style={styles.linearGradientContainer}>
+				<View style={styles.container}>
+					<View style={styles.hamburgerContainer}>
 						<Pressable
 							onPress={() => {
 								drawerNavigation.dispatch(DrawerActions.openDrawer())
@@ -47,20 +23,10 @@ const Header = ({ navigation }: any) => {
 						>
 							<EvilIcons name="navicon" size={28} color="white" />
 						</Pressable>
-						<Image
-							source={require('@/assets/img/logo.png')}
-							style={{ width: 150, height: '100%' }}
-						/>
+						<Image source={require('@/assets/img/logo.png')} style={styles.logo} />
 					</View>
 
-					<View
-						style={{
-							display: 'flex',
-							flexDirection: 'row',
-							alignItems: 'center',
-							gap: 15,
-						}}
-					>
+					<View style={styles.rightActionContainer}>
 						<Pressable
 							onPress={() => {
 								navigation.navigate('Notifications')
@@ -84,4 +50,32 @@ const Header = ({ navigation }: any) => {
 
 export default Header
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	linearGradientContainer: {
+		height: 55,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	container: {
+		maxWidth: deviceDisplay.width,
+		width: deviceDisplay.width,
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingHorizontal: 15,
+		marginRight: 15,
+	},
+	hamburgerContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 15,
+	},
+	logo: { width: 150, height: '100%' },
+	rightActionContainer: {
+		display: 'flex',
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 15,
+	},
+})

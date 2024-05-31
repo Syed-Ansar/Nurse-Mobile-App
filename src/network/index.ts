@@ -1,9 +1,9 @@
-import axios from 'axios'
+import axios, { AxiosError, AxiosInstance } from 'axios'
 import * as SecureStore from 'expo-secure-store'
 
 import { BaseUrl } from '@/constants'
 
-export const nurseApiInstance = axios.create({
+export const nurseApiInstance: AxiosInstance = axios.create({
 	baseURL: `${BaseUrl}/nurses`,
 	timeout: 10000,
 	headers: {
@@ -40,4 +40,16 @@ nurseApiInstance.interceptors.request.use(
 		return config
 	},
 	(error) => Promise.reject(error),
+)
+
+nurseApiInstance.interceptors.response.use(
+	function (response) {
+		return response
+	},
+	function (error) {
+		const errorMessage = {
+			message: error.response.data.detail ?? 'Something Went Wrong',
+		}
+		return Promise.reject(errorMessage)
+	},
 )

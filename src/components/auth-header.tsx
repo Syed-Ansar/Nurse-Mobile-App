@@ -1,8 +1,7 @@
-import { LinearGradient } from 'expo-linear-gradient'
 import React from 'react'
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 
-import { defaultStyles } from '@/styles'
+import GradientContainer from './common/gradientContainer'
 
 type Props = {
 	title: string
@@ -10,46 +9,42 @@ type Props = {
 
 const AuthHeader = ({ title }: Props) => {
 	return (
-		<View>
-			<LinearGradient colors={['#7450FE', '#3513DD']}>
-				<SafeAreaView
-					style={{
-						height: 200,
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				>
-					<View
-						style={{
-							width: '100%',
-							alignItems: 'center',
-						}}
-					>
-						<Text
-							style={{
-								color: 'white',
-								fontWeight: '700',
-								fontSize: 24,
-								marginBottom: 5,
-							}}
-						>
-							{title}
-						</Text>
-						<Text
-							style={{
-								color: 'white',
-								fontSize: 18,
-							}}
-						>
-							Hii Welcome Back 👋
-						</Text>
-					</View>
-				</SafeAreaView>
-			</LinearGradient>
-		</View>
+		<GradientContainer
+			containerStyles={{
+				flex: 1,
+			}}
+		>
+			<SafeAreaView style={styles.container}>
+				<View style={styles.headerContainer}>
+					<Text style={styles.title}>{title}</Text>
+					<Text style={styles.description}>Hii Welcome Back 👋</Text>
+				</View>
+			</SafeAreaView>
+		</GradientContainer>
 	)
 }
 
 export default AuthHeader
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		height: 200,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	headerContainer: {
+		width: '100%',
+		alignItems: 'center',
+	},
+	title: {
+		color: 'white',
+		fontWeight: '700',
+		fontSize: 24,
+		marginBottom: 5,
+	},
+	description: {
+		color: 'white',
+		fontSize: 18,
+	},
+})
