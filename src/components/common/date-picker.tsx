@@ -9,9 +9,10 @@ type Props = {
 	is24Hour?: boolean
 	onDateChange: (date: any) => void
 	setMaxDate?: boolean
+	minDate?: Date | undefined
 }
 
-const DatePicker = ({ onDateChange, is24Hour, label, date, setMaxDate }: Props) => {
+const DatePicker = ({ onDateChange, is24Hour, label, date, setMaxDate, minDate }: Props) => {
 	const [showDate, setShowDate] = useState(false)
 	const [value, setValue] = useState<Date>(date ? new Date(date) : new Date())
 	const maximumDate = useMemo(() => {
@@ -49,7 +50,7 @@ const DatePicker = ({ onDateChange, is24Hour, label, date, setMaxDate }: Props) 
 					mode="date"
 					display="calendar"
 					is24Hour={is24Hour}
-					minimumDate={new Date()}
+					minimumDate={minDate ? minDate : new Date()}
 					maximumDate={setMaxDate ? maximumDate : undefined}
 					onChange={handleDateChange}
 				/>

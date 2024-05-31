@@ -23,7 +23,7 @@ export function generateEventData(
 			currentDate.setDate(currentDate.getDate() + 1)
 		) {
 			const dateString = currentDate.toISOString().split('T')[0]
-			const isStartingDay = !!startDateTime
+			const isStartingDay = currentDate.getDate() === startDateTime.getDate()
 			const isEndingDay = false // It will be handled after the loop
 
 			eventData[dateString] = {

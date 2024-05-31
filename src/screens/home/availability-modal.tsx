@@ -23,8 +23,8 @@ const AvailabilityModal = ({ navigation }: Props) => {
 		setMarkedAvailabilityDates,
 	} = useStore()
 	const maximumEndDate = useMemo(() => {
-		return dayjs().add(7, 'day').toDate()
-	}, [])
+		return dayjs(selectedAvailabilityDates.startDate).add(7, 'day').toDate()
+	}, [selectedAvailabilityDates.startDate])
 
 	return (
 		<View style={styles.flex}>
@@ -97,6 +97,7 @@ const AvailabilityModal = ({ navigation }: Props) => {
 										)
 									}
 									setMaxDate
+									minDate={selectedAvailabilityDates.startDate}
 									onDateChange={(value) => {
 										const data: AvailabilityDates = {
 											...selectedAvailabilityDates,
