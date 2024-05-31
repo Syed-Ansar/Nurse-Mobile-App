@@ -11,7 +11,9 @@ type Props = {
 
 const ScreenLayout = ({ children, navigation }: Props) => {
 	return (
-		<SafeAreaView style={{ width: SCREEN_WIDTH, maxWidth: SCREEN_WIDTH, height: '100%' }}>
+		<SafeAreaView
+			style={{ width: SCREEN_WIDTH, maxWidth: SCREEN_WIDTH, height: '100%', position: 'relative' }}
+		>
 			<Header navigation={navigation} />
 			{children}
 		</SafeAreaView>

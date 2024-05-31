@@ -7,6 +7,7 @@ import JobHistoryDetails from '@/screens/home/job-history-details'
 import NotificationDetails from '@/screens/home/notification-details'
 import Notifications from '@/screens/home/notifications'
 import Profile from '@/screens/home/profile'
+import AvailabilityModal from '@/screens/home/availability-modal'
 
 const HomeStack = createNativeStackNavigator()
 
@@ -30,6 +31,14 @@ export function HomeNavigator() {
 			<HomeStack.Screen name="NotificationDetails" component={NotificationDetails} />
 			<HomeStack.Screen name="JobDetails" component={JobDetails} />
 			<HomeStack.Screen name="JobHistoryDetails" component={JobHistoryDetails} />
+			<HomeStack.Screen
+				name="AvailabilityModal"
+				component={AvailabilityModal}
+				options={{
+					presentation: 'modal',
+					animation: 'slide_from_bottom',
+				}}
+			/>
 		</HomeStack.Navigator>
 	)
 }
