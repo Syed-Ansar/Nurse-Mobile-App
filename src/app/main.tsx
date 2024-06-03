@@ -33,7 +33,7 @@ const Main = () => {
 			}}
 		>
 			<StatusBar barStyle="dark-content" />
-			{!session ? <DrawerNavigator /> : <AuthNavigator />}
+			{session ? <DrawerNavigator /> : <AuthNavigator />}
 		</NavigationContainer>
 	)
 }
