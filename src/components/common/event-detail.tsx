@@ -16,35 +16,32 @@ type Props = {
 const EventDetail = ({ evenDetail }: Props) => {
 	const { startTime, endTime, hospital } = evenDetail
 	return (
-		<View
-			style={{
-				backgroundColor: '#9b84f5',
-				borderRadius: 8,
-				padding: 10,
-				display: 'flex',
-				marginVertical: 10,
-				gap: 10,
-			}}
-		>
-			<Text
-				style={{
-					color: 'white',
-				}}
-			>
+		<View style={styles.mainContainer}>
+			<Text style={styles.timeStamp}>
 				{startTime} -- {endTime} -- 8 hours stamped
 			</Text>
-			<Text
-				style={{
-					color: 'white',
-					fontSize: fontSize.lg,
-				}}
-			>
-				{hospital}
-			</Text>
+			<Text style={styles.hospital}>{hospital}</Text>
 		</View>
 	)
 }
 
 export default EventDetail
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+	mainContainer: {
+		backgroundColor: '#9b84f5',
+		borderRadius: 8,
+		padding: 10,
+		display: 'flex',
+		marginVertical: 10,
+		gap: 10,
+	},
+	timeStamp: {
+		color: 'white',
+	},
+	hospital: {
+		color: 'white',
+		fontSize: fontSize.lg,
+		fontWeight: '500',
+	},
+})

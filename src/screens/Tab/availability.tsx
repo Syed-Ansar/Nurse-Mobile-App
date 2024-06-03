@@ -141,6 +141,6 @@ const styles = StyleSheet.create({
 		fontSize: fontSize.base,
 		paddingBottom: 10,
 	},
-	eventDate: { fontSize: fontSize.lg, color: '#3513DD', paddingBottom: 10 },
+	eventDate: { fontSize: fontSize.sm, color: '#3513DD', paddingBottom: 10 },
 	separatorContainer: {},
 })
