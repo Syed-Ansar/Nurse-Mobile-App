@@ -1,7 +1,7 @@
 import { AntDesign } from '@expo/vector-icons'
 import dayjs from 'dayjs'
 import React, { useMemo, useState } from 'react'
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 
 import ScreenLayout from '../screen-layout'
@@ -10,7 +10,7 @@ import EventDetail from '@/components/common/event-detail'
 import Separator from '@/components/contents/separator'
 import { fontSize } from '@/constants/tokens'
 import { useStore } from '@/store'
-import { horizontalScale } from '@/utils/responsive'
+import { horizontalScale, verticalScale } from '@/utils/responsive'
 
 const availabilityDates = [
 	{
@@ -55,57 +55,50 @@ const Availability = ({ navigation }: any) => {
 
 	return (
 		<ScreenLayout navigation={navigation}>
-			<View style={styles.mainContainer}>
-				<CalendarList
-					hideExtraDays
-					horizontal
-					pastScrollRange={50}
-					futureScrollRange={50}
-					animateScroll
-					pagingEnabled
-					minDate={new Date().toISOString()}
-					allowSelectionOutOfRange
-					markingType="period"
-					markedDates={markedAvailabilityDates}
-					theme={{
-						selectedDayTextColor: 'white',
-						selectedDayBackgroundColor: '#7450FE',
-						dotColor: '#7450FE',
-						backgroundColor: 'white',
-						todayTextColor: '#7450FE',
-						dayTextColor: 'black',
-					}}
-					onDayPress={(date) => {
-						setSelectedDate(date.dateString)
-					}}
-				/>
-				<View style={styles.eventView}>
-					<View style={styles.eventDetailContainer}>
-						<Text style={styles.eventHeadingText}>Events on -</Text>
-						<Text style={styles.eventDate}>{dayjs(selectedDate).format('dddd D MMMM')}</Text>
-					</View>
-					{availabilitiesToday.length > 0 ? (
-						<FlatList
-							data={availabilitiesToday}
-							showsVerticalScrollIndicator={false}
-							renderItem={({ item, index }) => {
-								return <EventDetail evenDetail={item} />
-							}}
-							ItemSeparatorComponent={() => {
-								return (
-									<View style={styles.separatorContainer}>
-										<Separator />
-									</View>
-								)
-							}}
-						/>
-					) : (
-						<View style={styles.noEventsContainer}>
-							<Text style={styles.noEventText}>No events for this day</Text>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={styles.mainContainer}>
+					<CalendarList
+						hideExtraDays
+						horizontal
+						pastScrollRange={50}
+						futureScrollRange={50}
+						animateScroll
+						pagingEnabled
+						minDate={new Date().toISOString()}
+						allowSelectionOutOfRange
+						markingType="period"
+						markedDates={markedAvailabilityDates}
+						theme={{
+							selectedDayTextColor: 'white',
+							selectedDayBackgroundColor: '#7450FE',
+							dotColor: '#7450FE',
+							backgroundColor: 'white',
+							todayTextColor: '#7450FE',
+							dayTextColor: 'black',
+						}}
+						onDayPress={(date) => {
+							setSelectedDate(date.dateString)
+						}}
+					/>
+					<View style={styles.eventView}>
+						<View style={styles.eventDetailContainer}>
+							<Text style={styles.eventHeadingText}>Events on -</Text>
+							<Text style={styles.eventDate}>{dayjs(selectedDate).format('dddd D MMMM')}</Text>
 						</View>
-					)}
+						{availabilitiesToday.length > 0 ? (
+							<View>
+								{availabilitiesToday.map((item, index) => (
+									<EventDetail key={index} evenDetail={item} />
+								))}
+							</View>
+						) : (
+							<View style={styles.noEventsContainer}>
+								<Text style={styles.noEventText}>No events for this day</Text>
+							</View>
+						)}
+					</View>
 				</View>
-			</View>
+			</ScrollView>
 
 			<Pressable
 				style={styles.floatingButton}
@@ -133,7 +126,7 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 	},
 	eventView: {
-		padding: horizontalScale(10),
+		paddingHorizontal: horizontalScale(10),
 		flex: 1,
 	},
 	eventDetailContainer: {
@@ -141,6 +134,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		gap: 8,
+		marginTop: verticalScale(10),
 	},
 	eventHeadingText: {
 		fontSize: fontSize.base,
