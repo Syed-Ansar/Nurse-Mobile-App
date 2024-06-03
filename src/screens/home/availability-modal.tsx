@@ -1,4 +1,4 @@
-import { Feather } from '@expo/vector-icons'
+import { AntDesign, Feather } from '@expo/vector-icons'
 import dayjs from 'dayjs'
 import React, { useMemo, useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
@@ -9,6 +9,7 @@ import TimePicker from '@/components/common/time-picker'
 import { useStore } from '@/store'
 import { AvailabilityDates } from '@/types'
 import { generateEventData } from '@/utils/marked-dates'
+import { SCREEN_WIDTH } from '@/utils/responsive'
 
 type Props = {
 	navigation: any
@@ -32,25 +33,25 @@ const AvailabilityModal = ({ navigation }: Props) => {
 				<Text style={styles.availabilityHeaderText}>Add Availability</Text>
 			</View>
 			<ScrollView style={[styles.flex, styles.scrollViewStyles]}>
+				{!showMoreOptions ? (
+					<View style={styles.dateContainer}>
+						<DatePicker
+							label="Date"
+							date={selectedAvailabilityDates.startDate}
+							onDateChange={(value) => {
+								const data: AvailabilityDates = {
+									...selectedAvailabilityDates,
+									startDate: value,
+								}
+								setSelectedAvailabilityDates(data)
+							}}
+						/>
+					</View>
+				) : null}
 				<View style={styles.dateTimeContainer}>
 					<View style={styles.dateContainer}>
-						<View>
-							<DatePicker
-								label={showMoreOptions ? 'Start Date' : 'Date'}
-								date={selectedAvailabilityDates.startDate}
-								onDateChange={(value) => {
-									const data: AvailabilityDates = {
-										...selectedAvailabilityDates,
-										startDate: value,
-									}
-									setSelectedAvailabilityDates(data)
-								}}
-							/>
-						</View>
-					</View>
-					<View style={styles.dateContainer}>
 						<TimePicker
-							label={showMoreOptions ? 'Start Time' : 'Time'}
+							label="Start Time"
 							date={selectedAvailabilityDates.startTime}
 							is24Hour
 							onDateChange={(value) => {
@@ -62,7 +63,25 @@ const AvailabilityModal = ({ navigation }: Props) => {
 							}}
 						/>
 					</View>
+					<AntDesign style={styles.dateContainer} name="arrowright" size={20} color="gray" />
+					<View style={styles.dateContainer}>
+						<TimePicker
+							label="End Time"
+							date={
+								selectedAvailabilityDates.endTime ? selectedAvailabilityDates.endTime : new Date()
+							}
+							is24Hour
+							onDateChange={(value) => {
+								const data: AvailabilityDates = {
+									...selectedAvailabilityDates,
+									endTime: value,
+								}
+								setSelectedAvailabilityDates(data)
+							}}
+						/>
+					</View>
 				</View>
+
 				<Pressable
 					onPress={() => {
 						setShowMoreOptions((prev) => !prev)
@@ -75,7 +94,7 @@ const AvailabilityModal = ({ navigation }: Props) => {
 					}}
 					style={styles.moreOptionsContainer}
 				>
-					<Text style={styles.moreOptionsText}>More Options</Text>
+					<Text style={styles.moreOptionsText}>Repeat</Text>
 
 					{showMoreOptions ? (
 						<Feather name="chevron-up" size={20} color="gray" />
@@ -85,6 +104,20 @@ const AvailabilityModal = ({ navigation }: Props) => {
 				</Pressable>
 				{showMoreOptions ? (
 					<View style={styles.dateTimeContainer}>
+						<View style={styles.dateContainer}>
+							<DatePicker
+								label="Start Date"
+								date={selectedAvailabilityDates.startDate}
+								onDateChange={(value) => {
+									const data: AvailabilityDates = {
+										...selectedAvailabilityDates,
+										startDate: value,
+									}
+									setSelectedAvailabilityDates(data)
+								}}
+							/>
+						</View>
+						<AntDesign style={styles.dateContainer} name="arrowright" size={20} color="gray" />
 						<View style={styles.dateContainer}>
 							<View>
 								<DatePicker
@@ -107,22 +140,6 @@ const AvailabilityModal = ({ navigation }: Props) => {
 									}}
 								/>
 							</View>
-						</View>
-						<View style={styles.dateContainer}>
-							<TimePicker
-								label="End Time"
-								date={
-									selectedAvailabilityDates.endTime ? selectedAvailabilityDates.endTime : new Date()
-								}
-								is24Hour
-								onDateChange={(value) => {
-									const data: AvailabilityDates = {
-										...selectedAvailabilityDates,
-										endTime: value,
-									}
-									setSelectedAvailabilityDates(data)
-								}}
-							/>
 						</View>
 					</View>
 				) : null}
@@ -149,7 +166,7 @@ const AvailabilityModal = ({ navigation }: Props) => {
 					onPress={() => {
 						const data = generateEventData(
 							selectedAvailabilityDates.startDate,
-							selectedAvailabilityDates.endDate,
+							showMoreOptions ? selectedAvailabilityDates.endDate : null,
 						)
 						const markedDates: MarkedDates = {
 							...markedAvailabilityDates,
@@ -198,11 +215,14 @@ const styles = StyleSheet.create({
 		paddingLeft: 10,
 	},
 	dateTimeContainer: {
+		maxWidth: SCREEN_WIDTH - 50,
 		display: 'flex',
 		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
 	},
 	dateContainer: {
-		marginVertical: 20,
+		marginVertical: 10,
 		flex: 1,
 	},
 	buttonContainer: {
@@ -236,6 +256,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		gap: 4,
+		marginVertical: 10,
 	},
 	moreOptionsText: {
 		color: 'gray',
