@@ -1,16 +1,16 @@
 import { AntDesign } from '@expo/vector-icons'
 import dayjs from 'dayjs'
 import React, { useMemo, useState } from 'react'
-import { FlatList, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native'
 import { CalendarList } from 'react-native-calendars'
 
 import ScreenLayout from '../screen-layout'
 
-import { fontSize } from '@/constants/tokens'
-import { useStore } from '@/store'
-import { horizontalScale, verticalScale } from '@/utils/responsive'
 import EventDetail from '@/components/common/event-detail'
 import Separator from '@/components/contents/separator'
+import { fontSize } from '@/constants/tokens'
+import { useStore } from '@/store'
+import { horizontalScale } from '@/utils/responsive'
 
 const availabilityDates = [
 	{
@@ -72,7 +72,7 @@ const Availability = ({ navigation }: any) => {
 						selectedDayBackgroundColor: '#7450FE',
 						dotColor: '#7450FE',
 						backgroundColor: 'white',
-						todayTextColor: '#3513DD',
+						todayTextColor: '#7450FE',
 						dayTextColor: 'black',
 					}}
 					onDayPress={(date) => {
@@ -84,21 +84,26 @@ const Availability = ({ navigation }: any) => {
 						<Text style={styles.eventHeadingText}>Events on -</Text>
 						<Text style={styles.eventDate}>{dayjs(selectedDate).format('dddd D MMMM')}</Text>
 					</View>
-
-					<FlatList
-						data={availabilitiesToday}
-						showsVerticalScrollIndicator={false}
-						renderItem={({ item, index }) => {
-							return <EventDetail evenDetail={item} />
-						}}
-						ItemSeparatorComponent={() => {
-							return (
-								<View style={styles.separatorContainer}>
-									<Separator />
-								</View>
-							)
-						}}
-					/>
+					{availabilitiesToday.length > 0 ? (
+						<FlatList
+							data={availabilitiesToday}
+							showsVerticalScrollIndicator={false}
+							renderItem={({ item, index }) => {
+								return <EventDetail evenDetail={item} />
+							}}
+							ItemSeparatorComponent={() => {
+								return (
+									<View style={styles.separatorContainer}>
+										<Separator />
+									</View>
+								)
+							}}
+						/>
+					) : (
+						<View style={styles.noEventsContainer}>
+							<Text style={styles.noEventText}>No events for this day</Text>
+						</View>
+					)}
 				</View>
 			</View>
 
@@ -142,5 +147,15 @@ const styles = StyleSheet.create({
 		paddingBottom: 10,
 	},
 	eventDate: { fontSize: fontSize.sm, color: '#3513DD', paddingBottom: 10 },
+	noEventsContainer: {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 50,
+	},
+	noEventText: {
+		fontSize: fontSize.lg,
+		fontWeight: '500',
+	},
 	separatorContainer: {},
 })
