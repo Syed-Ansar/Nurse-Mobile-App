@@ -2,10 +2,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import MainNavigator from '../Main'
 
+import JobDetails from '@/screens/home/job-details'
 import NotificationDetails from '@/screens/home/notification-details'
 import Notifications from '@/screens/home/notifications'
 import Profile from '@/screens/home/profile'
-import JobDetails from '@/screens/home/job-details'
 
 const HomeStack = createNativeStackNavigator()
 

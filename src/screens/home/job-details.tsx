@@ -1,11 +1,12 @@
 import { AntDesign, Entypo, Feather, Fontisto } from '@expo/vector-icons'
-import React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 import ScreenLayout from '../screen-layout'
 
 import JobDetailInfo from '@/components/common/job-detail-info'
 import Layout from '@/components/common/layout'
+import { showToast } from '@/components/common/toast'
 import GradientButton from '@/components/ui/Button'
 import { fontSize } from '@/constants/tokens'
 import { acceptNurseInvite } from '@/network/notification'
@@ -15,13 +16,14 @@ type Props = { navigation: any; route: any }
 
 const JobDetails = ({ navigation, route }: Props) => {
 	const { data }: { data: JobType } = route.params
+	const [status, setStatus] = useState<'ACCEPTED' | 'DECLINED' | 'NULL'>('NULL')
 
 	return (
 		<ScreenLayout navigation={navigation}>
-			<Layout navigation={navigation}>
+			<Layout navigation={navigation} headerTitle="Job Detail">
 				<ScrollView showsVerticalScrollIndicator={false}>
 					<View>
-						<Text style={styles.facilityName}>{data.facility}</Text>
+						<Text style={styles.facilityName}>{data?.facility}</Text>
 					</View>
 					<View style={styles.infoWrapper}>
 						<JobDetailInfo
@@ -63,26 +65,44 @@ const JobDetails = ({ navigation, route }: Props) => {
 					/>
 				</ScrollView>
 				<View style={styles.actionContainer}>
-					<View style={styles.declineAction}>
-						<Text style={styles.declineActionText}>Decline</Text>
-					</View>
-					<GradientButton
-						title="Accept"
-						radius={6}
-						height={40}
-						fontSize={18}
-						titleStyle={{
-							fontWeight: '600',
-						}}
-						onClick={async () => {
-							try {
-								const response = await acceptNurseInvite()
-								console.log('Response', response)
-							} catch (error) {
-								console.log('Error', error)
-							}
-						}}
-					/>
+					{status === 'DECLINED' || status === 'NULL' ? (
+						<Pressable
+							pointerEvents={status === 'DECLINED' ? 'none' : 'auto'}
+							style={[
+								styles.declineAction,
+								{ borderColor: status === 'DECLINED' ? 'gray' : 'black' },
+							]}
+							onPress={() => {
+								setStatus('DECLINED')
+							}}
+						>
+							<Text style={styles.declineActionText}>
+								{status === 'DECLINED' ? 'Declined' : 'Decline'}
+							</Text>
+						</Pressable>
+					) : null}
+					{status === 'ACCEPTED' || status === 'NULL' ? (
+						<GradientButton
+							title={status === 'ACCEPTED' ? 'Accepted' : 'Accept'}
+							radius={6}
+							height={40}
+							fontSize={18}
+							titleStyle={{
+								fontWeight: '600',
+							}}
+							onClick={async () => {
+								try {
+									const response = await acceptNurseInvite()
+									if (response.status === 200) {
+										showToast('You have accepted the Invitation Successfully!')
+										setStatus('ACCEPTED')
+									}
+								} catch (error) {
+									console.log('Error', error)
+								}
+							}}
+						/>
+					) : null}
 				</View>
 			</Layout>
 		</ScreenLayout>

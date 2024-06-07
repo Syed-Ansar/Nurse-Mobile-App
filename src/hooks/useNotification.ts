@@ -11,9 +11,9 @@ const useNotifications = () => {
 
 	const getSubId = async () => {
 		try {
-			const subscriptionId = await OneSignal.User.pushSubscription?.getIdAsync()
-			console.log('subscriptionId', subscriptionId)
-			return subscriptionId
+			OneSignal.User.pushSubscription.addEventListener('change', (subscription) => {
+				return subscription.current.id
+			})
 		} catch (error) {
 			console.log('Error : getSubId ============', error)
 			return null
@@ -55,8 +55,23 @@ const useNotifications = () => {
 		// Method for listening for notification clicks
 		OneSignal.Notifications.addEventListener('click', (event) => {
 			const notificationData: any = event.notification
-			console.log('OneSignal: notification clicked:', notificationData)
-			RootNavigation.navigate('JobDetails')
+			RootNavigation.navigate('JobDetails', {
+				id: 1,
+				posted: 'today',
+				status: 'Upcoming',
+				facility: 'A Nurse required for ABC hospital',
+				estimatedPaymentDate: '07/08/2023',
+				facilityDetails: {
+					ward: 'Nurse',
+					workPeriod: 'Jul 08th 23',
+					workHours: 12,
+				},
+				clockInTime: '2:00 PM',
+				clockOutTime: '3:00 PM',
+				avatar: '',
+				name: 'Emily Ava',
+				review: 5,
+			})
 		})
 	}
 
@@ -67,13 +82,12 @@ const useNotifications = () => {
 	const registerForNotification = async (data: NurseUserInfo) => {
 		try {
 			const playerId = getSubscriptionIdAsync()
+			console.log('playerId', playerId)
 
 			sendNurseDetailsOneSignal({
 				playerId,
 			})
 			OneSignal.login(data.id)
-			OneSignal.User.addEmail(data.email)
-			OneSignal.User.addSms(data.phoneNumber)
 		} catch (error) {
 			console.log('=========== Register For Notification Error =========', error)
 		}

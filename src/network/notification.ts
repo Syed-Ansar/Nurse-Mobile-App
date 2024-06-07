@@ -10,9 +10,9 @@ export const sendNurseDetailsOneSignal = (params: NotificationRequest) => {
 }
 
 export const acceptNurseInvite = ({
-	nurseId = '7c0b7349-0938-4449-9526-bb28cf51d76e',
-	itemId = '551268',
-	recordId = '353234',
+	nurseId = 'cfee65bd-e446-451b-a885-604c2bc67973',
+	itemId = '553185',
+	recordId = '354630',
 	invite = 'ACCEPTED',
 } = {}) => {
 	return axios.post(`${BaseUrl}/consultancy/inviteResponse`, {
