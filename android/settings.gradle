@@ -1,4 +1,4 @@
-rootProject.name = 'nurse-app'
+rootProject.name = 'nurse-app-sdr-1'
 
 dependencyResolutionManagement {
   versionCatalogs {

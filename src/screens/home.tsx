@@ -16,6 +16,7 @@ import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 import Job from '@/components/contents/job'
 import { fontSize } from '@/constants/tokens'
+import useNotifications from '@/hooks/useNotification'
 import { JobData } from '@/libs/dummyData'
 import { getNurse } from '@/network/auth'
 import { useNurseStore } from '@/store'
@@ -58,6 +59,7 @@ const HomeScreen = ({ navigation }: Props) => {
 	const [jobs, setJobs] = useState(JobData.filter((item) => item.status === JOB_STATUS.Upcoming))
 	const { nurse, setNurse } = useNurseStore()
 	const drawerNavigation = useNavigation()
+	const { registerForNotification } = useNotifications()
 
 	const [refreshing, setRefreshing] = useState(false)
 
@@ -74,12 +76,13 @@ const HomeScreen = ({ navigation }: Props) => {
 				const nurseInfo = await getNurse()
 				if (nurseInfo.data) {
 					setNurse(nurseInfo.data)
+					registerForNotification(nurseInfo.data)
 				}
 			}
 		} catch (error) {
 			console.log('Error Get User', error)
 		}
-	}, [nurse, setNurse])
+	}, [nurse])
 
 	useLayoutEffect(() => {
 		getUserInfo()
@@ -274,7 +277,7 @@ const HomeScreen = ({ navigation }: Props) => {
 						}}
 					>
 						{jobs.map((item) => {
-							return <Job key={item.id} job={item} />
+							return <Job key={item.id} job={item} navigation={navigation} />
 						})}
 					</ScrollView>
 				</View>

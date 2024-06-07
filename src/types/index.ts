@@ -9,6 +9,24 @@ export enum JobStatus {
 	OnGoing = 'On Going',
 }
 
+export type Facility = {
+	ward: string
+	workPeriod: string
+	workHours: number
+}
+
+export type JobType = {
+	posted: string
+	facility: string
+	estimatedPaymentDate: string
+	facilityDetails: Facility
+	clockInTime: string
+	clockOutTime: string
+	avatar: string
+	name: string
+	review: number
+}
+
 export type JobData = {
 	name: string
 	reviews: number
@@ -151,3 +169,5 @@ export type ProfileDataType = {
 	'Called Rank': string
 	'RWOP Number': string
 }
+
+export type NotificationRequest = { playerId: string }
