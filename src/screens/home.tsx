@@ -16,12 +16,12 @@ import TotalEarnings from '@/assets/svg/total-earnings.svg'
 import WelcomeHand from '@/assets/svg/welcome-hand.svg'
 import Job from '@/components/contents/job'
 import { fontSize } from '@/constants/tokens'
+import useNotifications from '@/hooks/useNotification'
 import { JobData } from '@/libs/dummyData'
 import { getNurse } from '@/network/auth'
 import { useNurseStore } from '@/store'
 import { utilsStyles } from '@/styles'
 import { SCREEN_WIDTH } from '@/utils/responsive'
-import useNotifications from '@/hooks/useNotification'
 
 type Props = {
 	navigation: any
@@ -82,7 +82,7 @@ const HomeScreen = ({ navigation }: Props) => {
 		} catch (error) {
 			console.log('Error Get User', error)
 		}
-	}, [nurse, setNurse])
+	}, [nurse])
 
 	useLayoutEffect(() => {
 		getUserInfo()
@@ -277,7 +277,7 @@ const HomeScreen = ({ navigation }: Props) => {
 						}}
 					>
 						{jobs.map((item) => {
-							return <Job key={item.id} job={item} />
+							return <Job key={item.id} job={item} navigation={navigation} />
 						})}
 					</ScrollView>
 				</View>
